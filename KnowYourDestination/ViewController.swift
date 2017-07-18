@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Firebase
+
 
 class ViewController: UIViewController {
 
+    var handle: AuthStateDidChangeListenerHandle!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

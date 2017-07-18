@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmailLoginView" customModule="KnowYourDestination" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="4E0-O8-3ie"/>
+                <outlet property="emailTextField" destination="RBV-dm-iLz" id="HQ5-aB-Sts"/>
+                <outlet property="passwordTextField" destination="hYB-g7-Km3" id="cOk-fA-WPi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="BcS-YK-WA9">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="146"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RBV-dm-iLz">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hYB-g7-Km3">
+                            <rect key="frame" x="0.0" y="61" width="375" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cll-Sr-DFU">
+                            <rect key="frame" x="0.0" y="122" width="375" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="4oi-OW-sAS"/>
+                            </constraints>
+                            <state key="normal" title="Register"/>
+                            <connections>
+                                <action selector="didPressRegisterButton:" destination="-1" eventType="touchUpInside" id="8dO-fc-bRQ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="BcS-YK-WA9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GQ8-Lh-EU0"/>
+                <constraint firstAttribute="trailing" secondItem="BcS-YK-WA9" secondAttribute="trailing" id="Ubc-UT-3z5"/>
+                <constraint firstAttribute="bottom" secondItem="BcS-YK-WA9" secondAttribute="bottom" id="kMo-ZW-7yr"/>
+                <constraint firstItem="BcS-YK-WA9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rel-Mg-swu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33.5" y="85"/>
+        </view>
+    </objects>
+</document>
