@@ -30,9 +30,17 @@ struct Constants {
         static let tags = "tags"
     }
     
+    struct CityPost {
+        static let postText = "post_text"
+        static let imageUrl = "image_url"
+        static let postedBy = "posted_by"
+        static let tags = "tags"
+    }
+    
     struct DatabaseRef {
         static let users = "users"
         static let guides = "guides"
+        static let cityPosts = "city_posts"
     }
     
     static let databaseReference = Database.database().reference()

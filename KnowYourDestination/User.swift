@@ -64,6 +64,8 @@ class User: NSObject {
             UserDefaults.standard.set(uid, forKey: Constants.UserDefaults.currentUser)
             UserDefaults.standard.set(isTourGuide, forKey: Constants.UserDefaults.isTourGuide)
         }
+        
+        _current = user
     }
     
     

@@ -71,7 +71,6 @@ class RegisterVC: UIViewController {
                 } else {
                     UserService.create(user, username: username, isTourGuide: self.travelGuideSwitch.isOn, completion: { (user) in
                         guard let user = user else { return }
-                        print(user.username)
                         User.setCurrent(user: user, user.uid, isTourGuide: user.isTourGuide, writeToUserDefaults: true)
                         
                         var storyboard: UIStoryboard

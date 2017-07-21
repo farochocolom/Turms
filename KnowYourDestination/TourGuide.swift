@@ -43,21 +43,6 @@ class TourGuide: NSObject {
 //        super.init(snapshot: snapshot)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        guard let uid = aDecoder.decodeObject(forKey: Constants.UserDefaults.uid) as? String,
-            let city = aDecoder.decodeObject(forKey: Constants.TravelGuidesDefaults.city) as? String,
-            let reviewCount = aDecoder.decodeObject(forKey: Constants.TravelGuidesDefaults.reviewCount) as? Int,
-            let tags = aDecoder.decodeObject(forKey: Constants.TravelGuidesDefaults.tags) as? [String]
-            else { return nil }
-        
-        self.uid = uid
-        self.city = city
-        self.reviewCount = reviewCount
-        self.tags = tags
-        super.init()
-//        super.init(coder: aDecoder)
-//        uid: User.current.uid, username: User.current.username, imageUrl: User.current.profileImageUrl, tourGuide: true
-    }
     
     
     private static var _current: TourGuide?
@@ -92,12 +77,3 @@ class TourGuide: NSObject {
 }
 
 
-extension TourGuide: NSCoding {
-    func encode(with aCoder: NSCoder) {
-        aCoder.encode(uid, forKey: Constants.UserDefaults.uid)
-        aCoder.encode(city, forKey: Constants.TravelGuidesDefaults.city)
-        aCoder.encode(reviewCount, forKey: Constants.TravelGuidesDefaults.reviewCount)
-        aCoder.encode(tags, forKey: Constants.TravelGuidesDefaults.tags)
-    }
-    
-}

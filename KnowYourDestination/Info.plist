@@ -59,5 +59,9 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera so we can prove your ugliness to others</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your pictures to stalk you</string>
 </dict>
 </plist>

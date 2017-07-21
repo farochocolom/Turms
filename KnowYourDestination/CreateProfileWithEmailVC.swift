@@ -8,12 +8,16 @@
 
 import UIKit
 import Firebase
+import ImagePicker
 
-class CreateProfileWithEmailVC: UIViewController {
+
+class CreateProfileWithEmailVC: UIViewController, ImagePickerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let imagePickerController = ImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
         // Do any additional setup after loading the view.
     }
 
@@ -32,6 +36,18 @@ class CreateProfileWithEmailVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+            print("working")
+    }
+    
+    func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
+    
+    func cancelButtonDidPress(_ imagePicker: ImagePickerController) {
+        imagePicker.dismiss(animated: true, completion: nil)
+    }
     
     func createUser(){
         

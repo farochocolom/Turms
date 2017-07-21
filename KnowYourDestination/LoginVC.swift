@@ -64,6 +64,8 @@ class LoginVC: UIViewController {
                     // 4
                     self.view.window?.makeKeyAndVisible()
                 }
+                
+                
             }
             
         } else {
