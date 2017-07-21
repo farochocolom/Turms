@@ -13,7 +13,7 @@ class User: NSObject {
     // MARK: Properties
     
     let uid: String
-    let username: String
+    var username: String
     let profileImageUrl: String
     let isTourGuide: Bool
     
@@ -52,6 +52,8 @@ class User: NSObject {
             fatalError("Error: current user doesn't exist")
         }
         
+//        _current?.username = UserDefaults.standard.object(forKey: Constants.UserDefaults.username) as! String
+        
         // 4
         return currentUser
     }
@@ -63,7 +65,9 @@ class User: NSObject {
         if writeToUserDefaults {
             UserDefaults.standard.set(uid, forKey: Constants.UserDefaults.currentUser)
             UserDefaults.standard.set(isTourGuide, forKey: Constants.UserDefaults.isTourGuide)
+//            UserDefaults.standard.set(username, forKey: Constants.UserDefaults.username)
         }
+        
         
         _current = user
     }

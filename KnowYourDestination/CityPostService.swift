@@ -14,17 +14,11 @@ import FirebaseDatabase
 
 struct CityPostService {
     
-    static func create(for image: UIImage, postedBy: String, postText: String, tags: [String]) {
-
-        let date = Date()
-        let calendar = Calendar.current
-        
-        let hour = calendar.component(.hour, from: date)
-        let minutes = calendar.component(.minute, from: date)
-        let seconds = calendar.component(.second, from: date)
-        print("hours = \(hour):\(minutes):\(seconds)")
-        
+    
+    
+    static func create(for image: UIImage, postedBy: String, postedByName: String, postText: String, tags: [String]) {
         let uuid = UUID().uuidString
+        let postedByName = ""
 
         if image != UIImage(named: "add_photo_btn"){
             print("hay imagen")
@@ -33,6 +27,7 @@ struct CityPostService {
         }
         
         let storageRef = Storage.storage().reference().child("cityPosts/images/\(postedBy)/\(uuid).png")
+
         
         guard let uploadData = UIImagePNGRepresentation(image)
             else {return}
@@ -50,12 +45,14 @@ struct CityPostService {
                 cityPostAttributes = ["post_text": postText,
                                         "image_url" : postImgUrl,
                                         "posted_by": postedBy,
+                                        "posted_by_name":"",
                                         "tags" : tags]
 
             } else {
                 cityPostAttributes = ["post_text": postText,
                                       "image_url" : "",
                                       "posted_by": postedBy,
+                                      "posted_by_name": "",
                                       "tags" : tags]
             }
             create(values: cityPostAttributes)

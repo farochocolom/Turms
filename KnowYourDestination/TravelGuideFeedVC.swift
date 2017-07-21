@@ -12,6 +12,8 @@ import FirebaseDatabase
 class TravelGuideFeedVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    
     var cityPosts = [CityPost](){
         didSet{
             tableView.reloadData()
@@ -173,6 +175,8 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         case 1:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
+            
+            cell.postedByLabel.text = "By: \(post.postByName)"
             //            cell.delegate = self
             //            configureCell(cell, with: post)
             return cell

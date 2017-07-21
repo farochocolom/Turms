@@ -40,7 +40,9 @@ class CreateCityPostVC: UIViewController {
             let currentUserUID = Auth.auth().currentUser?.uid
         else {return}
         
-        CityPostService.create(for: image, postedBy: currentUserUID, postText: postText, tags: [food,people])
+//        let currentUsername = User.current.username
+        
+        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: currentUserUID, postText: postText, tags: [food,people])
         
     }
 

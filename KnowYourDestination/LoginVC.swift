@@ -46,6 +46,7 @@ class LoginVC: UIViewController {
     
     @IBAction func didPressRegisterButton(_ sender: UIButton) {
         
+        var initialViewController: UIViewController = UIStoryboard.initialViewController(for: .main)
         if let email = emailTextField.text, let password = passwordTextField.text {
             
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
@@ -55,16 +56,26 @@ class LoginVC: UIViewController {
                     return
                 }
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: .main)
+                guard let userUid = user?.uid else {return}
                 
-                // 2
-                if let initialViewController = storyboard.instantiateInitialViewController() {
-                    // 3
-                    self.view.window?.rootViewController = initialViewController
-                    // 4
-                    self.view.window?.makeKeyAndVisible()
-                }
+                UserService.show(forUID: userUid, completion: { (user) in
+                    
+                    guard let user = user else {return}
+                    
+                    User.setCurrent(user: user, userUid, isTourGuide: user.isTourGuide, writeToUserDefaults: true)
+                    
+                    if user.isTourGuide{
+                        initialViewController = UIStoryboard.initialViewController(for: .guide)
+                    } else {
+                        initialViewController = UIStoryboard.initialViewController(for: .main)
+                    }
+
+                })
                 
+                
+                self.view.window?.rootViewController = initialViewController
+                // 4
+                self.view.window?.makeKeyAndVisible()
                 
             }
             

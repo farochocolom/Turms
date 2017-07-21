@@ -9,6 +9,10 @@
 import UIKit
 
 class ExploreFeedFooterCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var postedByLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
