@@ -31,18 +31,18 @@ class CreateCityPostVC: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let defaults = UserDefaults.standard
         
         guard let postText = postTextField.text,
             let interaction = interactionTagButton.currentTitle,
             let image = postImagePicker.image,
             let food = foodTagButton.currentTitle,
             let people = peopleTagButton.currentTitle,
-            let currentUserUID = Auth.auth().currentUser?.uid
+            let currentUserUID = Auth.auth().currentUser?.uid,
+            let username = defaults.object(forKey: Constants.UserDefaults.username) as? String
         else {return}
-        
-//        let currentUsername = User.current.username
-        
-        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: currentUserUID, postText: postText, tags: [food,people])
+
+        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: [food,people])
         
     }
 

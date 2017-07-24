@@ -10,24 +10,28 @@ import UIKit
 import FirebaseDatabase.FIRDataSnapshot
 
 class CityPost {
+    var key: String?
     let text: String
     let imageUrl: String
     let postById: String
     let postByName: String
     let tags: [String]
     var image: UIImage?
-//    var upvotes: Int
-//    var downvotes: Int
+    var upvotes: Int
+    var downvotes: Int
 //    var isUpvoted: Bool
 //    var isDownvoted: Bool
     
-    init(text: String, imageUrl: String, postById: String, postByName: String, tags: [String], image: UIImage?) {
+    init(text: String, imageUrl: String, postById: String, postByName: String,
+         tags: [String], image: UIImage?) {
         self.text = text
         self.imageUrl = imageUrl
         self.postByName = postByName
         self.postById = postById
         self.tags = tags
         self.image = image
+        self.downvotes = 0
+        self.upvotes = 0
     }
     
     init?(snapshot: DataSnapshot){
@@ -36,15 +40,20 @@ class CityPost {
             let imageUrl = dict["image_url"] as? String,
             let postById = dict["posted_by"] as? String,
             let postByName = dict["posted_by_name"] as? String,
-            let tags = dict["tags"] as? [String]
+            let tags = dict["tags"] as? [String],
+            let upvotes = dict["upvotes"] as? Int,
+            let downvotes = dict["downvotes"] as? Int
             else {return nil}
 
+        self.key = snapshot.key
         self.text = postText
         self.imageUrl = imageUrl
         self.postByName = postByName
         self.postById = postById
         self.tags = tags
         self.image = UIImage()
+        self.downvotes = downvotes
+        self.upvotes = upvotes
     }
     
     

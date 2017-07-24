@@ -62,7 +62,7 @@ class LoginVC: UIViewController {
                     
                     guard let user = user else {return}
                     
-                    User.setCurrent(user: user, userUid, isTourGuide: user.isTourGuide, writeToUserDefaults: true)
+                    User.setCurrent(user: user, userUid, isTourGuide: user.isTourGuide, username: user.username, writeToUserDefaults: true)
                     
                     if user.isTourGuide{
                         initialViewController = UIStoryboard.initialViewController(for: .guide)

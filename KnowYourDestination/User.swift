@@ -61,11 +61,11 @@ class User: NSObject {
     // MARK: - Class Methods
     
     // 5
-    class func setCurrent(user: User, _ uid: String, isTourGuide: Bool, writeToUserDefaults: Bool = false) {
+    class func setCurrent(user: User, _ uid: String, isTourGuide: Bool, username: String, writeToUserDefaults: Bool = false) {
         if writeToUserDefaults {
             UserDefaults.standard.set(uid, forKey: Constants.UserDefaults.currentUser)
             UserDefaults.standard.set(isTourGuide, forKey: Constants.UserDefaults.isTourGuide)
-//            UserDefaults.standard.set(username, forKey: Constants.UserDefaults.username)
+            UserDefaults.standard.set(username, forKey: Constants.UserDefaults.username)
         }
         
         

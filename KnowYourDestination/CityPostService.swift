@@ -18,7 +18,6 @@ struct CityPostService {
     
     static func create(for image: UIImage, postedBy: String, postedByName: String, postText: String, tags: [String]) {
         let uuid = UUID().uuidString
-        let postedByName = ""
 
         if image != UIImage(named: "add_photo_btn"){
             print("hay imagen")
@@ -45,24 +44,29 @@ struct CityPostService {
                 cityPostAttributes = ["post_text": postText,
                                         "image_url" : postImgUrl,
                                         "posted_by": postedBy,
-                                        "posted_by_name":"",
-                                        "tags" : tags]
+                                        "posted_by_name": postedByName,
+                                        "tags" : tags,
+                                        "upvotes" : 0,
+                                        "downvotes" : 0]
 
             } else {
                 cityPostAttributes = ["post_text": postText,
-                                      "image_url" : "",
-                                      "posted_by": postedBy,
-                                      "posted_by_name": "",
-                                      "tags" : tags]
+                                        "image_url" : "",
+                                        "posted_by": postedBy,
+                                        "posted_by_name": postedByName,
+                                        "tags" : tags,
+                                        "upvotes" : 0,
+                                        "downvotes" : 0]
             }
-            create(values: cityPostAttributes)
+            create(values: cityPostAttributes, uid: postedBy)
         }
     }
     
-    static func create(values: [String: Any]) {
+    static func create(values: [String: Any], uid: String) {
         
     
         let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).childByAutoId()
+        let cityPostByUserRef = Database.database().reference().child("city_post_by_user").child(uid).childByAutoId()
         
         cityPostRef.setValue(values) { (error, ref) in
             if let err = error {
@@ -75,7 +79,16 @@ struct CityPostService {
             
         }
         
-        
+        cityPostByUserRef.setValue(values) { (error, ref) in
+            if let err = error {
+                assertionFailure(err.localizedDescription)
+            }
+            
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                let cityPost = CityPost(snapshot: snapshot)
+            })
+            
+        }
     }
     
     static func cityPosts(completion: @escaping ([CityPost]) -> Void) {
