@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         
         if Auth.auth().currentUser != nil,
-            let isTourGuide = defaults.object(forKey: Constants.UserDefaults.isTourGuide) as? Bool {
+            let isTourGuide = defaults.object(forKey: Constants.UserDef.isTourGuide) as? Bool {
             
             if isTourGuide{
                 initialViewController = UIStoryboard.initialViewController(for: .guide)

@@ -6,8 +6,9 @@
 //  Copyright © 2017 Specialist. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 struct Constants {
     
@@ -15,13 +16,16 @@ struct Constants {
         
     }
     
-    struct UserDefaults {
+    struct UserDef {
         static let currentUser = "currentUser"
         static let uid = "uid"
         static let feed = "feed"
         static let isTourGuide = "is_tour_guide"
         static let imageUrl = "profile_image_url"
         static let username = "username"
+        
+        static let userId = UserDefaults.standard.object(forKey: uid)
+        static let uidValue = Auth.auth().currentUser!.uid
     }
     
     struct TravelGuidesDefaults {
@@ -35,6 +39,8 @@ struct Constants {
         static let imageUrl = "image_url"
         static let postedBy = "posted_by"
         static let tags = "tags"
+        
+        static let postByUser = "city_post_by_user"
     }
     
     struct DatabaseRef {

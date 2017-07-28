@@ -29,8 +29,8 @@ class User: NSObject {
     init?(snapshot: DataSnapshot) {
         guard let dict = snapshot.value as? [String : Any],
             let username = dict["username"] as? String,
-            let imageUrl = dict[Constants.UserDefaults.imageUrl] as? String,
-            let tourGuide = dict[Constants.UserDefaults.isTourGuide] as? Bool
+            let imageUrl = dict[Constants.UserDef.imageUrl] as? String,
+            let tourGuide = dict[Constants.UserDef.isTourGuide] as? Bool
             else { return nil }
         
         self.uid = snapshot.key
@@ -63,9 +63,9 @@ class User: NSObject {
     // 5
     class func setCurrent(user: User, _ uid: String, isTourGuide: Bool, username: String, writeToUserDefaults: Bool = false) {
         if writeToUserDefaults {
-            UserDefaults.standard.set(uid, forKey: Constants.UserDefaults.currentUser)
-            UserDefaults.standard.set(isTourGuide, forKey: Constants.UserDefaults.isTourGuide)
-            UserDefaults.standard.set(username, forKey: Constants.UserDefaults.username)
+            UserDefaults.standard.set(uid, forKey: Constants.UserDef.currentUser)
+            UserDefaults.standard.set(isTourGuide, forKey: Constants.UserDef.isTourGuide)
+            UserDefaults.standard.set(username, forKey: Constants.UserDef.username)
         }
         
         

@@ -68,7 +68,7 @@ class TourGuide: NSObject {
             let data = NSKeyedArchiver.archivedData(withRootObject: guide)
             
             // 4
-            UserDefaults.standard.set(data, forKey: Constants.UserDefaults.currentUser)
+            UserDefaults.standard.set(data, forKey: Constants.UserDef.currentUser)
         }
         
         _current = guide

@@ -46,8 +46,8 @@ struct CityPostService {
                                         "posted_by": postedBy,
                                         "posted_by_name": postedByName,
                                         "tags" : tags,
-                                        "upvotes" : 0,
-                                        "downvotes" : 0]
+                                        "upvotes_count": 0,
+                                        "downvotes_count": 0]
 
             } else {
                 cityPostAttributes = ["post_text": postText,
@@ -55,8 +55,8 @@ struct CityPostService {
                                         "posted_by": postedBy,
                                         "posted_by_name": postedByName,
                                         "tags" : tags,
-                                        "upvotes" : 0,
-                                        "downvotes" : 0]
+                                        "upvotes_count": 0,
+                                        "downvotes_count": 0]
             }
             create(values: cityPostAttributes, uid: postedBy)
         }
@@ -74,7 +74,7 @@ struct CityPostService {
             }
             
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                let cityPost = CityPost(snapshot: snapshot)
+                _ = CityPost(snapshot: snapshot)
             })
             
         }
@@ -85,7 +85,7 @@ struct CityPostService {
             }
             
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                let cityPost = CityPost(snapshot: snapshot)
+                _ = CityPost(snapshot: snapshot)
             })
             
         }
@@ -107,5 +107,35 @@ struct CityPostService {
             
             completion(posts)
         })
+
+        
+//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
+//                return completion([])
+//            }
+//            let dispatchGroup = DispatchGroup()
+//            
+//            let posts: [CityPost] =
+//                snapshot
+//                    .reversed()
+//                    .flatMap {
+//                        guard let post = CityPost(snapshot: $0)
+//                            else { return nil }
+//                        
+//                        dispatchGroup.enter()
+//                        
+//                        VoteService.isPostUpvoted(post) { (isUpvoted) in
+//                            post.isUpvoted = isUpvoted
+//                            
+//                            dispatchGroup.leave()
+//                        }
+//                        
+//                        return post
+//            }
+//            
+//            dispatchGroup.notify(queue: .main, execute: {
+//                completion(posts)
+//            })
+//        })
     }
 }

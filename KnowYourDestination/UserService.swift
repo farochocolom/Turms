@@ -42,4 +42,38 @@ struct UserService {
             completion(user)
         })
     }
+    
+    static func posts(for user: User, completion: @escaping ([CityPost]) -> Void) {
+        let ref = Database.database().reference().child(Constants.CityPost.postByUser).child(user.uid)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
+                return completion([])
+            }
+            
+            let dispatchGroup = DispatchGroup()
+            
+            let posts: [CityPost] =
+                snapshot
+                    .reversed()
+                    .flatMap {
+                        guard let post = CityPost(snapshot: $0)
+                            else { return nil }
+                        
+                        dispatchGroup.enter()
+                        
+                        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
+                        
+                            post.isUpvoted = isUpvoted
+                            
+                            dispatchGroup.leave()
+                        })
+                        
+                        return post
+            }
+            
+            dispatchGroup.notify(queue: .main, execute: {
+                completion(posts)
+            })
+        })
+    }
 }

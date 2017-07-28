@@ -12,6 +12,7 @@
 		900D416A1F17D97900630C67 /* TourGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D41691F17D97900630C67 /* TourGuide.swift */; };
 		900D416C1F17DA0400630C67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D416B1F17DA0400630C67 /* Constants.swift */; };
 		9019EDCA1F266FE600523FDD /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9019EDC91F266FE600523FDD /* VoteService.swift */; };
+		9019EDCC1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */; };
 		906625D51F1D290500B9087F /* ExploreFeedTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */; };
 		906625D71F1D382D00B9087F /* ExploreFeedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625D61F1D382D00B9087F /* ExploreFeedImageCell.swift */; };
 		906625D91F1D384300B9087F /* ExploreFeedFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625D81F1D384300B9087F /* ExploreFeedFooterCell.swift */; };
@@ -52,6 +53,7 @@
 		900D41691F17D97900630C67 /* TourGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourGuide.swift; sourceTree = "<group>"; };
 		900D416B1F17DA0400630C67 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9019EDC91F266FE600523FDD /* VoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
+		9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+IndexPath.swift"; sourceTree = "<group>"; };
 		906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedTextCell.swift; sourceTree = "<group>"; };
 		906625D61F1D382D00B9087F /* ExploreFeedImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedImageCell.swift; sourceTree = "<group>"; };
 		906625D81F1D384300B9087F /* ExploreFeedFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedFooterCell.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				90D997E41F1C343D00443315 /* Storyboard+Utility.swift */,
 				900158351F2020750039C908 /* CreateCityPostVC+handlers.swift */,
 				90C9EB1D1F2142010041B30A /* UIImage+Setup.swift */,
+				9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				906625D91F1D384300B9087F /* ExploreFeedFooterCell.swift in Sources */,
 				90A7D5DB1F16908800CCD5DE /* KnowYourDestination.xcdatamodeld in Sources */,
 				9019EDCA1F266FE600523FDD /* VoteService.swift in Sources */,
+				9019EDCC1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift in Sources */,
 				906625DD1F1D530F00B9087F /* Typealias.swift in Sources */,
 				90D997E71F1C391800443315 /* RegisterVC.swift in Sources */,
 				906625D71F1D382D00B9087F /* ExploreFeedImageCell.swift in Sources */,
@@ -482,6 +486,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -525,6 +530,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

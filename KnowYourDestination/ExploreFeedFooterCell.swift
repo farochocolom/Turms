@@ -8,10 +8,23 @@
 
 import UIKit
 
+protocol ExploreFeedFooterCellDelegate: class {
+    func didTapUpvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell)
+    
+    func didTapDownvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell)
+    
+    func updateSingleCell(on cell: ExploreFeedFooterCell)
+}
+
 class ExploreFeedFooterCell: UITableViewCell {
     
-    
     @IBOutlet weak var postedByLabel: UILabel!
+    @IBOutlet weak var upvoteButton: UIButton!
+    @IBOutlet weak var downvoteButton: UIButton!
+    @IBOutlet weak var downvoteLabel: UILabel!
+    @IBOutlet weak var upvoteCountLabel: UILabel!
+    
+    weak var delegate: ExploreFeedFooterCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +35,15 @@ class ExploreFeedFooterCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    @IBAction func likeButtonTapped(_ sender: UIButton) {
+        delegate?.didTapUpvoteButton(sender, on: self)
+        delegate?.updateSingleCell(on: self)
+    }
+    
+    @IBAction func DownvoteButtonTapped(_ sender: UIButton) {
+        delegate?.didTapDownvoteButton(sender, on: self)
+        delegate?.updateSingleCell(on: self)
     }
 }

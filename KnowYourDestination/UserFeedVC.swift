@@ -113,12 +113,18 @@ extension UserFeedVC: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
             //            cell.delegate = self
-            //            configureCell(cell, with: post)
+                        configureCell(cell, with: post)
             return cell
             
         default:
             fatalError("Error: unexpected indexPath.")
         }
+    }
+    
+    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
+        
+        cell.upvoteButton.isSelected = post.isUpvoted
+        cell.upvoteCountLabel.text = "\(post.upvoteCount)"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -129,4 +135,59 @@ extension UserFeedVC: UITableViewDataSource {
         return cityPosts.count
     }
     
+}
+
+
+extension UserFeedVC: ExploreFeedFooterCellDelegate {
+    func didTapUpvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {
+        guard let indexPath = tableView.indexPath(for: cell)
+            else { return }
+        
+        likeButton.isUserInteractionEnabled = false
+        let post = cityPosts[indexPath.section]
+        
+        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
+    
+            guard success else { return }
+            
+            post.upvoteCount += !post.isUpvoted ? 1 : -1
+            post.isUpvoted = !post.isUpvoted
+        
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
+                else { return }
+            
+            // 9
+            DispatchQueue.main.async {
+                self.configureCell(cell, with: post)
+            }
+        }
+    }
+    
+    func didTapDownvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {
+        guard let indexPath = tableView.indexPath(for: cell)
+            else { return }
+        
+        likeButton.isUserInteractionEnabled = false
+        let post = cityPosts[indexPath.section]
+        
+        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
+           
+            guard success else { return }
+            
+            post.upvoteCount += !post.isUpvoted ? 1 : -1
+            post.isUpvoted = !post.isUpvoted
+            
+            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
+                else { return }
+        
+            DispatchQueue.main.async {
+                self.configureCell(cell, with: post)
+            }
+        }
+
+    }
+    
+    func updateSingleCell(on cell: ExploreFeedFooterCell) {
+        
+    }
 }

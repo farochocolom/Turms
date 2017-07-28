@@ -8,17 +8,13 @@
 
 import UIKit
 import FirebaseDatabase
+import Firebase
 
 class TravelGuideFeedVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    
-    var cityPosts = [CityPost](){
-        didSet{
-            tableView.reloadData()
-        }
-    }
+    var cityPosts = [CityPost]()
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
@@ -39,60 +35,52 @@ class TravelGuideFeedVC: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
         
-//        URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-//            
-//            guard let imgData = data
-//                else {return}
-//            
-//            DispatchQueue.main.async {
-//                
-//                self.cityPostImage.image = UIImage(data: imgData)
-//                
-//            }
-//        }).resume()
+        getCityPosts()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+
+    }
+
+    func randomFunc(ref: DatabaseReference, completion: @escaping (Int) -> Void){
+        DispatchQueue.global(qos: .userInitiated).async {
+            ref.observeSingleEvent(of: .value, with: { (snapshot) in
+                completion(Int(snapshot.childrenCount))
+            })
+        }
+    }
+    
+    @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
         
-        ref.observe(.value, with: { (snapshot) in
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
                 return
             }
             
-            
             let posts: [CityPost] = snapshot.reversed().flatMap{
-                guard var post = CityPost(snapshot: $0)
+                guard let post = CityPost(snapshot: $0)
                     else {return nil}
                 
-                if let imageURL = URL(string: post.imageUrl) {
-                    
-                    URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                        
-                        guard let imgData = data
-                            else {return}
-                        
-                        DispatchQueue.main.async {
-                            post.image = UIImage(data: imgData)
-                        }
-                    }).resume()
-                }
-                
+                post.isUpvoted = false
+                post.isDownvoted = false
+
                 return post
             }
             
             self.cityPosts = posts
-            
         })
-        
-//        ref.observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+    }
+    
+    
+    func getCityPosts() {
+//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
 //            
 //            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
 //                return
 //            }
-//            
 //            
 //            let posts: [CityPost] = snapshot.reversed().flatMap{
 //                guard let post = CityPost(snapshot: $0)
@@ -102,51 +90,52 @@ class TravelGuideFeedVC: UIViewController {
 //            }
 //            
 //            self.cityPosts = posts
-//            
 //        })
         
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
+        let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
         
+        cityPosts.removeAll()
         
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-
-            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
-                return
+        ref.observe(.childAdded, with: { (snapshot) in
+            
+            let dispatchGroup = DispatchGroup()
+            var posts = [CityPost]()
+            guard let post = CityPost(snapshot: snapshot)
+                else {return }
+            
+            if let imageURL = URL(string: post.imageUrl) {
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
+                    
+                    guard let imgData = data
+                        else {
+                            dispatchGroup.leave()
+                            return
+                    }
+                    
+                    post.image = UIImage(data: imgData)
+                    
+                    dispatchGroup.leave()
+                    
+                }).resume()
             }
-            
-            
-            let posts: [CityPost] = snapshot.reversed().flatMap{
-                guard let post = CityPost(snapshot: $0)
-                    else {return nil}
+            //                return post
+            //            }
+            dispatchGroup.notify(queue: .main, execute: {
+                posts.append(post)
+                self.cityPosts.append(post)
+                var total = 0
                 
-                return post
-            }
-            
-            self.cityPosts = posts
-            
+                self.randomFunc(ref: ref, completion: { (total) in
+                    if self.cityPosts.count == total {
+                        self.cityPosts.reverse()
+                        self.tableView.reloadData()
+                    }
+                })
+                
+            })
         })
-        
     }
-
 }
 
 
@@ -161,8 +150,8 @@ extension TravelGuideFeedVC: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedImageCell", for: indexPath) as! ExploreFeedImageCell
                 
                 cell.postTextLabel.text = post.text
-                cell.postImage.image = post.image
-                print("Image cell")
+                cell.postImage.image = post.image!
+                print("Image cell: \(indexPath.section)")
                 
                 return cell
             } else {
@@ -175,15 +164,57 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         case 1:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
+            cell.delegate = self
+            configureCell(cell, with: post)
             
-            cell.postedByLabel.text = "By: \(post.postByName)"
-            //            cell.delegate = self
-            //            configureCell(cell, with: post)
             return cell
             
         default:
             fatalError("Error: unexpected indexPath.")
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
+        
+        cell.postedByLabel.text = "By: \(post.postByName)"
+        cell.upvoteCountLabel.text = "\(post.upvoteCount)"
+        cell.downvoteLabel.text = "\(post.downvoteCount)"
+        
+        
+        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+            cell.downvoteButton.isSelected = isDownvoted
+            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
+        })
+        
+        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
+            cell.upvoteButton.isSelected = isUpvoted
+            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
+        })
+        
+    }
+    
+    func configureSingleCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
+
+        cell.postedByLabel.text = "By: \(post.postByName)"
+        cell.upvoteCountLabel.text = "\(post.upvoteCount)"
+        cell.downvoteLabel.text = "\(post.downvoteCount)"
+        
+        
+        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+            cell.downvoteButton.isSelected = isDownvoted
+            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
+        })
+        
+        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
+            cell.upvoteButton.isSelected = isUpvoted
+            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
+        })
+        
+//        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -193,7 +224,6 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return cityPosts.count
     }
-    
     
 }
 
@@ -215,5 +245,53 @@ extension TravelGuideFeedVC: UITableViewDelegate {
         }
     }
 }
+
+extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
+    func didTapUpvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {
+        guard let indexPath = tableView.indexPath(for: cell)
+            else { return }
+        
+        likeButton.isUserInteractionEnabled = false
+        
+        let post = cityPosts[indexPath.section]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
+     
+                guard success else { return }
+                
+                DispatchQueue.main.async {
+                    self.configureSingleCell(cell, with: post)
+                }
+            }
+        }
+    }
+    
+    func didTapDownvoteButton(_ downvoteButton: UIButton, on cell: ExploreFeedFooterCell) {
+        guard let indexPath = tableView.indexPath(for: cell)
+            else { return }
+        
+        downvoteButton.isUserInteractionEnabled = false
+        
+        let post = cityPosts[indexPath.section]
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            VoteService.setIsDownvoted(!post.isDownvoted, for: post) { (success) in
+                
+                guard success else { return }
+                
+                DispatchQueue.main.async {
+                    self.configureSingleCell(cell, with: post)
+                }
+            }
+        }
+    }
+    
+    func updateSingleCell(on cell: ExploreFeedFooterCell) {
+        
+    }
+
+}
+
 
 

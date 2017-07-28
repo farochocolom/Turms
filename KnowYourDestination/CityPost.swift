@@ -17,10 +17,12 @@ class CityPost {
     let postByName: String
     let tags: [String]
     var image: UIImage?
-    var upvotes: Int
-    var downvotes: Int
-//    var isUpvoted: Bool
-//    var isDownvoted: Bool
+    var upvoteCount: Int
+    var downvoteCount: Int
+    var upvotes: [String]?
+    var downvotes: [String]?
+    var isUpvoted: Bool
+    var isDownvoted: Bool
     
     init(text: String, imageUrl: String, postById: String, postByName: String,
          tags: [String], image: UIImage?) {
@@ -30,19 +32,21 @@ class CityPost {
         self.postById = postById
         self.tags = tags
         self.image = image
-        self.downvotes = 0
-        self.upvotes = 0
+        self.upvoteCount = 0
+        self.downvoteCount = 0
+        self.isDownvoted = false
+        self.isUpvoted = false
     }
     
-    init?(snapshot: DataSnapshot){
+    init?(snapshot: DataSnapshot, upvotesSnapshot: DataSnapshot = DataSnapshot()){
         guard let dict = snapshot.value as? [String: Any],
             let postText = dict["post_text"] as? String,
             let imageUrl = dict["image_url"] as? String,
             let postById = dict["posted_by"] as? String,
             let postByName = dict["posted_by_name"] as? String,
             let tags = dict["tags"] as? [String],
-            let upvotes = dict["upvotes"] as? Int,
-            let downvotes = dict["downvotes"] as? Int
+            let upvotesCount = dict["upvotes_count"] as? Int,
+            let downvotesCount = dict["downvotes_count"] as? Int
             else {return nil}
 
         self.key = snapshot.key
@@ -52,9 +56,25 @@ class CityPost {
         self.postById = postById
         self.tags = tags
         self.image = UIImage()
-        self.downvotes = downvotes
-        self.upvotes = upvotes
+        self.downvoteCount = downvotesCount
+        self.upvoteCount = upvotesCount
+        self.isUpvoted = false
+        self.isDownvoted = false
+        
+        if let userUid = Constants.UserDef.uidValue as? String {
+            if let upvoteDict = upvotesSnapshot.value as? [String: Any],
+                let upvotes = upvoteDict[userUid] as? Bool {
+                if upvotes {
+                    self.isUpvoted = true
+                } else {
+                    self.isUpvoted = false
+                }
+
+            }
+        }
+        
     }
+    
     
     
 }
