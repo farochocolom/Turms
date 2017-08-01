@@ -156,10 +156,10 @@ struct VoteService {
         var completionStatus = false
         
         upvoteGroup.enter()
-        likesRef.queryEqual(toValue: nil, childKey: Constants.UserDef.uidValue as! String).observeSingleEvent(of: .value, with: { (snapshot) in
+        likesRef.queryEqual(toValue: nil, childKey: Constants.UserDef.uidValue).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let value = snapshot.value as? [String : Bool] else {return}
             
-            completionStatus = value[Constants.UserDef.uidValue as! String]!
+            completionStatus = value[Constants.UserDef.uidValue]!
             upvoteGroup.leave()
 
         })

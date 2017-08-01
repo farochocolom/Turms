@@ -37,6 +37,9 @@ class TravelGuideFeedVC: UIViewController {
         
         getCityPosts()
 
+//        CityPostService.cityPosts { (posts) in
+//            self.cityPosts = posts
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,45 +97,45 @@ class TravelGuideFeedVC: UIViewController {
         
         let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
         
-        cityPosts.removeAll()
+//        cityPosts.removeAll()
         
-        ref.observe(.childAdded, with: { (snapshot) in
+        
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
             
             let dispatchGroup = DispatchGroup()
-            var posts = [CityPost]()
-            guard let post = CityPost(snapshot: snapshot)
-                else {return }
-            
-            if let imageURL = URL(string: post.imageUrl) {
-                dispatchGroup.enter()
-                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                    
-                    guard let imgData = data
-                        else {
-                            dispatchGroup.leave()
-                            return
-                    }
-                    
-                    post.image = UIImage(data: imgData)
-                    
-                    dispatchGroup.leave()
-                    
-                }).resume()
+//            var posts = [CityPost]()
+            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
+                return
             }
-            //                return post
-            //            }
+            
+            let posts: [CityPost] = snapshot.reversed().flatMap {
+                guard let post = CityPost(snapshot: $0)
+                    else {return nil}
+                
+                if let imageURL = URL(string: post.imageUrl) {
+                    dispatchGroup.enter()
+                    URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
+                        
+                        guard let imgData = data
+                            else {
+                                dispatchGroup.leave()
+                                return
+                        }
+                        
+                        post.image = UIImage(data: imgData)
+                        
+                        dispatchGroup.leave()
+                        
+                    }).resume()
+                }
+                
+                return post
+            }
+            
             dispatchGroup.notify(queue: .main, execute: {
-                posts.append(post)
-                self.cityPosts.append(post)
-                var total = 0
-                
-                self.randomFunc(ref: ref, completion: { (total) in
-                    if self.cityPosts.count == total {
-                        self.cityPosts.reverse()
-                        self.tableView.reloadData()
-                    }
-                })
-                
+                self.cityPosts = posts
+                self.tableView.reloadData()
             })
         })
     }
@@ -174,9 +177,6 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
     
     func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
         
@@ -214,7 +214,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
         })
         
-//        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

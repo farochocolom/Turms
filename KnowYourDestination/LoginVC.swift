@@ -58,6 +58,9 @@ class LoginVC: UIViewController {
                 
                 guard let userUid = user?.uid else {return}
                 
+//                DispatchQueue.global(qos: .background).async {
+//                    
+//                }
                 UserService.show(forUID: userUid, completion: { (user) in
                     
                     guard let user = user else {return}
@@ -69,13 +72,15 @@ class LoginVC: UIViewController {
                     } else {
                         initialViewController = UIStoryboard.initialViewController(for: .main)
                     }
+                    
+                    self.view.window?.rootViewController = initialViewController
+                    // 4
+                    self.view.window?.makeKeyAndVisible()
 
                 })
                 
                 
-                self.view.window?.rootViewController = initialViewController
-                // 4
-                self.view.window?.makeKeyAndVisible()
+                
                 
             }
             
