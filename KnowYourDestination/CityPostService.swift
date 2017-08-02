@@ -16,8 +16,9 @@ struct CityPostService {
     
     
     
-    static func create(for image: UIImage, postedBy: String, postedByName: String, postText: String, tags: [String]) {
+    static func create(for image: UIImage, postedBy: String, postedByName: String, postText: String, tags: [String], completion: @escaping (Bool) -> Void) {
         let uuid = UUID().uuidString
+        let dispatchGroup = DispatchGroup()
 
         if image != UIImage(named: "add_photo_btn"){
             print("hay imagen")
@@ -31,15 +32,23 @@ struct CityPostService {
         guard let uploadData = UIImagePNGRepresentation(image)
             else {return}
         
+        var cityPostAttributes = [String : Any]()
+        
+        dispatchGroup.enter()
         storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
             if let err = error {
                 print(err.localizedDescription)
+                dispatchGroup.leave()
+                return
             }
             
-            var cityPostAttributes: [String : Any]
+            
             if image != UIImage(named: "add_photo_btn"){
                 guard let postImgUrl = metadata?.downloadURL()?.absoluteString
-                    else {return}
+                    else {
+                        dispatchGroup.leave()
+                        return
+                }
                 
                 cityPostAttributes = ["post_text": postText,
                                         "image_url" : postImgUrl,
@@ -58,11 +67,20 @@ struct CityPostService {
                                         "upvotes_count": 0,
                                         "downvotes_count": 0]
             }
-            create(values: cityPostAttributes, uid: postedBy)
+            dispatchGroup.leave()
+            
         }
+        
+        dispatchGroup.notify(queue: .main, execute: {
+            create(values: cityPostAttributes, uid: postedBy, completion: { (finished) in
+                if finished {
+                    completion(true)
+                }
+            })
+        })
     }
     
-    static func create(values: [String: Any], uid: String) {
+    static func create(values: [String: Any], uid: String, completion: @escaping (Bool) -> Void) {
         
     
         let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).childByAutoId()
@@ -73,22 +91,15 @@ struct CityPostService {
                 assertionFailure(err.localizedDescription)
             }
             
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                _ = CityPost(snapshot: snapshot)
-            })
-            
         }
         
         cityPostByUserRef.setValue(values) { (error, ref) in
             if let err = error {
                 assertionFailure(err.localizedDescription)
             }
-            
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                _ = CityPost(snapshot: snapshot)
-            })
-            
         }
+        
+        completion(true)
     }
     
     static func cityPosts(completion: @escaping ([CityPost]) -> Void) {

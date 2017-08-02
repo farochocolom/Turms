@@ -30,7 +30,9 @@ class CreateCityPostVC: UIViewController {
         postImagePicker.isUserInteractionEnabled = true
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    }
+    @IBAction func savePostBtnPRessed(_ sender: UIButton) {
         let defaults = UserDefaults.standard
         
         guard let postText = postTextField.text,
@@ -40,10 +42,16 @@ class CreateCityPostVC: UIViewController {
             let people = peopleTagButton.currentTitle,
             let currentUserUID = Auth.auth().currentUser?.uid,
             let username = defaults.object(forKey: Constants.UserDef.username) as? String
-        else {return}
-
-        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: [food,people])
+            else {return}
         
+        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: [food,people], completion: { (finished) in
+            
+            if finished {
+                self.performSegue(withIdentifier: "createPost", sender: nil)
+            }
+            
+        })
+
     }
 
 }

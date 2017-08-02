@@ -306,7 +306,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Nm5-Tf-mef" kind="unwind" unwindAction="unwindToVC1WithSegue:" id="kqG-dG-9bn"/>
+                                    <action selector="savePostBtnPRessed:" destination="7Qc-rn-gY0" eventType="touchUpInside" id="Fn4-Ub-TCv"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_photo_btn" translatesAutoresizingMaskIntoConstraints="NO" id="QGP-Nh-XYp">
@@ -339,6 +339,7 @@
                         <outlet property="peopleTagButton" destination="WuX-CP-aK2" id="riw-Yn-yIP"/>
                         <outlet property="postImagePicker" destination="QGP-Nh-XYp" id="Fq7-wg-vV2"/>
                         <outlet property="postTextField" destination="68T-Zw-RcY" id="cxY-ll-dsg"/>
+                        <segue destination="Nm5-Tf-mef" kind="unwind" identifier="createPost" unwindAction="unwindToVC1WithSegue:" id="SUs-fM-6WT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwZ-E8-zLM" userLabel="First Responder" sceneMemberID="firstResponder"/>

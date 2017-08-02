@@ -25,8 +25,10 @@ struct VoteService {
         
         let upvoteGroup = DispatchGroup()
         
-        DispatchQueue.global(qos: .userInitiated).async {
+//        DispatchQueue.global(qos: .userInitiated).async {
             downvotesRef.setValue(false)
+        upvoteGroup.enter()
+        
             upvotesRef.updateChildValues([uid : true]) { (error, _) in
                 let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("upvotes_count")
                 let cityPostRefDownvote = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("downvotes_count")
@@ -37,7 +39,7 @@ struct VoteService {
                     let currentCount = mutableData.value as? Int ?? 0
                     
                     mutableData.value = currentCount + 1
-                    
+                    post.upvoteCount = mutableData.value! as! Int
                     return TransactionResult.success(withValue: mutableData)
                 }, andCompletionBlock: { (error, _, _) in
                     if let err = error {
@@ -54,7 +56,7 @@ struct VoteService {
                     let currentCount = mutableData.value as? Int ?? 0
                     
                     mutableData.value = currentCount - 1
-                    
+                    post.downvoteCount = mutableData.value! as! Int
                     return TransactionResult.success(withValue: mutableData)
                 }, andCompletionBlock: { (error, _, _) in
                     if let err = error {
@@ -66,13 +68,13 @@ struct VoteService {
                     
                     upvoteGroup.leave()
                 })
-                
+                upvoteGroup.leave()
             }
             upvoteGroup.wait()
             DispatchQueue.main.async {
                 success(completionStatus)
             }
-        }
+//        }
         
     }
     
@@ -91,9 +93,9 @@ struct VoteService {
         var completionStatus = false
         let downvoteGroup = DispatchGroup()
         
-        DispatchQueue.global(qos: .userInitiated).async {
+//        DispatchQueue.global(qos: .userInitiated).async {
             upvotesRef.updateChildValues([uid : false])
-            
+            downvoteGroup.enter()
             
             downvotesRef.updateChildValues([uid : true]) { (error, _) in
                 let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("downvotes_count")
@@ -105,7 +107,7 @@ struct VoteService {
                     let currentCount = mutableData.value as? Int ?? 0
                     
                     mutableData.value = currentCount + 1
-                    
+                    post.downvoteCount = mutableData.value! as! Int
                     return TransactionResult.success(withValue: mutableData)
                 }, andCompletionBlock: { (error, _, _) in
                     if let err = error {
@@ -123,7 +125,7 @@ struct VoteService {
                     let currentCount = mutableData.value as? Int ?? 0
                     
                     mutableData.value = currentCount - 1
-                    
+                    post.upvoteCount = mutableData.value! as! Int
                     return TransactionResult.success(withValue: mutableData)
                 }, andCompletionBlock: { (error, _, _) in
                     if let err = error {
@@ -134,14 +136,14 @@ struct VoteService {
                     }
                     downvoteGroup.leave()
                 })
-                
+                downvoteGroup.leave()
             }
             
             downvoteGroup.wait()
             DispatchQueue.main.async {
                 success(completionStatus)
             }
-        }
+//        }
         
     }
     
@@ -196,7 +198,6 @@ struct VoteService {
     
     static func setIsUpvoted(_ isLiked: Bool, for post: CityPost, success: @escaping (Bool) -> Void) {
         
-        print(isLiked)
         if isLiked {
             upvote(for: post, success: success)
             success(true)
