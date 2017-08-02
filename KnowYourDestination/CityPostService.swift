@@ -20,7 +20,7 @@ struct CityPostService {
         let uuid = UUID().uuidString
         let dispatchGroup = DispatchGroup()
 
-        if image != UIImage(named: "add_photo_btn"){
+        if image != UIImage(named: "image"){
             print("hay imagen")
         } else {
             print("no hay imagen")
@@ -43,7 +43,7 @@ struct CityPostService {
             }
             
             
-            if image != UIImage(named: "add_photo_btn"){
+            if image != UIImage(named: "image"){
                 guard let postImgUrl = metadata?.downloadURL()?.absoluteString
                     else {
                         dispatchGroup.leave()

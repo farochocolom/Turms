@@ -20,6 +20,16 @@ extension CreateCityPostVC: UIImagePickerControllerDelegate, UINavigationControl
         present(picker, animated: true, completion: nil)
     }
     
+    func handleTakePostImageView(){
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        picker.allowsEditing = true
+        picker.sourceType = .camera
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         var selectedImage: UIImage?
         

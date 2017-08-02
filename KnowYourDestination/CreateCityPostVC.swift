@@ -17,6 +17,8 @@ class CreateCityPostVC: UIViewController {
     @IBOutlet weak var interactionTagButton: UIButton!
     @IBOutlet weak var foodTagButton: UIButton!
     @IBOutlet weak var peopleTagButton: UIButton!
+    @IBOutlet weak var addImageButton: UIButton!
+    @IBOutlet weak var takePictureButton: UIButton!
     
     var img = UIImageView()
     
@@ -25,9 +27,18 @@ class CreateCityPostVC: UIViewController {
 
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
-        postImagePicker.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPostImageView)))
+        interactionTagButton.isSelected = false
+        foodTagButton.isSelected = false
+        peopleTagButton.isSelected = false
         
-        postImagePicker.isUserInteractionEnabled = true
+        if !interactionTagButton.isSelected {
+            interactionTagButton.backgroundColor = UIColor(red: 12/255, green: 12/255, blue: 12/255, alpha: 1.0)
+            interactionTagButton.setTitleColor(UIColor.blue, for: .selected)
+        }
+        
+        addImageButton.imageView?.contentMode = .scaleAspectFill
+        addImageButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPostImageView)))
+        takePictureButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTakePostImageView)))
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

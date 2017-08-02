@@ -246,7 +246,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/CityPostService.swift"
@@ -262,7 +262,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/CityPostService.swift"
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/CreateCityPostVC.swift"
-            timestampString = "523334278.650036"
+            timestampString = "523393413.242063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "savePostBtnPRessed(_:)"
             landmarkType = "7">
             <Locations>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/CreateCityPostVC.swift"
-            timestampString = "523334281.176587"
+            timestampString = "523393413.242063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "savePostBtnPRessed(_:)"
             landmarkType = "7">
             <Locations>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/CreateCityPostVC.swift"
-            timestampString = "523334282.988503"
+            timestampString = "523393413.242063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "savePostBtnPRessed(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -662,7 +662,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/TravelGuideFeedVC.swift"
@@ -678,7 +678,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/TravelGuideFeedVC.swift"
@@ -694,7 +694,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/TravelGuideFeedVC.swift"
@@ -710,7 +710,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/TravelGuideFeedVC.swift"
@@ -726,7 +726,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "KnowYourDestination/TravelGuideFeedVC.swift"
@@ -737,6 +737,70 @@
             endingLineNumber = "84"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnowYourDestination/CityPostService.swift"
+            timestampString = "523386679.897156"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "create(for:postedBy:postedByName:postText:tags:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnowYourDestination/CityPostService.swift"
+            timestampString = "523386683.57388"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "create(for:postedBy:postedByName:postText:tags:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static KnowYourDestination.CityPostService.(create (for : __ObjC.UIImage, postedBy : Swift.String, postedByName : Swift.String, postText : Swift.String, tags : Swift.Array&lt;Swift.String&gt;, completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #2)"
+                  moduleName = "KnowYourDestination"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/CityPostService.swift"
+                  timestampString = "523386699.374907"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static KnowYourDestination.CityPostService.(create (for : __ObjC.UIImage, postedBy : Swift.String, postedByName : Swift.String, postText : Swift.String, tags : Swift.Array&lt;Swift.String&gt;, completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #2).(closure #1)"
+                  moduleName = "KnowYourDestination"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/CityPostService.swift"
+                  timestampString = "523386699.377328"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
