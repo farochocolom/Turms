@@ -21,13 +21,16 @@ class CreateCityPostVC: UIViewController {
     @IBOutlet weak var takePictureButton: UIButton!
     
     var img = UIImageView()
+    var tagsArr = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
-        interactionTagButton.isSelected = false
+        interactionTagButton.isSelected = true
+        interactionTagButton.backgroundColor = UIColor.TWPurple
+        interactionTagButton.tintColor = UIColor.clear
         foodTagButton.isSelected = false
         peopleTagButton.isSelected = false
         
@@ -96,7 +99,23 @@ class CreateCityPostVC: UIViewController {
             let username = defaults.object(forKey: Constants.UserDef.username) as? String
             else {return}
         
-        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: [food,people], completion: { (finished) in
+        if interactionTagButton.isSelected {
+            self.tagsArr.append(interaction)
+        }
+        
+        if foodTagButton.isSelected {
+            self.tagsArr.append(food)
+        }
+        
+        if peopleTagButton.isSelected {
+            self.tagsArr.append(people)
+        }
+        
+        if !peopleTagButton.isSelected && !foodTagButton.isSelected && !interactionTagButton.isSelected {
+            self.tagsArr = []
+        }
+        
+        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, completion: { (finished) in
             
             if finished {
                 self.performSegue(withIdentifier: "createPost", sender: nil)

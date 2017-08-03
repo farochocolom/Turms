@@ -34,23 +34,21 @@ class TravelGuideFeedVC: UIViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
-        
-//        getCityPosts()
+    
         let dispatchGroup = DispatchGroup()
         var newPosts = [CityPost]()
-//        dispatchGroup.enter()
-        ref.observe(.value, with: { (snapshot) in
+//        getCityPosts()
+
+//        DispatchQueue.global().async {
+//            <#code#>
+//        }
+        ref.observe(.childAdded, with: { (snapshot) in
+            print(snapshot)
+//            for item in snapshot.children {
             
-//            guard snapshot else {
-////                dispatchGroup.leave()
-//                return
-//            }
-            
-            for item in snapshot.children {
-                guard let post = CityPost(snapshot: item as! DataSnapshot)
-                    else {
-                        //                    dispatchGroup.leave()
-                        return}
+//                guard let item2 = snapshot as? DataSnapshot else {return}
+                guard let post = CityPost(snapshot: snapshot)
+                    else {return}
                 
                 if let imageURL = URL(string: post.imageUrl) {
                     dispatchGroup.enter()
@@ -61,32 +59,33 @@ class TravelGuideFeedVC: UIViewController {
                                 dispatchGroup.leave()
                                 return
                         }
-                        
                         post.image = UIImage(data: imgData)
                         
                         dispatchGroup.leave()
                         
                     }).resume()
-//                    dispatchGroup.leave()
                 }
                 post.isUpvoted = false
                 post.isDownvoted = false
                 
                newPosts.append(post)
-            }
-            
+//            }
             dispatchGroup.notify(queue: .main, execute: {
                 self.cityPosts = newPosts.reversed()
+                
+//                self.tableView.reloadData()
                 
                 if self.cityPosts.count == newPosts.count {
                     self.tableView.reloadData()
                 } else {
                     self.tableView.insertSections(IndexSet(integer: self.cityPosts.count - 1), with: .fade)
-//                    self.tableView.reloadData()
+                    //                    self.tableView.reloadData()
                     print("hola")
                 }
             })
         })
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,10 +102,7 @@ class TravelGuideFeedVC: UIViewController {
     }
     
     @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
-        
-        let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
-        
-        
+    
     }
     
     
@@ -196,6 +192,21 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
         
+        if post.tags.count == 1 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.alpha = 0.0
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 2 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 3 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.text = post.tags[2]
+        }
+
+        
         
         VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
             cell.downvoteButton.isSelected = isDownvoted
@@ -221,17 +232,23 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
         })
         
-//        if cell.upvoteButton.isSelected {
-//            cell.upvoteCountLabel.text = "\(post.upvoteCount + 0)"
-//            cell.downvoteLabel.text = "\(post.downvoteCount - 0)"
-//        } else if cell.downvoteButton.isSelected {
-//            cell.upvoteCountLabel.text = "\(post.upvoteCount - 0)"
-//            cell.downvoteLabel.text = "\(post.downvoteCount + 0)"
-//        }
+        if post.tags.count == 1 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.alpha = 0.0
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 2 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 3 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.text = post.tags[2]
+        }
+
         
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
-//        let sectionIndex = (tableView.indexPath(for: cell)?.row)!
         tableView.reloadSections(IndexSet(integer: index), with: .bottom)
     }
     
@@ -303,7 +320,6 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
                     self.configureSingleCell(cell, with: post, index: indexPath.section)
                 }
             }
-
         }
     }
     

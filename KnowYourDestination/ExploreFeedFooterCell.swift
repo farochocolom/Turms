@@ -23,6 +23,9 @@ class ExploreFeedFooterCell: UITableViewCell {
     @IBOutlet weak var downvoteButton: UIButton!
     @IBOutlet weak var downvoteLabel: UILabel!
     @IBOutlet weak var upvoteCountLabel: UILabel!
+    @IBOutlet weak var firstTag: UILabel!
+    @IBOutlet weak var secondTag: UILabel!
+    @IBOutlet weak var thirdTag: UILabel!
     
     weak var delegate: ExploreFeedFooterCellDelegate?
     
