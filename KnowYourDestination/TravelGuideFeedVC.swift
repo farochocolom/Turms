@@ -37,16 +37,10 @@ class TravelGuideFeedVC: UIViewController {
     
         let dispatchGroup = DispatchGroup()
         var newPosts = [CityPost]()
-//        getCityPosts()
 
-//        DispatchQueue.global().async {
-//            <#code#>
-//        }
         ref.observe(.childAdded, with: { (snapshot) in
             print(snapshot)
-//            for item in snapshot.children {
-            
-//                guard let item2 = snapshot as? DataSnapshot else {return}
+
                 guard let post = CityPost(snapshot: snapshot)
                     else {return}
                 
@@ -65,32 +59,14 @@ class TravelGuideFeedVC: UIViewController {
                         
                     }).resume()
                 }
-                post.isUpvoted = false
-                post.isDownvoted = false
+                
                 
                newPosts.append(post)
-//            }
             dispatchGroup.notify(queue: .main, execute: {
                 self.cityPosts = newPosts.reversed()
-                
-//                self.tableView.reloadData()
-                
-                if self.cityPosts.count == newPosts.count {
-                    self.tableView.reloadData()
-                } else {
-                    self.tableView.insertSections(IndexSet(integer: self.cityPosts.count - 1), with: .fade)
-                    //                    self.tableView.reloadData()
-                    print("hola")
-                }
+                self.tableView.reloadData()
             })
         })
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
     }
 
     func randomFunc(ref: DatabaseReference, completion: @escaping (Int) -> Void){
@@ -100,11 +76,6 @@ class TravelGuideFeedVC: UIViewController {
             })
         }
     }
-    
-    @IBAction func unwindToVC1(segue:UIStoryboardSegue) {
-    
-    }
-    
     
     func getCityPosts() {
         
@@ -137,10 +108,8 @@ class TravelGuideFeedVC: UIViewController {
                         
                     }).resume()
                 }
-                
                 return post
             }
-            
             dispatchGroup.notify(queue: .main, execute: {
                 self.cityPosts = posts
                 self.tableView.reloadData()
@@ -192,22 +161,6 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
         
-        if post.tags.count == 1 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.alpha = 0.0
-            cell.thirdTag.alpha = 0.0
-        } else if post.tags.count == 2 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.text = post.tags[1]
-            cell.thirdTag.alpha = 0.0
-        } else if post.tags.count == 3 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.text = post.tags[1]
-            cell.thirdTag.text = post.tags[2]
-        }
-
-        
-        
         VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
             cell.downvoteButton.isSelected = isDownvoted
             cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
@@ -217,6 +170,23 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             cell.upvoteButton.isSelected = isUpvoted
             cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
         })
+        
+        if post.tags.count == 1 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.alpha = 0.0
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 2 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.secondTag.alpha = 1.0
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 3 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.text = post.tags[2]
+            cell.secondTag.alpha = 1.0
+            cell.thirdTag.alpha = 1.0
+        }
         
     }
     
@@ -289,17 +259,16 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
         likeButton.isUserInteractionEnabled = false
         
         let post = cityPosts[indexPath.section]
-        
+
         DispatchQueue.global(qos: .userInitiated).async {
-            VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
+            VoteService.setIsUpvoted(!post.isUpvoted, isDownvoted: cell.downvoteButton.isSelected, for: post) { (success) in
+    
                 guard success else { return }
                 
                 DispatchQueue.main.async {
                     self.configureSingleCell(cell, with: post, index: indexPath.section)
                 }
             }
-            
-            
         }
     }
     
@@ -310,10 +279,10 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
         downvoteButton.isUserInteractionEnabled = false
         
         let post = cityPosts[indexPath.section]
-        
+
         DispatchQueue.global(qos: .userInitiated).async {
-            VoteService.setIsDownvoted(!post.isDownvoted, for: post) { (success) in
-                
+            VoteService.setIsDownvoted(!post.isDownvoted, isUpvoted: cell.upvoteButton.isSelected, for: post) { (success) in
+    
                 guard success else { return }
              
                 DispatchQueue.main.async {
@@ -326,7 +295,6 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
     func updateSingleCell(on cell: ExploreFeedFooterCell) {
         
     }
-
 }
 
 

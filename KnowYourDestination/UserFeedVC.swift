@@ -146,21 +146,21 @@ extension UserFeedVC: ExploreFeedFooterCellDelegate {
         likeButton.isUserInteractionEnabled = false
         let post = cityPosts[indexPath.section]
         
-        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
-    
-            guard success else { return }
-            
-            post.upvoteCount += !post.isUpvoted ? 1 : -1
-            post.isUpvoted = !post.isUpvoted
-        
-            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
-                else { return }
-            
-            // 9
-            DispatchQueue.main.async {
-                self.configureCell(cell, with: post)
-            }
-        }
+//        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
+//    
+//            guard success else { return }
+//            
+//            post.upvoteCount += !post.isUpvoted ? 1 : -1
+//            post.isUpvoted = !post.isUpvoted
+//        
+//            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
+//                else { return }
+//            
+//            // 9
+//            DispatchQueue.main.async {
+//                self.configureCell(cell, with: post)
+//            }
+//        }
     }
     
     func didTapDownvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {
@@ -170,20 +170,20 @@ extension UserFeedVC: ExploreFeedFooterCellDelegate {
         likeButton.isUserInteractionEnabled = false
         let post = cityPosts[indexPath.section]
         
-        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
-           
-            guard success else { return }
-            
-            post.upvoteCount += !post.isUpvoted ? 1 : -1
-            post.isUpvoted = !post.isUpvoted
-            
-            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
-                else { return }
-        
-            DispatchQueue.main.async {
-                self.configureCell(cell, with: post)
-            }
-        }
+//        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
+//           
+//            guard success else { return }
+//            
+//            post.upvoteCount += !post.isUpvoted ? 1 : -1
+//            post.isUpvoted = !post.isUpvoted
+//            
+//            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
+//                else { return }
+//        
+//            DispatchQueue.main.async {
+//                self.configureCell(cell, with: post)
+//            }
+//        }
 
     }
     

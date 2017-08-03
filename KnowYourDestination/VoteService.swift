@@ -12,7 +12,7 @@ import Firebase
 
 struct VoteService {
     
-    static func upvote(for post: CityPost, success: @escaping (Bool) -> Void){
+    static func upvote(for post: CityPost, isDownvoted: Bool, success: @escaping (Bool) -> Void){
         guard let key = post.key else {
             return success(false)
         }
@@ -25,32 +25,32 @@ struct VoteService {
         
         let upvoteGroup = DispatchGroup()
         
-//        DispatchQueue.global(qos: .userInitiated).async {
-            downvotesRef.setValue(false)
+        downvotesRef.setValue(false)
         upvoteGroup.enter()
         
-            upvotesRef.updateChildValues([uid : true]) { (error, _) in
-                let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("upvotes_count")
-                let cityPostRefDownvote = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("downvotes_count")
-                //            let cityPostByUserRef = Database.database().reference().child("city_post_by_user").child(post.postById).child(key).child("upvotes_count")
+        upvotesRef.updateChildValues([uid : true]) { (error, _) in
+            let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("upvotes_count")
+            let cityPostRefDownvote = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("downvotes_count")
+            //            let cityPostByUserRef = Database.database().reference().child("city_post_by_user").child(post.postById).child(key).child("upvotes_count")
+            
+            upvoteGroup.enter()
+            cityPostRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+                let currentCount = mutableData.value as? Int ?? 0
                 
-                upvoteGroup.enter()
-                cityPostRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                    let currentCount = mutableData.value as? Int ?? 0
-                    
-                    mutableData.value = currentCount + 1
-                    post.upvoteCount = mutableData.value! as! Int
-                    return TransactionResult.success(withValue: mutableData)
-                }, andCompletionBlock: { (error, _, _) in
-                    if let err = error {
-                        assertionFailure(err.localizedDescription)
-                        completionStatus = false
-                    } else {
-                        completionStatus = true
-                    }
-                    upvoteGroup.leave()
-                })
-                
+                mutableData.value = currentCount + 1
+                post.upvoteCount = mutableData.value! as! Int
+                return TransactionResult.success(withValue: mutableData)
+            }, andCompletionBlock: { (error, _, _) in
+                if let err = error {
+                    assertionFailure(err.localizedDescription)
+                    completionStatus = false
+                } else {
+                    completionStatus = true
+                }
+                upvoteGroup.leave()
+            })
+            
+            if isDownvoted{
                 upvoteGroup.enter()
                 cityPostRefDownvote.runTransactionBlock({ (mutableData) -> TransactionResult in
                     let currentCount = mutableData.value as? Int ?? 0
@@ -68,24 +68,24 @@ struct VoteService {
                     
                     upvoteGroup.leave()
                 })
-                upvoteGroup.leave()
+
             }
-            upvoteGroup.wait()
-            DispatchQueue.main.async {
-                success(completionStatus)
-            }
-//        }
+            
+            upvoteGroup.leave()
+        }
+        upvoteGroup.wait()
+        DispatchQueue.main.async {
+            success(completionStatus)
+        }
         
     }
     
     
-    static func downvote(for post: CityPost, success: @escaping (Bool) -> Void) {
+    static func downvote(for post: CityPost, isUpvoted: Bool, success: @escaping (Bool) -> Void) {
         guard let key = post.key else {
             return success(false)
         }
-        
-        
-        
+
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let downvotesRef = Database.database().reference().child("city_posts_downvotes").child(key).child("uids")
         let upvotesRef = Database.database().reference().child("city_posts_upvotes").child(key).child("uids")
@@ -93,33 +93,33 @@ struct VoteService {
         var completionStatus = false
         let downvoteGroup = DispatchGroup()
         
-//        DispatchQueue.global(qos: .userInitiated).async {
-            upvotesRef.updateChildValues([uid : false])
-            downvoteGroup.enter()
+        upvotesRef.updateChildValues([uid : false])
+        downvoteGroup.enter()
             
-            downvotesRef.updateChildValues([uid : true]) { (error, _) in
-                let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("downvotes_count")
-                let cityPostRefUpvote = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("upvotes_count")
-    //            let cityPostByUserRef = Database.database().reference().child("city_post_by_user").child(uid).child(key).child("downvotes_count")
+        downvotesRef.updateChildValues([uid : true]) { (error, _) in
+            let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("downvotes_count")
+            let cityPostRefUpvote = Database.database().reference().child(Constants.DatabaseRef.cityPosts).child(key).child("upvotes_count")
+//            let cityPostByUserRef = Database.database().reference().child("city_post_by_user").child(uid).child(key).child("downvotes_count")
+            
+            downvoteGroup.enter()
+            cityPostRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+                let currentCount = mutableData.value as? Int ?? 0
                 
-                downvoteGroup.enter()
-                cityPostRef.runTransactionBlock({ (mutableData) -> TransactionResult in
-                    let currentCount = mutableData.value as? Int ?? 0
-                    
-                    mutableData.value = currentCount + 1
-                    post.downvoteCount = mutableData.value! as! Int
-                    return TransactionResult.success(withValue: mutableData)
-                }, andCompletionBlock: { (error, _, _) in
-                    if let err = error {
-                        assertionFailure(err.localizedDescription)
-                        completionStatus = false
-                    } else {
-                        completionStatus = true
-                    }
-                    
-                    downvoteGroup.leave()
-                })
+                mutableData.value = currentCount + 1
+                post.downvoteCount = mutableData.value! as! Int
+                return TransactionResult.success(withValue: mutableData)
+            }, andCompletionBlock: { (error, _, _) in
+                if let err = error {
+                    assertionFailure(err.localizedDescription)
+                    completionStatus = false
+                } else {
+                    completionStatus = true
+                }
                 
+                downvoteGroup.leave()
+            })
+            
+            if isUpvoted {
                 downvoteGroup.enter()
                 cityPostRefUpvote.runTransactionBlock({ (mutableData) -> TransactionResult in
                     let currentCount = mutableData.value as? Int ?? 0
@@ -136,15 +136,16 @@ struct VoteService {
                     }
                     downvoteGroup.leave()
                 })
-                downvoteGroup.leave()
+
             }
             
-            downvoteGroup.wait()
-            DispatchQueue.main.async {
-                success(completionStatus)
-            }
-//        }
+            downvoteGroup.leave()
+        }
         
+        downvoteGroup.wait()
+        DispatchQueue.main.async {
+            success(completionStatus)
+        }
     }
     
     static func isPostUpvoted(_ post: CityPost, byCurrentUserWithCompletion completion: @escaping (Bool) -> Void) {
@@ -195,23 +196,18 @@ struct VoteService {
         }
     }
     
-    
-    static func setIsUpvoted(_ isLiked: Bool, for post: CityPost, success: @escaping (Bool) -> Void) {
-        
+    static func setIsUpvoted(_ isLiked: Bool, isDownvoted: Bool, for post: CityPost, success: @escaping (Bool) -> Void) {
         if isLiked {
-            upvote(for: post, success: success)
+            upvote(for: post, isDownvoted: isDownvoted, success: success)
             success(true)
         } else {
             success(false)
         }
     }
     
-    
-    
-    static func setIsDownvoted(_ isDownvoted: Bool, for post: CityPost, success: @escaping (Bool) -> Void) {
-        
+    static func setIsDownvoted(_ isDownvoted: Bool, isUpvoted: Bool, for post: CityPost, success: @escaping (Bool) -> Void) {
         if isDownvoted {
-            downvote(for: post, success: success)
+            downvote(for: post, isUpvoted: isUpvoted, success: success)
             success(true)
         } else {
             success(false)

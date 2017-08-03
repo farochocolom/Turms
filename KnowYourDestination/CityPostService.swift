@@ -14,8 +14,6 @@ import FirebaseDatabase
 
 struct CityPostService {
     
-    
-    
     static func create(for image: UIImage, postedBy: String, postedByName: String, postText: String, tags: [String], completion: @escaping (Bool) -> Void) {
         let uuid = UUID().uuidString
         let dispatchGroup = DispatchGroup()
@@ -28,7 +26,6 @@ struct CityPostService {
         
         let storageRef = Storage.storage().reference().child("cityPosts/images/\(postedBy)/\(uuid).png")
 
-        
         guard let uploadData = UIImagePNGRepresentation(image)
             else {return}
         
@@ -41,7 +38,6 @@ struct CityPostService {
                 dispatchGroup.leave()
                 return
             }
-            
             
             if image != UIImage(named: "image"){
                 guard let postImgUrl = metadata?.downloadURL()?.absoluteString
@@ -82,7 +78,6 @@ struct CityPostService {
     
     static func create(values: [String: Any], uid: String, completion: @escaping (Bool) -> Void) {
         
-    
         let cityPostRef = Database.database().reference().child(Constants.DatabaseRef.cityPosts).childByAutoId()
         let cityPostByUserRef = Database.database().reference().child("city_post_by_user").child(uid).childByAutoId()
         
@@ -118,35 +113,5 @@ struct CityPostService {
             
             completion(posts)
         })
-
-        
-//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-//            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
-//                return completion([])
-//            }
-//            let dispatchGroup = DispatchGroup()
-//            
-//            let posts: [CityPost] =
-//                snapshot
-//                    .reversed()
-//                    .flatMap {
-//                        guard let post = CityPost(snapshot: $0)
-//                            else { return nil }
-//                        
-//                        dispatchGroup.enter()
-//                        
-//                        VoteService.isPostUpvoted(post) { (isUpvoted) in
-//                            post.isUpvoted = isUpvoted
-//                            
-//                            dispatchGroup.leave()
-//                        }
-//                        
-//                        return post
-//            }
-//            
-//            dispatchGroup.notify(queue: .main, execute: {
-//                completion(posts)
-//            })
-//        })
     }
 }

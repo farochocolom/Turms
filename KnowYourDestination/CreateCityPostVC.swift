@@ -111,16 +111,11 @@ class CreateCityPostVC: UIViewController {
             self.tagsArr.append(people)
         }
         
-        if !peopleTagButton.isSelected && !foodTagButton.isSelected && !interactionTagButton.isSelected {
-            self.tagsArr = []
-        }
         
         CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, completion: { (finished) in
-            
             if finished {
                 self.performSegue(withIdentifier: "createPost", sender: nil)
             }
-            
         })
 
     }

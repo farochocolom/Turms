@@ -31,7 +31,9 @@ class ExploreFeedFooterCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        firstTag.layer.cornerRadius = firstTag.layer.bounds.height / 2
+        secondTag.layer.cornerRadius = secondTag.layer.bounds.height / 2
+        thirdTag.layer.cornerRadius = thirdTag.layer.bounds.height / 2
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
