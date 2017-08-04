@@ -66,6 +66,10 @@ class TravelGuideFeedVC: UIViewController {
             })
         })
     }
+    
+   @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
+    
+    
 
 }
 
@@ -170,6 +174,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
+//        cell.cityLabel.text = 
         tableView.reloadSections(IndexSet(integer: index), with: .bottom)
     }
     
