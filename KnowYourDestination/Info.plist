@@ -60,8 +60,10 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>We need access to your camera so we can prove your ugliness to others</string>
+	<string>We need access to your camera so you can take pictures to share with others</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need access to your pictures to stalk you</string>
+	<string>We need access to your pictures so you can add pictures from your library</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>As a tour guide, we need access to your location to know which city you represent</string>
 </dict>
 </plist>

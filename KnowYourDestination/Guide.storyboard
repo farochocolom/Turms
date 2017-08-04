@@ -412,6 +412,7 @@
                     <connections>
                         <segue destination="DHB-wK-B8M" kind="relationship" relationship="viewControllers" id="I9W-oe-YFs"/>
                         <segue destination="bZ5-np-UVl" kind="relationship" relationship="viewControllers" id="4Yj-fq-Omd"/>
+                        <segue destination="2Zu-vh-61q" kind="relationship" relationship="viewControllers" id="V9l-Hs-OYF"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HdY-9t-AZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -456,6 +457,38 @@
             </objects>
             <point key="canvasLocation" x="141.59999999999999" y="175.86206896551727"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="aXL-4S-oEx">
+            <objects>
+                <viewController id="2Zu-vh-61q" customClass="GuideProfileVC" customModule="KnowYourDestination" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gGM-hE-QUX"/>
+                        <viewControllerLayoutGuide type="bottom" id="1E2-q9-4CE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sWJ-J0-ogq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jt-tJ-Lch">
+                                <rect key="frame" x="163" y="318" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="2Zu-vh-61q" eventType="touchUpInside" id="fza-oo-5n0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Jt-tJ-Lch" firstAttribute="centerX" secondItem="sWJ-J0-ogq" secondAttribute="centerX" id="Pmf-Js-SyP"/>
+                            <constraint firstItem="5Jt-tJ-Lch" firstAttribute="centerY" secondItem="sWJ-J0-ogq" secondAttribute="centerY" id="mnT-Hd-BFm"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile" selectedImage="profile" id="dJd-jN-HLa"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHF-DL-n4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-524" y="909"/>
+        </scene>
     </scenes>
     <resources>
         <image name="camera" width="32" height="28"/>
@@ -465,6 +498,7 @@
         <image name="image" width="512" height="512"/>
         <image name="map" width="24" height="24"/>
         <image name="photos_icon" width="28" height="29"/>
+        <image name="profile" width="22" height="23"/>
         <image name="upvote@1x" width="18" height="10"/>
         <image name="upvoteSelected" width="18" height="10"/>
     </resources>

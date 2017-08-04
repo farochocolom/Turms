@@ -12,9 +12,9 @@ import FirebaseDatabase
 
 struct TourGuideService {
     
-    static func create(uid: String, completion: @escaping (TourGuide?) -> Void) {
+    static func create(uid: String, city: String, completion: @escaping (TourGuide?) -> Void) {
 
-        let travelGuideAttrs: [String : Any] = ["city": "",
+        let travelGuideAttrs: [String : Any] = ["city": city,
                                                 "review_count" : 0,
                                                 "tags" : ["Cool"]]
         let guideRef = Database.database().reference().child(Constants.DatabaseRef.guides).child(uid)

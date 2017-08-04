@@ -1050,7 +1050,7 @@
                   moduleName = "KnowYourDestination"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/VoteService.swift"
-                  timestampString = "523493610.689758"
+                  timestampString = "523565132.323237"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "124"
@@ -1065,7 +1065,7 @@
                   moduleName = "KnowYourDestination"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/VoteService.swift"
-                  timestampString = "523493610.692832"
+                  timestampString = "523565132.324688"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "125"
@@ -1088,6 +1088,22 @@
             startingLineNumber = "128"
             endingLineNumber = "128"
             landmarkName = "downvote(for:isUpvoted:success:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnowYourDestination/RegisterVC.swift"
+            timestampString = "523565132.143551"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

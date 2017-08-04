@@ -114,7 +114,7 @@ class CreateCityPostVC: UIViewController {
         
         CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, completion: { (finished) in
             if finished {
-                self.performSegue(withIdentifier: "createPost", sender: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         })
 

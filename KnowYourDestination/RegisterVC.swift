@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseAuth
+import CoreLocation
 
 class RegisterVC: UIViewController {
 
@@ -17,41 +18,107 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var travelGuideSwitch: UISwitch!
+    @IBOutlet weak var cityTextField: UITextField!
+    
+    let locationManager = CLLocationManager()
+    var addressString = ""
+    var currentCity: String = ""
+    
+    var currentLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        travelGuideSwitch.isOn = false
+        
+        locationManager.delegate = self;
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            self.locationManager.requestWhenInUseAuthorization()
+        }
+            // 2. authorization were denied
+        else if CLLocationManager.authorizationStatus() == .denied {
+            print("Location services were previously denied. Please enable location services for this app in Settings.")
+        }
+            // 3. we do have authorization
+        else if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            self.locationManager.startUpdatingLocation()
+        }
+
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func toggleTourGuide(_ sender: UISwitch) {
+        if self.travelGuideSwitch.isOn {
+            let cityAlert = UIAlertController(title: "Is \(self.addressString) your city?", message: "", preferredStyle: .actionSheet)
+            cityAlert.addAction(UIAlertAction(title: "Yes", style: .default) { action in
+                self.cityTextField.text = self.addressString
+            })
+            cityAlert.addAction(UIAlertAction(title: "No", style: .cancel) { action in
+                let inputCityAction = UIAlertController(title: "Which city will you be a local guide for?", message: "", preferredStyle: .alert)
+                
+                inputCityAction.addTextField(configurationHandler: nil)
+                
+                inputCityAction.addAction(UIAlertAction(title: "Save City", style: .default) { action in
+                    guard let city = inputCityAction.textFields?[0].text else {return}
+                    
+                    self.cityTextField.text = city
+                })
+                
+                self.present(inputCityAction, animated: true, completion: nil)
+                
+                self.cityTextField.isHidden = false
+                
+            })
+            
+            self.present(cityAlert, animated: true)
+        }
+        
+        if self.travelGuideSwitch.isOn {
+            self.cityTextField.isHidden = false
+        } else {
+            self.cityTextField.isHidden = true
+        }
+        
     }
-    */
-    
+
     @IBAction func didPressRegisterButton(_ sender: UIButton) {
         
         guard let email = emailTextField.text,
             let password = passwordTextField.text,
-            let username = usernameTextField.text else {
-            return
+            let username = usernameTextField.text
+            else {return}
+        
+        if email == "" || password == "" || username == "" {
+            let alert = UIAlertController(title: "Empty Fields", message: "Please fill all fields", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            self.present(alert, animated: true, completion: nil)
         }
+        
+        guard let city = self.cityTextField.text
+            else {return}
+        if self.travelGuideSwitch.isOn {
+            if city == "" {
+                let cityAlert = UIAlertController(title: "What's your city?", message: "You need to sepcify a city to be a tour guide", preferredStyle: .alert)
+                cityAlert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+                self.present(cityAlert, animated: true, completion: nil)
+                return
+            }
+        }
+        
         
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error {
-                assertionFailure(error.localizedDescription)
+//                assertionFailure(error.localizedDescription)
+                let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+                self.present(alert, animated: true, completion: nil)
+                
                 return
             }
             
@@ -64,10 +131,12 @@ class RegisterVC: UIViewController {
             // 3
             userRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let _ = snapshot.value as? [String : Any] {
-                    let alert = UIAlertController(title: "User Taken", message: "A user with this email already exists", preferredStyle: .actionSheet)
-                    alert.addAction(UIAlertAction(title: "A thing", style: .default) { action in
+                    let alert = UIAlertController(title: "User Taken", message: "A user with this email already exists", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismis", style: .default) { action in
                         
                     })
+                    
+                    self.present(alert, animated: true, completion: nil)
                 } else {
                     UserService.create(user, username: username, isTourGuide: self.travelGuideSwitch.isOn, completion: { (user) in
                         guard let user = user else { return }
@@ -77,7 +146,7 @@ class RegisterVC: UIViewController {
                         if self.travelGuideSwitch.isOn {
                             
                             storyboard = UIStoryboard(name: "Guide", bundle: .main)
-                            TourGuideService.create(uid: user.uid, completion: { (tourGuide) in
+                            TourGuideService.create(uid: user.uid, city: city, completion: { (tourGuide) in
                                 guard let travelGuide = tourGuide else {return}
                                 
                                 TourGuide.setCurrent(travelGuide, writeToUserDefaults: true)
@@ -95,9 +164,33 @@ class RegisterVC: UIViewController {
                             self.view.window?.makeKeyAndVisible()
                         }
                     })
-
                 }
             })
+        }
+    }
+}
+
+
+extension RegisterVC: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        currentLocation = locations.first
+        
+        displayLocation(coordinate: currentLocation!)
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func displayLocation(coordinate: CLLocation){
+        CLGeocoder().reverseGeocodeLocation(coordinate) { (placemarks, error) in
+            if error != nil {
+                print(error.debugDescription)
+            } else {
+                guard let currentLocation = placemarks?.first else {
+                    return
+                }
+                self.addressString = currentLocation.subAdministrativeArea!
+            }
         }
     }
 }

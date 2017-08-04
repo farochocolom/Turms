@@ -26,7 +26,7 @@
                                 <rect key="frame" x="20" y="64" width="374" height="36"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Raa-bt-2VD">
-                                <rect key="frame" x="20" y="296" width="374" height="144"/>
+                                <rect key="frame" x="20" y="250" width="374" height="204"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GTm-aY-ONs">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -50,27 +50,24 @@
                                             <action selector="didPressRegisterButton:" destination="yT3-i6-h1t" eventType="touchUpInside" id="6s7-0c-1Xu"/>
                                         </connections>
                                     </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="144" id="kTY-x0-TiO"/>
-                                </constraints>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vZV-1T-IzP">
-                                <rect key="frame" x="20" y="686" width="374" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDf-fa-Npw">
-                                        <rect key="frame" x="0.0" y="0.0" width="187" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XDf-fa-Npw">
+                                        <rect key="frame" x="0.0" y="174" width="374" height="30"/>
                                         <state key="normal" title="Register"/>
                                         <connections>
                                             <segue destination="nPq-Kc-wMn" kind="show" id="Fi1-SX-4O2"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62I-RP-EfR">
-                                        <rect key="frame" x="187" y="0.0" width="187" height="30"/>
-                                        <state key="normal" title="Forgot Password"/>
-                                    </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vZV-1T-IzP">
+                                <rect key="frame" x="20" y="686" width="374" height="30"/>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-zealand-backgrounds_121112518_124" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-LZ-oIA">
+                                <rect key="frame" x="0.0" y="64" width="414" height="156"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="Yau-6g-9hT"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Know Your Destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afy-Ox-cRs">
                                 <rect key="frame" x="57" y="124" width="300" height="36"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,16 +75,10 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="new-zealand-backgrounds_121112518_124" translatesAutoresizingMaskIntoConstraints="NO" id="Ph6-LZ-oIA">
-                                <rect key="frame" x="0.0" y="64" width="414" height="156"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="156" id="Yau-6g-9hT"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Raa-bt-2VD" firstAttribute="centerY" secondItem="q5q-Yx-Pm5" secondAttribute="centerY" id="EWZ-YA-sKb"/>
+                            <constraint firstItem="Raa-bt-2VD" firstAttribute="top" secondItem="Ph6-LZ-oIA" secondAttribute="bottom" constant="30" id="8q9-BQ-nEe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Raa-bt-2VD" secondAttribute="trailing" id="K0J-qO-vmZ"/>
                             <constraint firstAttribute="bottom" secondItem="XHK-ZG-RGk" secondAttribute="bottom" constant="636" id="LvA-RJ-yjA"/>
                             <constraint firstItem="nhD-dx-rXL" firstAttribute="top" secondItem="vZV-1T-IzP" secondAttribute="bottom" constant="20" id="MbU-e8-zSd"/>
@@ -136,19 +127,25 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ue2-tc-UFV">
-                                        <rect key="frame" x="0.0" y="97" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="81" width="320" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B6d-Gt-Qs7">
-                                        <rect key="frame" x="0.0" y="194" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="161.66666666666669" width="320" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2tl-he-xly">
+                                        <rect key="frame" x="0.0" y="242.66666666666669" width="320" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l5X-7Y-NBm">
-                                        <rect key="frame" x="0.0" y="291" width="320" height="31"/>
+                                        <rect key="frame" x="0.0" y="323.33333333333331" width="320" height="31"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Volunteer tour guide" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSv-py-SiK">
                                                 <rect key="frame" x="0.0" y="0.0" width="271" height="31"/>
@@ -161,11 +158,14 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="31" id="71C-eD-8KA"/>
                                                 </constraints>
+                                                <connections>
+                                                    <action selector="toggleTourGuide:" destination="nPq-Kc-wMn" eventType="valueChanged" id="UkA-hQ-sKB"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't worry, you can change this later" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TH-lp-han">
-                                        <rect key="frame" x="0.0" y="389" width="320" height="20"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't worry, you can change this later" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TH-lp-han">
+                                        <rect key="frame" x="0.0" y="405.33333333333337" width="320" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="L08-dW-HJP"/>
                                         </constraints>
@@ -197,6 +197,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cityTextField" destination="2tl-he-xly" id="iqn-zm-SpD"/>
                         <outlet property="emailTextField" destination="INe-xP-FDg" id="PUV-x7-ltJ"/>
                         <outlet property="passwordTextField" destination="Ue2-tc-UFV" id="63r-tD-2gz"/>
                         <outlet property="travelGuideSwitch" destination="HL4-BC-hCU" id="PsN-fH-VVx"/>

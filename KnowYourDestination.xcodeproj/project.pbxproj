@@ -22,6 +22,7 @@
 		906625DD1F1D530F00B9087F /* Typealias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625DC1F1D530F00B9087F /* Typealias.swift */; };
 		906625DF1F1DB8FE00B9087F /* TourGuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625DE1F1DB8FE00B9087F /* TourGuideService.swift */; };
 		908285341F33E41C0007111A /* UILabel+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908285331F33E41C0007111A /* UILabel+Rounded.swift */; };
+		908285381F33F82D0007111A /* GuideProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908285371F33F82D0007111A /* GuideProfileVC.swift */; };
 		90A7D5D31F16908800CCD5DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A7D5D21F16908800CCD5DE /* AppDelegate.swift */; };
 		90A7D5D51F16908800CCD5DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A7D5D41F16908800CCD5DE /* ViewController.swift */; };
 		90A7D5D81F16908800CCD5DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90A7D5D61F16908800CCD5DE /* Main.storyboard */; };
@@ -66,6 +67,7 @@
 		906625DC1F1D530F00B9087F /* Typealias.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealias.swift; sourceTree = "<group>"; };
 		906625DE1F1DB8FE00B9087F /* TourGuideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourGuideService.swift; sourceTree = "<group>"; };
 		908285331F33E41C0007111A /* UILabel+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Rounded.swift"; sourceTree = "<group>"; };
+		908285371F33F82D0007111A /* GuideProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideProfileVC.swift; sourceTree = "<group>"; };
 		90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowYourDestination.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A7D5D21F16908800CCD5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90A7D5D41F16908800CCD5DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,21 @@
 				13CCBE295C858F1C63624D4A /* Pods-KnowYourDestination.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		908285351F33F7DE0007111A /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				908285371F33F82D0007111A /* GuideProfileVC.swift */,
+			);
+			name = Guide;
+			sourceTree = "<group>";
+		};
+		908285361F33F7E70007111A /* General User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "General User";
 			sourceTree = "<group>";
 		};
 		90A7D5C61F16908800CCD5DE = {
@@ -175,6 +192,8 @@
 		90A7D5E91F16912900CCD5DE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				908285361F33F7E70007111A /* General User */,
+				908285351F33F7DE0007111A /* Guide */,
 				90A7D5F41F16A62900CCD5DE /* LoginVC.swift */,
 				90A7D5F61F16A6BC00CCD5DE /* CreateProfileWithEmailVC.swift */,
 				90D997E01F1C30EC00443315 /* UserFeedVC.swift */,
@@ -417,6 +436,7 @@
 				90A7D5DB1F16908800CCD5DE /* KnowYourDestination.xcdatamodeld in Sources */,
 				9019EDCA1F266FE600523FDD /* VoteService.swift in Sources */,
 				9019EDCC1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift in Sources */,
+				908285381F33F82D0007111A /* GuideProfileVC.swift in Sources */,
 				906625DD1F1D530F00B9087F /* Typealias.swift in Sources */,
 				90D997E71F1C391800443315 /* RegisterVC.swift in Sources */,
 				906625D71F1D382D00B9087F /* ExploreFeedImageCell.swift in Sources */,
