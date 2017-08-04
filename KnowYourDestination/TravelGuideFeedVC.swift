@@ -18,8 +18,6 @@ class TravelGuideFeedVC: UIViewController {
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
-        
-        imageView.image = UIImage(named: "downvote")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -69,53 +67,6 @@ class TravelGuideFeedVC: UIViewController {
         })
     }
 
-    func randomFunc(ref: DatabaseReference, completion: @escaping (Int) -> Void){
-        DispatchQueue.global(qos: .userInitiated).async {
-            ref.observeSingleEvent(of: .value, with: { (snapshot) in
-                completion(Int(snapshot.childrenCount))
-            })
-        }
-    }
-    
-    func getCityPosts() {
-        
-        let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
-        
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            let dispatchGroup = DispatchGroup()
-            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
-                return
-            }
-            
-            let posts: [CityPost] = snapshot.reversed().flatMap {
-                guard let post = CityPost(snapshot: $0)
-                    else {return nil}
-                
-                if let imageURL = URL(string: post.imageUrl) {
-                    dispatchGroup.enter()
-                    URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                        
-                        guard let imgData = data
-                            else {
-                                dispatchGroup.leave()
-                                return
-                        }
-                        
-                        post.image = UIImage(data: imgData)
-                        
-                        dispatchGroup.leave()
-                        
-                    }).resume()
-                }
-                return post
-            }
-            dispatchGroup.notify(queue: .main, execute: {
-                self.cityPosts = posts
-                self.tableView.reloadData()
-            })
-        })
-    }
 }
 
 

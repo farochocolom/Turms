@@ -11,61 +11,60 @@ import FirebaseDatabase
 
 class UserFeedVC: UIViewController {
     
-    var cityPosts = [CityPost](){
-        didSet{
-            tableView.reloadData()
-        }
-    }
+    var cityPosts = [CityPost]()
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
-        
-        imageView.image = UIImage(named: "downvote")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-
-
+    
+    var cityPostText: String = ""
+    
+    
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
         
+        let dispatchGroup = DispatchGroup()
+        var newPosts = [CityPost]()
         let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
         
-        ref.observe(.value, with: { (snapshot) in
-            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
-                return
-            }
+        ref.observe(.childAdded, with: { (snapshot) in
+            print(snapshot)
             
+            guard let post = CityPost(snapshot: snapshot)
+                else {return}
             
-            let posts: [CityPost] = snapshot.reversed().flatMap{
-                guard let post = CityPost(snapshot: $0)
-                    else {return nil}
-                
-                if let imageURL = URL(string: post.imageUrl) {
+            if let imageURL = URL(string: post.imageUrl) {
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
                     
-                    URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                        
-                        guard let imgData = data
-                            else {return}
-                        
-                        DispatchQueue.main.async {
-                            post.image = UIImage(data: imgData)
-                        }
-                    }).resume()
-                }
-                
-                return post
+                    guard let imgData = data
+                        else {
+                            dispatchGroup.leave()
+                            return
+                    }
+                    post.image = UIImage(data: imgData)
+                    
+                    dispatchGroup.leave()
+                    
+                }).resume()
             }
             
-            self.cityPosts = posts
             
+            newPosts.append(post)
+            dispatchGroup.notify(queue: .main, execute: {
+                self.cityPosts = newPosts.reversed()
+                self.tableView.reloadData()
+            })
         })
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,8 +100,8 @@ extension UserFeedVC: UITableViewDataSource {
         case 1:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
-            //            cell.delegate = self
-                        configureCell(cell, with: post)
+            cell.delegate = self
+            configureCell(cell, with: post)
             return cell
             
         default:
@@ -112,8 +111,69 @@ extension UserFeedVC: UITableViewDataSource {
     
     func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
         
-        cell.upvoteButton.isSelected = post.isUpvoted
+        cell.postedByLabel.text = "By: \(post.postByName)"
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
+        cell.downvoteLabel.text = "\(post.downvoteCount)"
+        
+        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+            cell.downvoteButton.isSelected = isDownvoted
+            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
+        })
+        
+        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
+            cell.upvoteButton.isSelected = isUpvoted
+            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
+        })
+        
+        if post.tags.count == 1 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.alpha = 0.0
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 2 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.secondTag.alpha = 1.0
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 3 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.text = post.tags[2]
+            cell.secondTag.alpha = 1.0
+            cell.thirdTag.alpha = 1.0
+        }
+
+    }
+    
+    func configureSingleCell(_ cell: ExploreFeedFooterCell, with post: CityPost, index: Int) {
+        
+        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+            cell.downvoteButton.isSelected = isDownvoted
+            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
+        })
+        
+        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
+            cell.upvoteButton.isSelected = isUpvoted
+            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
+        })
+        
+        if post.tags.count == 1 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.alpha = 0.0
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 2 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.alpha = 0.0
+        } else if post.tags.count == 3 {
+            cell.firstTag.text = post.tags[0]
+            cell.secondTag.text = post.tags[1]
+            cell.thirdTag.text = post.tags[2]
+        }
+        
+        
+        cell.upvoteCountLabel.text = "\(post.upvoteCount)"
+        cell.downvoteLabel.text = "\(post.downvoteCount)"
+        tableView.reloadSections(IndexSet(integer: index), with: .bottom)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -133,47 +193,39 @@ extension UserFeedVC: ExploreFeedFooterCellDelegate {
             else { return }
         
         likeButton.isUserInteractionEnabled = false
+        
         let post = cityPosts[indexPath.section]
         
-//        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
-//    
-//            guard success else { return }
-//            
-//            post.upvoteCount += !post.isUpvoted ? 1 : -1
-//            post.isUpvoted = !post.isUpvoted
-//        
-//            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
-//                else { return }
-//            
-//            // 9
-//            DispatchQueue.main.async {
-//                self.configureCell(cell, with: post)
-//            }
-//        }
+        DispatchQueue.global(qos: .userInitiated).async {
+            VoteService.setIsUpvoted(!post.isUpvoted, isDownvoted: cell.downvoteButton.isSelected, for: post) { (success) in
+                
+                guard success else { return }
+                
+                DispatchQueue.main.async {
+                    self.configureSingleCell(cell, with: post, index: indexPath.section)
+                }
+            }
+        }
     }
     
-    func didTapDownvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {
+    func didTapDownvoteButton(_ downvoteButton: UIButton, on cell: ExploreFeedFooterCell) {
         guard let indexPath = tableView.indexPath(for: cell)
             else { return }
         
-        likeButton.isUserInteractionEnabled = false
+        downvoteButton.isUserInteractionEnabled = false
+        
         let post = cityPosts[indexPath.section]
         
-//        VoteService.setIsUpvoted(!post.isUpvoted, for: post) { (success) in
-//           
-//            guard success else { return }
-//            
-//            post.upvoteCount += !post.isUpvoted ? 1 : -1
-//            post.isUpvoted = !post.isUpvoted
-//            
-//            guard let cell = self.tableView.cellForRow(at: indexPath) as? ExploreFeedFooterCell
-//                else { return }
-//        
-//            DispatchQueue.main.async {
-//                self.configureCell(cell, with: post)
-//            }
-//        }
-
+        DispatchQueue.global(qos: .userInitiated).async {
+            VoteService.setIsDownvoted(!post.isDownvoted, isUpvoted: cell.upvoteButton.isSelected, for: post) { (success) in
+                
+                guard success else { return }
+                
+                DispatchQueue.main.async {
+                    self.configureSingleCell(cell, with: post, index: indexPath.section)
+                }
+            }
+        }
     }
     
     func updateSingleCell(on cell: ExploreFeedFooterCell) {

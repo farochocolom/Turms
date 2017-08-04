@@ -178,7 +178,7 @@
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhd-8K-Mmc">
                                                                             <rect key="frame" x="0.0" y="0.0" width="21" height="26.5"/>
-                                                                            <state key="normal" image="downvotedownvote"/>
+                                                                            <state key="normal" image="downvote_selected"/>
                                                                             <state key="selected" image="downvoteSelected"/>
                                                                             <connections>
                                                                                 <action selector="DownvoteButtonTapped:" destination="aGi-Jt-pao" eventType="touchUpInside" id="DgW-l8-bGE"/>
@@ -186,8 +186,8 @@
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEM-PO-gd4">
                                                                             <rect key="frame" x="46" y="0.0" width="21" height="26.5"/>
-                                                                            <state key="normal" image="upvote@1x"/>
-                                                                            <state key="selected" image="upvoteSelected"/>
+                                                                            <state key="normal" image="upvote"/>
+                                                                            <state key="selected" image="upvote_selected"/>
                                                                             <connections>
                                                                                 <action selector="likeButtonTapped:" destination="aGi-Jt-pao" eventType="touchUpInside" id="rt9-JJ-3HU"/>
                                                                             </connections>
@@ -493,13 +493,13 @@
     <resources>
         <image name="camera" width="32" height="28"/>
         <image name="downvoteSelected" width="18" height="10"/>
-        <image name="downvotedownvote" width="18" height="10"/>
+        <image name="downvote_selected" width="18" height="10"/>
         <image name="guides" width="25" height="29"/>
         <image name="image" width="512" height="512"/>
         <image name="map" width="24" height="24"/>
         <image name="photos_icon" width="28" height="29"/>
         <image name="profile" width="22" height="23"/>
-        <image name="upvote@1x" width="18" height="10"/>
-        <image name="upvoteSelected" width="18" height="10"/>
+        <image name="upvote" width="18" height="10"/>
+        <image name="upvote_selected" width="18" height="10"/>
     </resources>
 </document>

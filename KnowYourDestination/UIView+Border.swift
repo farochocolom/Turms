@@ -12,7 +12,9 @@ public enum UIButtonBorderSide {
     case Top, Bottom, Left, Right
 }
 
-extension UIButton {
+private var bottomBorder = false
+
+extension UIView {
     
     public func addBorder(side: UIButtonBorderSide, color: UIColor, width: CGFloat) {
         let border = CALayer()
@@ -38,4 +40,21 @@ extension UIButton {
         addBorder(side: .Left, color: color, width: width)
         addBorder(side: .Right, color: color, width: width)
     }
+    
+    @IBInspectable var bottom: Bool {
+        get {
+            return bottomBorder
+        } set {
+            bottomBorder = newValue
+            
+            if bottomBorder {
+                self.addBorder(side: .Bottom, color: UIColor(hex: "d4d4d4"), width: 30.0)
+                
+            } else {
+                self.layer.cornerRadius = 0
+            }
+        }
+        
+    }
+
 }

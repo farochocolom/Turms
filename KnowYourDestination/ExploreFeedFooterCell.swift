@@ -26,14 +26,13 @@ class ExploreFeedFooterCell: UITableViewCell {
     @IBOutlet weak var firstTag: UILabel!
     @IBOutlet weak var secondTag: UILabel!
     @IBOutlet weak var thirdTag: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     
     weak var delegate: ExploreFeedFooterCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        firstTag.layer.cornerRadius = firstTag.layer.bounds.height / 2
-        secondTag.layer.cornerRadius = secondTag.layer.bounds.height / 2
-        thirdTag.layer.cornerRadius = thirdTag.layer.bounds.height / 2
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -13,7 +13,7 @@
 		900D416C1F17DA0400630C67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D416B1F17DA0400630C67 /* Constants.swift */; };
 		9019EDCA1F266FE600523FDD /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9019EDC91F266FE600523FDD /* VoteService.swift */; };
 		9019EDCC1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */; };
-		90248D011F32766600A4CF6D /* UIButton+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90248D001F32766600A4CF6D /* UIButton+Border.swift */; };
+		90248D011F32766600A4CF6D /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90248D001F32766600A4CF6D /* UIView+Border.swift */; };
 		90248D031F3276C500A4CF6D /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90248D021F3276C500A4CF6D /* UIColor+Theme.swift */; };
 		906625D51F1D290500B9087F /* ExploreFeedTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */; };
 		906625D71F1D382D00B9087F /* ExploreFeedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625D61F1D382D00B9087F /* ExploreFeedImageCell.swift */; };
@@ -23,6 +23,7 @@
 		906625DF1F1DB8FE00B9087F /* TourGuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625DE1F1DB8FE00B9087F /* TourGuideService.swift */; };
 		908285341F33E41C0007111A /* UILabel+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908285331F33E41C0007111A /* UILabel+Rounded.swift */; };
 		908285381F33F82D0007111A /* GuideProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 908285371F33F82D0007111A /* GuideProfileVC.swift */; };
+		9082853B1F351A570007111A /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9082853A1F351A570007111A /* UserProfileVC.swift */; };
 		90A7D5D31F16908800CCD5DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A7D5D21F16908800CCD5DE /* AppDelegate.swift */; };
 		90A7D5D51F16908800CCD5DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A7D5D41F16908800CCD5DE /* ViewController.swift */; };
 		90A7D5D81F16908800CCD5DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90A7D5D61F16908800CCD5DE /* Main.storyboard */; };
@@ -58,7 +59,7 @@
 		900D416B1F17DA0400630C67 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9019EDC91F266FE600523FDD /* VoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
 		9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+IndexPath.swift"; sourceTree = "<group>"; };
-		90248D001F32766600A4CF6D /* UIButton+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Border.swift"; sourceTree = "<group>"; };
+		90248D001F32766600A4CF6D /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		90248D021F3276C500A4CF6D /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedTextCell.swift; sourceTree = "<group>"; };
 		906625D61F1D382D00B9087F /* ExploreFeedImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedImageCell.swift; sourceTree = "<group>"; };
@@ -68,6 +69,7 @@
 		906625DE1F1DB8FE00B9087F /* TourGuideService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourGuideService.swift; sourceTree = "<group>"; };
 		908285331F33E41C0007111A /* UILabel+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Rounded.swift"; sourceTree = "<group>"; };
 		908285371F33F82D0007111A /* GuideProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideProfileVC.swift; sourceTree = "<group>"; };
+		9082853A1F351A570007111A /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowYourDestination.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A7D5D21F16908800CCD5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90A7D5D41F16908800CCD5DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		908285361F33F7E70007111A /* General User */ = {
 			isa = PBXGroup;
 			children = (
+				9082853A1F351A570007111A /* UserProfileVC.swift */,
 			);
 			name = "General User";
 			sourceTree = "<group>";
@@ -229,7 +232,7 @@
 				900158351F2020750039C908 /* CreateCityPostVC+handlers.swift */,
 				90C9EB1D1F2142010041B30A /* UIImage+Setup.swift */,
 				9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */,
-				90248D001F32766600A4CF6D /* UIButton+Border.swift */,
+				90248D001F32766600A4CF6D /* UIView+Border.swift */,
 				90248D021F3276C500A4CF6D /* UIColor+Theme.swift */,
 				908285331F33E41C0007111A /* UILabel+Rounded.swift */,
 			);
@@ -427,7 +430,7 @@
 				90A7D5F51F16A62900CCD5DE /* LoginVC.swift in Sources */,
 				90A7D5FC1F16D55500CCD5DE /* EmailLoginView.swift in Sources */,
 				90D997E11F1C30EC00443315 /* UserFeedVC.swift in Sources */,
-				90248D011F32766600A4CF6D /* UIButton+Border.swift in Sources */,
+				90248D011F32766600A4CF6D /* UIView+Border.swift in Sources */,
 				906625D51F1D290500B9087F /* ExploreFeedTextCell.swift in Sources */,
 				90D1DB0E1F1EA58A0030D0F5 /* CityPostService.swift in Sources */,
 				90D997DD1F1C185500443315 /* RegisterView.swift in Sources */,
@@ -438,6 +441,7 @@
 				9019EDCC1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift in Sources */,
 				908285381F33F82D0007111A /* GuideProfileVC.swift in Sources */,
 				906625DD1F1D530F00B9087F /* Typealias.swift in Sources */,
+				9082853B1F351A570007111A /* UserProfileVC.swift in Sources */,
 				90D997E71F1C391800443315 /* RegisterVC.swift in Sources */,
 				906625D71F1D382D00B9087F /* ExploreFeedImageCell.swift in Sources */,
 				908285341F33E41C0007111A /* UILabel+Rounded.swift in Sources */,
