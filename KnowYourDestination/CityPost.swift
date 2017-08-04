@@ -23,7 +23,6 @@ class CityPost {
     var downvotes: [String]?
     var isUpvoted: Bool
     var isDownvoted: Bool
-//    var city: String
     
     init(text: String, imageUrl: String, postById: String, postByName: String,
          tags: [String], image: UIImage?) {

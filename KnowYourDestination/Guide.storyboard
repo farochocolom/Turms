@@ -123,17 +123,11 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FwG-zA-4oX">
                                                     <rect key="frame" x="16" y="16" width="343" height="68"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Qr2-mh-1gi">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qr2-mh-1gi">
                                                             <rect key="frame" x="0.0" y="0.0" width="256" height="68"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Fernando Arocho" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yLA-5e-QoM">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="20.5"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="City: Los Angeles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GU-A7-jQe">
-                                                                    <rect key="frame" x="0.0" y="24" width="256" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="256" height="47.5"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -184,8 +178,8 @@
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhd-8K-Mmc">
                                                                             <rect key="frame" x="0.0" y="0.0" width="21" height="26.5"/>
-                                                                            <state key="normal" image="downvote"/>
-                                                                            <state key="selected" image="downvote_selected"/>
+                                                                            <state key="normal" image="downvote_selected"/>
+                                                                            <state key="selected" image="downvoteSelected"/>
                                                                             <connections>
                                                                                 <action selector="DownvoteButtonTapped:" destination="aGi-Jt-pao" eventType="touchUpInside" id="DgW-l8-bGE"/>
                                                                             </connections>
@@ -234,7 +228,6 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="cityLabel" destination="6GU-A7-jQe" id="fQg-4l-JdD"/>
                                             <outlet property="downvoteButton" destination="uhd-8K-Mmc" id="0R7-iv-hQx"/>
                                             <outlet property="downvoteLabel" destination="D5V-Bb-F5r" id="8uT-Gb-7XQ"/>
                                             <outlet property="firstTag" destination="f8j-zR-hMT" id="MdK-t9-Ze2"/>
@@ -262,7 +255,7 @@
                     <navigationItem key="navigationItem" title="Travel Guide" id="XJb-0d-qzH">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MqK-vx-55L">
                             <connections>
-                                <segue destination="7Qc-rn-gY0" kind="presentation" id="Pfs-ZT-26S"/>
+                                <segue destination="7Qc-rn-gY0" kind="show" id="Pfs-ZT-26S"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -286,36 +279,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dfd-MD-XEn">
-                                <rect key="frame" x="16" y="624" width="343" height="33"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxV-wt-TC7">
-                                        <rect key="frame" x="0.0" y="0.0" width="164" height="33"/>
-                                        <color key="backgroundColor" red="0.1040940422" green="0.66850801790000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                        <state key="normal" title="Save">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="savePostBtnPRessed:" destination="7Qc-rn-gY0" eventType="touchUpInside" id="Fn4-Ub-TCv"/>
-                                            <segue destination="Nm5-Tf-mef" kind="unwind" identifier="createPost" unwindAction="unwindToVC1WithSegue:" id="vBo-Tz-xdK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kip-tx-cvZ">
-                                        <rect key="frame" x="179" y="0.0" width="164" height="33"/>
-                                        <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelBtnPressed:" destination="7Qc-rn-gY0" eventType="touchUpInside" id="ZGi-au-YKR"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxV-wt-TC7">
+                                <rect key="frame" x="16" y="579" width="343" height="33"/>
+                                <color key="backgroundColor" red="0.1040940422" green="0.66850801790000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="savePostBtnPRessed:" destination="7Qc-rn-gY0" eventType="touchUpInside" id="Fn4-Ub-TCv"/>
+                                </connections>
+                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68T-Zw-RcY">
-                                <rect key="frame" x="16" y="28" width="343" height="153"/>
+                                <rect key="frame" x="16" y="72" width="343" height="153"/>
                                 <color key="backgroundColor" red="0.90126953124999998" green="0.90126953124999998" blue="0.90126953124999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="153" id="ntc-yU-O9y"/>
@@ -326,7 +302,7 @@
                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="TL8-YC-7Q7">
-                                <rect key="frame" x="16" y="583" width="343" height="33"/>
+                                <rect key="frame" x="16" y="534" width="343" height="33"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-Y5-WFw">
                                         <rect key="frame" x="0.0" y="0.0" width="104.5" height="33"/>
@@ -371,7 +347,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="LcU-Qk-I8D">
-                                <rect key="frame" x="16" y="544" width="343" height="29"/>
+                                <rect key="frame" x="16" y="495" width="343" height="29"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcA-Na-CAF">
                                         <rect key="frame" x="0.0" y="0.0" width="171.5" height="29"/>
@@ -397,14 +373,14 @@
                             <constraint firstItem="68T-Zw-RcY" firstAttribute="leading" secondItem="u35-e2-8bZ" secondAttribute="leadingMargin" id="F7f-kP-i1K"/>
                             <constraint firstItem="LcU-Qk-I8D" firstAttribute="leading" secondItem="u35-e2-8bZ" secondAttribute="leadingMargin" id="FPK-wv-pi7"/>
                             <constraint firstItem="QGP-Nh-XYp" firstAttribute="centerX" secondItem="u35-e2-8bZ" secondAttribute="centerX" id="FZz-Rm-7gk"/>
-                            <constraint firstItem="r5J-iw-4uQ" firstAttribute="top" secondItem="dfd-MD-XEn" secondAttribute="bottom" constant="10" id="PAi-wk-Ahb"/>
+                            <constraint firstItem="vxV-wt-TC7" firstAttribute="trailing" secondItem="u35-e2-8bZ" secondAttribute="trailingMargin" id="Lm3-91-hVl"/>
                             <constraint firstItem="TL8-YC-7Q7" firstAttribute="top" secondItem="LcU-Qk-I8D" secondAttribute="bottom" constant="10" id="Q3Q-my-GEo"/>
                             <constraint firstItem="68T-Zw-RcY" firstAttribute="trailing" secondItem="u35-e2-8bZ" secondAttribute="trailingMargin" id="YVd-HX-sYC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TL8-YC-7Q7" secondAttribute="trailing" id="bcE-bE-GH2"/>
-                            <constraint firstItem="dfd-MD-XEn" firstAttribute="top" secondItem="TL8-YC-7Q7" secondAttribute="bottom" constant="8" id="nE2-sk-ZCy"/>
+                            <constraint firstItem="vxV-wt-TC7" firstAttribute="top" secondItem="TL8-YC-7Q7" secondAttribute="bottom" constant="12" id="iKA-6S-kAb"/>
+                            <constraint firstItem="r5J-iw-4uQ" firstAttribute="top" secondItem="vxV-wt-TC7" secondAttribute="bottom" constant="6" id="je5-xz-A8s"/>
                             <constraint firstItem="TL8-YC-7Q7" firstAttribute="leading" secondItem="u35-e2-8bZ" secondAttribute="leadingMargin" id="nRX-pK-k9c"/>
-                            <constraint firstItem="dfd-MD-XEn" firstAttribute="leading" secondItem="u35-e2-8bZ" secondAttribute="leadingMargin" id="qc9-Df-5KY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dfd-MD-XEn" secondAttribute="trailing" id="sTl-Pc-diS"/>
+                            <constraint firstItem="vxV-wt-TC7" firstAttribute="leading" secondItem="u35-e2-8bZ" secondAttribute="leadingMargin" id="yEW-su-aez"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="TELL US ABOUT YOUR CITY" id="W3G-5a-VsI"/>
@@ -416,6 +392,7 @@
                         <outlet property="postImagePicker" destination="QGP-Nh-XYp" id="Fq7-wg-vV2"/>
                         <outlet property="postTextField" destination="68T-Zw-RcY" id="cxY-ll-dsg"/>
                         <outlet property="takePictureButton" destination="jg8-GB-wlC" id="2PV-Ik-fAD"/>
+                        <segue destination="Nm5-Tf-mef" kind="unwind" identifier="createPost" unwindAction="unwindToVC1WithSegue:" id="SUs-fM-6WT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwZ-E8-zLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -515,7 +492,7 @@
     </scenes>
     <resources>
         <image name="camera" width="32" height="28"/>
-        <image name="downvote" width="18" height="10"/>
+        <image name="downvoteSelected" width="18" height="10"/>
         <image name="downvote_selected" width="18" height="10"/>
         <image name="guides" width="25" height="29"/>
         <image name="image" width="512" height="512"/>

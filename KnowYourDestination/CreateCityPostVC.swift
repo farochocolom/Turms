@@ -112,19 +112,12 @@ class CreateCityPostVC: UIViewController {
         }
         
         
-        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, city: "Los Angeles", completion: { (finished) in
+        CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, completion: { (finished) in
             if finished {
                 self.dismiss(animated: true, completion: nil)
             }
         })
 
-    }
-    
-    @IBAction func cancelBtnPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
     }
 
 }

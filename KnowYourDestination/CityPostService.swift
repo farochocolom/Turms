@@ -14,7 +14,7 @@ import FirebaseDatabase
 
 struct CityPostService {
     
-    static func create(for image: UIImage, postedBy: String, postedByName: String, postText: String, tags: [String], city: String, completion: @escaping (Bool) -> Void) {
+    static func create(for image: UIImage, postedBy: String, postedByName: String, postText: String, tags: [String], completion: @escaping (Bool) -> Void) {
         let uuid = UUID().uuidString
         let dispatchGroup = DispatchGroup()
 
@@ -51,7 +51,6 @@ struct CityPostService {
                                         "posted_by": postedBy,
                                         "posted_by_name": postedByName,
                                         "tags" : tags,
-                                        "city" : city,
                                         "upvotes_count": 0,
                                         "downvotes_count": 0]
 
@@ -61,7 +60,6 @@ struct CityPostService {
                                         "posted_by": postedBy,
                                         "posted_by_name": postedByName,
                                         "tags" : tags,
-                                        "city" : city,
                                         "upvotes_count": 0,
                                         "downvotes_count": 0]
             }
