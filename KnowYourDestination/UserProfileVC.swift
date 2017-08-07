@@ -10,8 +10,6 @@ import UIKit
 import FirebaseAuth
 
 class UserProfileVC: UIViewController {
-
-    let firebaseAuth = Auth.auth()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +24,7 @@ class UserProfileVC: UIViewController {
     
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
+        let firebaseAuth = Auth.auth()
         let storyboard = UIStoryboard(name: "Login", bundle: .main)
         
         do {

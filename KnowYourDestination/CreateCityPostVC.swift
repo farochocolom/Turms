@@ -28,6 +28,9 @@ class CreateCityPostVC: UIViewController {
 
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
+        postTextField.placeholder = "Tell us about your city"
+        postImagePicker.isHidden = true
+        
         interactionTagButton.isSelected = true
         interactionTagButton.backgroundColor = UIColor.TWPurple
         interactionTagButton.tintColor = UIColor.clear
@@ -43,6 +46,10 @@ class CreateCityPostVC: UIViewController {
         takePictureButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTakePostImageView)))
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true;
+    }
     
     @IBAction func interactionBtnPressed(_ sender: UIButton) {
         

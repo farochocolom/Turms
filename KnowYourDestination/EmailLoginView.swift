@@ -37,22 +37,22 @@ class EmailLoginView: UIView {
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
-    @IBAction func didPressRegisterButton(_ sender: UIButton) {
-        
-        if let email = emailTextField.text, let password = passwordTextField.text {
-
-            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                // [START_EXCLUDE]
-
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-            }
-
-        } else {
-            print("email/password can't be empty")
-        }
-    }
+//    @IBAction func didPressRegisterButton(_ sender: UIButton) {
+//        
+//        if let email = emailTextField.text, let password = passwordTextField.text {
+//
+//            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+//                // [START_EXCLUDE]
+//
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                    return
+//                }
+//            }
+//
+//        } else {
+//            print("email/password can't be empty")
+//        }
+//    }
 
 }

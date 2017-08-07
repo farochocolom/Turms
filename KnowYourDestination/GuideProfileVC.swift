@@ -11,8 +11,6 @@ import FirebaseAuth
 
 class GuideProfileVC: UIViewController {
     
-    let firebaseAuth = Auth.auth()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +24,7 @@ class GuideProfileVC: UIViewController {
 
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
+        let firebaseAuth = Auth.auth()
         let storyboard = UIStoryboard(name: "Login", bundle: .main)
     
         do {

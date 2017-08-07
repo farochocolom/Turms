@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class ExploreFeedImageCell: UITableViewCell {
     
     @IBOutlet weak var postImage: UIImageView!

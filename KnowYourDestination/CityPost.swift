@@ -62,18 +62,7 @@ class CityPost {
         self.isUpvoted = false
         self.isDownvoted = false
         
-        if let userUid = Constants.UserDef.uidValue as? String {
-            if let upvoteDict = upvotesSnapshot.value as? [String: Any],
-                let upvotes = upvoteDict[userUid] as? Bool {
-                if upvotes {
-                    self.isUpvoted = true
-                } else {
-                    self.isUpvoted = false
-                }
-
-            }
-        }
-        
+               
     }
     
     

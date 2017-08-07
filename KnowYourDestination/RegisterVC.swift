@@ -8,8 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
-import FirebaseAuth
 import CoreLocation
 
 class RegisterVC: UIViewController {
@@ -167,6 +165,11 @@ class RegisterVC: UIViewController {
                 }
             })
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true;
     }
 }
 

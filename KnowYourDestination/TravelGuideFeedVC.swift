@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseDatabase
 import Firebase
 
 class TravelGuideFeedVC: UIViewController {
@@ -39,27 +38,27 @@ class TravelGuideFeedVC: UIViewController {
         ref.observe(.childAdded, with: { (snapshot) in
             print(snapshot)
 
-                guard let post = CityPost(snapshot: snapshot)
-                    else {return}
-                
-                if let imageURL = URL(string: post.imageUrl) {
-                    dispatchGroup.enter()
-                    URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                        
-                        guard let imgData = data
-                            else {
-                                dispatchGroup.leave()
-                                return
-                        }
-                        post.image = UIImage(data: imgData)
-                        
-                        dispatchGroup.leave()
-                        
-                    }).resume()
-                }
-                
-                
-               newPosts.append(post)
+            guard let post = CityPost(snapshot: snapshot)
+                else {return}
+            
+            if let imageURL = URL(string: post.imageUrl) {
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
+                    
+                    guard let imgData = data
+                        else {
+                            dispatchGroup.leave()
+                            return
+                    }
+                    post.image = UIImage(data: imgData)
+                    
+                    dispatchGroup.leave()
+                    
+                }).resume()
+            }
+        
+            newPosts.append(post)
+            
             dispatchGroup.notify(queue: .main, execute: {
                 self.cityPosts = newPosts.reversed()
                 self.tableView.reloadData()
@@ -67,10 +66,39 @@ class TravelGuideFeedVC: UIViewController {
         })
     }
     
-   @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
+    @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
     
-    
-
+    func handleFlagButtonTap(from cell: ExploreFeedHeaderCell) {
+        // 1
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        // 2
+        let post = cityPosts[indexPath.section]
+        let poster = post.postById
+        
+        // 3
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // 4
+        if poster != Auth.auth().currentUser?.uid {
+            let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
+                CityPostService.flag(post)
+                
+                let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
+                okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+                self.present(okAlert, animated: true)
+            }
+            
+            alertController.addAction(flagAction)
+        }
+        
+        // 5
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        // 6
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 
@@ -79,7 +107,16 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         let post = cityPosts[indexPath.section]
         
         switch indexPath.row {
+            
         case 0:
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedHeaderCell", for: indexPath) as! ExploreFeedHeaderCell
+            cell.didTapFlagButtonForCell = handleFlagButtonTap(from:)
+            
+            return cell
+
+            
+        case 1:
             
             if let _ = URL(string: post.imageUrl){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedImageCell", for: indexPath) as! ExploreFeedImageCell
@@ -96,7 +133,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
                 return cell
             }
             
-        case 1:
+        case 2:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
             cell.delegate = self
@@ -179,7 +216,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

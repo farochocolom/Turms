@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class UserFeedVC: UIViewController {
     
@@ -71,6 +71,42 @@ class UserFeedVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func handleFlagButtonTap(from cell: ExploreFeedHeaderCell) {
+        // 1
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        // 2
+        let post = cityPosts[indexPath.section]
+        let poster = post.postById
+        
+        // 3
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // 4
+        if poster != Auth.auth().currentUser?.uid {
+            let flagAction = UIAlertAction(title: "Report as Inappropriate", style: .default) { _ in
+                CityPostService.flag(post)
+                
+                let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
+                okAlert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
+                    cell.flagButton.isSelected = true
+                })
+                self.present(okAlert, animated: true)
+                
+                
+            }
+            
+            alertController.addAction(flagAction)
+        }
+        
+        // 5
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        // 6
+        present(alertController, animated: true, completion: nil)
+    }
 
 }
 
@@ -82,12 +118,20 @@ extension UserFeedVC: UITableViewDataSource {
         switch indexPath.row {
         case 0:
             
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedHeaderCell", for: indexPath) as! ExploreFeedHeaderCell
+            cell.didTapFlagButtonForCell = handleFlagButtonTap(from:)
+            
+            return cell
+            
+            
+        case 1:
+            
             if let _ = URL(string: post.imageUrl){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedImageCell", for: indexPath) as! ExploreFeedImageCell
                 
                 cell.postTextLabel.text = post.text
-                cell.postImage.image = post.image
-                print("Image cell")
+                cell.postImage.image = post.image!
+                print("Image cell: \(indexPath.section)")
                 
                 return cell
             } else {
@@ -97,11 +141,12 @@ extension UserFeedVC: UITableViewDataSource {
                 return cell
             }
             
-        case 1:
+        case 2:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
             cell.delegate = self
             configureCell(cell, with: post)
+            
             return cell
             
         default:
@@ -177,7 +222,7 @@ extension UserFeedVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

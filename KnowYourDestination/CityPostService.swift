@@ -116,4 +116,34 @@ struct CityPostService {
             completion(posts)
         })
     }
+    
+    static func flag(_ post: CityPost) {
+        // 1
+        guard let postKey = post.key else { return }
+        
+        // 2
+        let flaggedPostRef = Database.database().reference().child("flaggedPosts").child(postKey)
+        
+        guard let uid = Auth.auth().currentUser?.uid  else {
+            return
+        }
+        
+        // 3
+        let flaggedDict: [String: Any] = ["image_url": post.imageUrl,
+                           "poster_uid": post.postById,
+                           "reporter_uid": [uid]]
+        
+        // 4
+        flaggedPostRef.updateChildValues(flaggedDict)
+        
+        // 5
+        let flagCountRef = flaggedPostRef.child("flag_count")
+        flagCountRef.runTransactionBlock({ (mutableData) -> TransactionResult in
+            let currentCount = mutableData.value as? Int ?? 0
+            
+            mutableData.value = currentCount + 1
+            
+            return TransactionResult.success(withValue: mutableData)
+        })
+    }
 }
