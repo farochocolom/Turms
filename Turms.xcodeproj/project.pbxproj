@@ -76,7 +76,7 @@
 		908285331F33E41C0007111A /* UILabel+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Rounded.swift"; sourceTree = "<group>"; };
 		908285371F33F82D0007111A /* GuideProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideProfileVC.swift; sourceTree = "<group>"; };
 		9082853A1F351A570007111A /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
-		90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowYourDestination.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90A7D5CF1F16908800CCD5DE /* Turms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A7D5D21F16908800CCD5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90A7D5D41F16908800CCD5DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		90A7D5D71F16908800CCD5DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		90A7D5D01F16908800CCD5DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */,
+				90A7D5CF1F16908800CCD5DE /* Turms.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -301,9 +301,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		90A7D5CE1F16908800CCD5DE /* KnowYourDestination */ = {
+		90A7D5CE1F16908800CCD5DE /* Turms */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "KnowYourDestination" */;
+			buildConfigurationList = 90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "Turms" */;
 			buildPhases = (
 				CC3F35E92CC9D7C0BE70583D /* [CP] Check Pods Manifest.lock */,
 				90A7D5CB1F16908800CCD5DE /* Sources */,
@@ -316,9 +316,9 @@
 			);
 			dependencies = (
 			);
-			name = KnowYourDestination;
+			name = Turms;
 			productName = KnowYourDestination;
-			productReference = 90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */;
+			productReference = 90A7D5CF1F16908800CCD5DE /* Turms.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -338,7 +338,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "KnowYourDestination" */;
+			buildConfigurationList = 90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "Turms" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -351,7 +351,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				90A7D5CE1F16908800CCD5DE /* KnowYourDestination */,
+				90A7D5CE1F16908800CCD5DE /* Turms */,
 			);
 		};
 /* End PBXProject section */
@@ -615,7 +615,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "KnowYourDestination" */ = {
+		90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "Turms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90A7D5E21F16908800CCD5DE /* Debug */,
@@ -624,7 +624,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "KnowYourDestination" */ = {
+		90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "Turms" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90A7D5E51F16908800CCD5DE /* Debug */,
