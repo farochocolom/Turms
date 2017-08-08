@@ -182,39 +182,6 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         
     }
     
-    func configureSingleCell(_ cell: ExploreFeedFooterCell, with post: CityPost, index: Int) {
-        
-        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-            cell.downvoteButton.isSelected = isDownvoted
-            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
-        })
-        
-        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
-            cell.upvoteButton.isSelected = isUpvoted
-            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
-        })
-        
-        if post.tags.count == 1 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.alpha = 0.0
-            cell.thirdTag.alpha = 0.0
-        } else if post.tags.count == 2 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.text = post.tags[1]
-            cell.thirdTag.alpha = 0.0
-        } else if post.tags.count == 3 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.text = post.tags[1]
-            cell.thirdTag.text = post.tags[2]
-        }
-
-        
-        cell.upvoteCountLabel.text = "\(post.upvoteCount)"
-        cell.downvoteLabel.text = "\(post.downvoteCount)"
-//        cell.cityLabel.text = 
-        tableView.reloadSections(IndexSet(integer: index), with: .fade)
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -259,7 +226,7 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
                 guard success else { return }
                 
                 DispatchQueue.main.async {
-                    self.configureSingleCell(cell, with: post, index: indexPath.section)
+                    self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }
         }
@@ -279,7 +246,7 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
                 guard success else { return }
              
                 DispatchQueue.main.async {
-                    self.configureSingleCell(cell, with: post, index: indexPath.section)
+                    self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }
         }

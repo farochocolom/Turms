@@ -429,7 +429,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="savePostBtnPRessed:" destination="7Qc-rn-gY0" eventType="touchUpInside" id="Fn4-Ub-TCv"/>
-                                                    <segue destination="Nm5-Tf-mef" kind="unwind" identifier="createPost" unwindAction="unwindToVC1WithSegue:" id="vBo-Tz-xdK"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kip-tx-cvZ">
@@ -532,7 +531,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jwZ-E8-zLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Nm5-Tf-mef" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1859.4202898550725" y="-480.16304347826093"/>
         </scene>

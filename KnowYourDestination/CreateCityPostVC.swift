@@ -149,13 +149,15 @@ class CreateCityPostVC: UIViewController {
         
         let alert = UIAlertController(title: "Remove Image", message: "Are you sure you want to remove the image?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Remove", style: .default){ alert in
-            UIView.animate(withDuration: 1.0, delay: 0.2, options: [.curveEaseInOut],
+            UIView.animate(withDuration: 0.5, delay: 0.2, options: [.curveEaseInOut],
                            animations: {
                             
                 self.postImagePicker.isHidden = true
                 self.removePictureButton.isHidden = true
                 self.postImagePicker.image = UIImage(named: "image")
                 self.imageHeightContraint.constant = 15
+                            
+                self.view.layoutIfNeeded()
                             
             }, completion: nil)
 
