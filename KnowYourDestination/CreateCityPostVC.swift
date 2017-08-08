@@ -170,8 +170,6 @@ class CreateCityPostVC: UIViewController {
     @IBAction func cancelBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
+    
 
 }
