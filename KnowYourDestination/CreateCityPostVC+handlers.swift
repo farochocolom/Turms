@@ -41,7 +41,12 @@ extension CreateCityPostVC: UIImagePickerControllerDelegate, UINavigationControl
         
         if let selected = selectedImage {
             postImagePicker.image = selected
-            postImagePicker.isHidden = false
+            
+            UIView.animate(withDuration: 0.8, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.postImagePicker.isHidden = false
+                self.imageHeightContraint.constant = 230
+                self.removePictureButton.isHidden = false
+            }, completion: nil)
         }
         
         dismiss(animated: true, completion: nil)

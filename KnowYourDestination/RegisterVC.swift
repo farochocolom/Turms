@@ -11,6 +11,9 @@ import Firebase
 import CoreLocation
 
 class RegisterVC: UIViewController {
+    
+    var email: String = ""
+    var password = ""
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -28,6 +31,9 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
         
         travelGuideSwitch.isOn = false
+        
+        emailTextField.text = email
+        passwordTextField.text = password
         
         locationManager.delegate = self;
         locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters;

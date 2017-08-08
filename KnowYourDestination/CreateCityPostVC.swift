@@ -20,6 +20,9 @@ class CreateCityPostVC: UIViewController {
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var takePictureButton: UIButton!
     
+    @IBOutlet weak var imageHeightContraint: NSLayoutConstraint!
+    @IBOutlet weak var removePictureButton: UIButton!
+    
     var img = UIImageView()
     var tagsArr = [String]()
     
@@ -30,6 +33,7 @@ class CreateCityPostVC: UIViewController {
         
         postTextField.placeholder = "Tell us about your city"
         postImagePicker.isHidden = true
+        removePictureButton.isHidden = true
         
         interactionTagButton.isSelected = true
         interactionTagButton.backgroundColor = UIColor.TWPurple
@@ -118,6 +122,20 @@ class CreateCityPostVC: UIViewController {
             self.tagsArr.append(people)
         }
         
+        if !peopleTagButton.isSelected && !foodTagButton.isSelected && !interactionTagButton.isSelected {
+            let alert = UIAlertController(title: "No tag selected", message: "Please select one tag to identify the type of the post", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        if postText == "" {
+            let alert = UIAlertController(title: "No post description", message: "Please enter a description in the post's text area", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         
         CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, city: "Los Angeles", completion: { (finished) in
             if finished {
@@ -127,6 +145,28 @@ class CreateCityPostVC: UIViewController {
 
     }
     
+    @IBAction func removePictureButtonPressed(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Remove Image", message: "Are you sure you want to remove the image?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Remove", style: .default){ alert in
+            UIView.animate(withDuration: 1.0, delay: 0.2, options: [.curveEaseInOut],
+                           animations: {
+                            
+                            self.postImagePicker.isHidden = true
+                            self.removePictureButton.isHidden = true
+                            self.postImagePicker.image = UIImage(named: "image")
+                            self.imageHeightContraint.constant = 15
+                            
+            }, completion: nil)
+
+            
+        })
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
     @IBAction func cancelBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

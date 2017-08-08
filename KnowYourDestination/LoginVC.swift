@@ -11,11 +11,12 @@ import Firebase
 
 class LoginVC: UIViewController {
 
-    @IBOutlet weak var loginView: EmailLoginView!
-    @IBOutlet weak var RegisterView: RegisterView!
+//    @IBOutlet weak var loginView: EmailLoginView!
+//    @IBOutlet weak var RegisterView: RegisterView!
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class LoginVC: UIViewController {
     }
     
     
-    @IBAction func didPressRegisterButton(_ sender: UIButton) {
+    @IBAction func didPressLoginButton(_ sender: UIButton) {
         
         var initialViewController: UIViewController = UIStoryboard.initialViewController(for: .main)
         if let email = emailTextField.text, let password = passwordTextField.text {
@@ -46,7 +47,9 @@ class LoginVC: UIViewController {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 
                 if let error = error {
-                    print(error.localizedDescription)
+                    let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
                 
@@ -75,6 +78,19 @@ class LoginVC: UIViewController {
         }
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let email = emailTextField.text, let password = passwordTextField.text else {return}
+        if segue.identifier == "Register" {
+            let vc = segue.destination as! RegisterVC
+            
+            vc.email = email
+            vc.password = password
+        }
+        
+    }
+    
+    @IBAction func didPressRegisterButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "Register", sender: self.registerButton)
+    }
     
 }
