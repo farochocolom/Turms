@@ -152,10 +152,10 @@ class CreateCityPostVC: UIViewController {
             UIView.animate(withDuration: 1.0, delay: 0.2, options: [.curveEaseInOut],
                            animations: {
                             
-                            self.postImagePicker.isHidden = true
-                            self.removePictureButton.isHidden = true
-                            self.postImagePicker.image = UIImage(named: "image")
-                            self.imageHeightContraint.constant = 15
+                self.postImagePicker.isHidden = true
+                self.removePictureButton.isHidden = true
+                self.postImagePicker.image = UIImage(named: "image")
+                self.imageHeightContraint.constant = 15
                             
             }, completion: nil)
 
