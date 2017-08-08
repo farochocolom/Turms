@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class TravelGuideFeedVC: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var cityPosts = [CityPost]()
@@ -26,20 +26,26 @@ class TravelGuideFeedVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
-    
+        
         let dispatchGroup = DispatchGroup()
         var newPosts = [CityPost]()
-
+        
         ref.observe(.childAdded, with: { (snapshot) in
-            print(snapshot)
-
+            
             guard let post = CityPost(snapshot: snapshot)
                 else {return}
+            
+            
+            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+                post.isUpvoted = !isDownvoted
+                post.isDownvoted = isDownvoted
+            })
+
             
             if let imageURL = URL(string: post.imageUrl) {
                 dispatchGroup.enter()
@@ -56,7 +62,7 @@ class TravelGuideFeedVC: UIViewController {
                     
                 }).resume()
             }
-        
+            
             newPosts.append(post)
             
             dispatchGroup.notify(queue: .main, execute: {
@@ -78,6 +84,7 @@ class TravelGuideFeedVC: UIViewController {
         
         // 3
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
         
         // 4
         if poster != Auth.auth().currentUser?.uid {
@@ -90,14 +97,22 @@ class TravelGuideFeedVC: UIViewController {
             }
             
             alertController.addAction(flagAction)
+            
+            // 5
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            
+            // 6
+            present(alertController, animated: true, completion: nil)
+        } else {
+            
+            let flagAction = UIAlertAction(title: "You can only report content added by other users", style: .default)
+            
+            alert.addAction(flagAction)
+            
         }
         
-        // 5
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
         
-        // 6
-        present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -114,7 +129,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             cell.didTapFlagButtonForCell = handleFlagButtonTap(from:)
             
             return cell
-
+            
             
         case 1:
             
@@ -123,13 +138,11 @@ extension TravelGuideFeedVC: UITableViewDataSource {
                 
                 cell.postTextLabel.text = post.text
                 cell.postImage.image = post.image!
-                print("Image cell: \(indexPath.section)")
                 
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedTextCell", for: indexPath) as! ExploreFeedTextCell
                 cell.postTextLabel.text = post.text
-                print("text cell")
                 return cell
             }
             
@@ -137,7 +150,11 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
             cell.delegate = self
-            configureCell(cell, with: post)
+            
+            cell.downvoteButton.isSelected = false
+            cell.upvoteButton.isSelected = false
+            
+            configureCell(cell, with: post, index: indexPath.section)
             
             return cell
             
@@ -147,21 +164,27 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     }
     
     
-    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
+    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost, index: Int) {
         
         cell.postedByLabel.text = "By: \(post.postByName)"
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
         
-        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-            cell.downvoteButton.isSelected = isDownvoted
-            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
-        })
-        
-        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
-            cell.upvoteButton.isSelected = isUpvoted
-            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
-        })
+        cell.downvoteButton.isSelected = post.isDownvoted
+        cell.downvoteButton.isUserInteractionEnabled = !post.isDownvoted
+
+        cell.upvoteButton.isSelected = post.isUpvoted
+        cell.upvoteButton.isUserInteractionEnabled = !post.isUpvoted
+
+//        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+//            cell.downvoteButton.isSelected = isDownvoted
+//            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
+//        })
+//        
+//        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
+//            cell.upvoteButton.isSelected = isUpvoted
+//            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
+//        })
         
         if post.tags.count == 1 {
             cell.firstTag.text = post.tags[0]
@@ -181,6 +204,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         }
         
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -219,13 +243,17 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
         likeButton.isUserInteractionEnabled = false
         
         let post = cityPosts[indexPath.section]
+        
 
+        
         DispatchQueue.global(qos: .userInitiated).async {
             VoteService.setIsUpvoted(!post.isUpvoted, isDownvoted: cell.downvoteButton.isSelected, for: post) { (success) in
-    
+                
                 guard success else { return }
                 
                 DispatchQueue.main.async {
+                    post.isUpvoted = true
+                    post.isDownvoted = false
                     self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }
@@ -239,13 +267,17 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
         downvoteButton.isUserInteractionEnabled = false
         
         let post = cityPosts[indexPath.section]
-
+        
+        
         DispatchQueue.global(qos: .userInitiated).async {
             VoteService.setIsDownvoted(!post.isDownvoted, isUpvoted: cell.upvoteButton.isSelected, for: post) { (success) in
-    
+                
                 guard success else { return }
-             
+                
                 DispatchQueue.main.async {
+                    post.isDownvoted = true
+                    post.isUpvoted = false
+
                     self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }

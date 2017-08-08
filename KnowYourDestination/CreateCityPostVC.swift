@@ -110,6 +110,21 @@ class CreateCityPostVC: UIViewController {
             let username = defaults.object(forKey: Constants.UserDef.username) as? String
             else {return}
         
+        
+        if !peopleTagButton.isSelected && !foodTagButton.isSelected && !interactionTagButton.isSelected {
+            let alert = UIAlertController(title: "No tag selected", message: "Please select one tag to identify the type of the post", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        if postText == "" {
+            let alert = UIAlertController(title: "No post description", message: "Please enter a description in the post's text area", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
         if interactionTagButton.isSelected {
             self.tagsArr.append(interaction)
         }
@@ -121,20 +136,7 @@ class CreateCityPostVC: UIViewController {
         if peopleTagButton.isSelected {
             self.tagsArr.append(people)
         }
-        
-        if !peopleTagButton.isSelected && !foodTagButton.isSelected && !interactionTagButton.isSelected {
-            let alert = UIAlertController(title: "No tag selected", message: "Please select one tag to identify the type of the post", preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
-        if postText == "" {
-            let alert = UIAlertController(title: "No post description", message: "Please enter a description in the post's text area", preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+
         
         
         CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, city: "Los Angeles", completion: { (finished) in

@@ -456,7 +456,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ho4-5n-3N3" userLabel="image">
                                 <rect key="frame" x="20" y="310" width="374" height="15"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QGP-Nh-XYp">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="QGP-Nh-XYp">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="9c2-Gw-8ef"/>
@@ -631,6 +631,7 @@
         <image name="downvote_selected" width="18" height="10"/>
         <image name="flag_off" width="512" height="512"/>
         <image name="guides" width="25" height="29"/>
+        <image name="image" width="512" height="512"/>
         <image name="map" width="24" height="24"/>
         <image name="photos_icon" width="28" height="29"/>
         <image name="profile" width="22" height="23"/>
