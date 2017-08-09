@@ -39,6 +39,8 @@ class RegisterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.TWBlue
+        
         emailTextField.layer.cornerRadius = 3
         passwordTextField.layer.cornerRadius = 3
         usernameTextField.layer.cornerRadius = 3

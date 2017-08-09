@@ -532,7 +532,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DHB-wK-B8M" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" image="map" selectedImage="map" id="QhV-EE-YVq"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HU3-um-sOx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HU3-um-sOx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.17532572150230408" green="0.21244135499000549" blue="0.2315814197063446" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
