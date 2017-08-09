@@ -12,7 +12,6 @@ import Firebase
 
 class ViewController: UIViewController {
 
-    var handle: AuthStateDidChangeListenerHandle!
     
     override func viewDidLoad() {
         super.viewDidLoad()

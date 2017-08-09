@@ -53,6 +53,11 @@
 		90D997E31F1C310400443315 /* TravelGuideFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D997E21F1C310400443315 /* TravelGuideFeedVC.swift */; };
 		90D997E51F1C343D00443315 /* Storyboard+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D997E41F1C343D00443315 /* Storyboard+Utility.swift */; };
 		90D997E71F1C391800443315 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D997E61F1C391800443315 /* RegisterVC.swift */; };
+		90EDB47B1F3B92D000332ACC /* GifImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EDB47A1F3B92D000332ACC /* GifImageView.swift */; };
+		90EDB47D1F3B9E7300332ACC /* loginGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 90EDB47C1F3B9E7300332ACC /* loginGif.gif */; };
+		90EDB47F1F3BA8BE00332ACC /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EDB47E1F3BA8BE00332ACC /* CustomTextField.swift */; };
+		90EDB4811F3BAA5800332ACC /* registerGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 90EDB4801F3BAA5800332ACC /* registerGif.gif */; };
+		90EDB4831F3BAF8B00332ACC /* UIView+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */; };
 		B68FC158AABBCE078AADF773 /* Pods_KnowYourDestination.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +113,11 @@
 		90D997E21F1C310400443315 /* TravelGuideFeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelGuideFeedVC.swift; sourceTree = "<group>"; };
 		90D997E41F1C343D00443315 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
 		90D997E61F1C391800443315 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		90EDB47A1F3B92D000332ACC /* GifImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifImageView.swift; sourceTree = "<group>"; };
+		90EDB47C1F3B9E7300332ACC /* loginGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loginGif.gif; sourceTree = "<group>"; };
+		90EDB47E1F3BA8BE00332ACC /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		90EDB4801F3BAA5800332ACC /* registerGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = registerGif.gif; sourceTree = "<group>"; };
+		90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rounded.swift"; sourceTree = "<group>"; };
 		9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnowYourDestination.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D1BE205C45884841ECABAB /* Pods-Turms.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turms.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turms/Pods-Turms.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,7 +215,9 @@
 			children = (
 				90D997E81F1C43EB00443315 /* Table Cells */,
 				90A7D5FB1F16D55500CCD5DE /* EmailLoginView.swift */,
+				90EDB47A1F3B92D000332ACC /* GifImageView.swift */,
 				90D997DC1F1C185500443315 /* RegisterView.swift */,
+				90EDB47E1F3BA8BE00332ACC /* CustomTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -256,6 +268,7 @@
 				908285331F33E41C0007111A /* UILabel+Rounded.swift */,
 				90C5CC051F3A21B700382415 /* MaterialView.swift */,
 				903975851F38E606002C9B6B /* UITextView+Placeholder.swift */,
+				90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -265,6 +278,8 @@
 			children = (
 				90A7D5DE1F16908800CCD5DE /* LaunchScreen.storyboard */,
 				9032059D1F3B7FEA009FCCE4 /* double_line_7.ttf */,
+				90EDB47C1F3B9E7300332ACC /* loginGif.gif */,
+				90EDB4801F3BAA5800332ACC /* registerGif.gif */,
 				90A7D5E11F16908800CCD5DE /* Info.plist */,
 				90A7D5EE1F1693F800CCD5DE /* GoogleService-Info.plist */,
 				900D416B1F17DA0400630C67 /* Constants.swift */,
@@ -379,11 +394,13 @@
 				90A7D5FA1F16D4E500CCD5DE /* EmailLogin.xib in Resources */,
 				90D997DF1F1C2FB100443315 /* Guide.storyboard in Resources */,
 				90A7D5E01F16908800CCD5DE /* LaunchScreen.storyboard in Resources */,
+				90EDB4811F3BAA5800332ACC /* registerGif.gif in Resources */,
 				90A7D5EF1F1693F800CCD5DE /* GoogleService-Info.plist in Resources */,
 				9032059E1F3B7FEA009FCCE4 /* double_line_7.ttf in Resources */,
 				90A7D5DD1F16908800CCD5DE /* Assets.xcassets in Resources */,
 				90D997DB1F1C17DE00443315 /* Register.xib in Resources */,
 				90A7D5F31F16A08800CCD5DE /* Login.storyboard in Resources */,
+				90EDB47D1F3B9E7300332ACC /* loginGif.gif in Resources */,
 				90A7D5D81F16908800CCD5DE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,12 +484,15 @@
 				9019EDCA1F266FE600523FDD /* VoteService.swift in Sources */,
 				9019EDCC1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift in Sources */,
 				908285381F33F82D0007111A /* GuideProfileVC.swift in Sources */,
+				90EDB47F1F3BA8BE00332ACC /* CustomTextField.swift in Sources */,
+				90EDB47B1F3B92D000332ACC /* GifImageView.swift in Sources */,
 				906625DD1F1D530F00B9087F /* Typealias.swift in Sources */,
 				903975861F38E606002C9B6B /* UITextView+Placeholder.swift in Sources */,
 				9082853B1F351A570007111A /* UserProfileVC.swift in Sources */,
 				90D997E71F1C391800443315 /* RegisterVC.swift in Sources */,
 				906625D71F1D382D00B9087F /* ExploreFeedImageCell.swift in Sources */,
 				908285341F33E41C0007111A /* UILabel+Rounded.swift in Sources */,
+				90EDB4831F3BAF8B00332ACC /* UIView+Rounded.swift in Sources */,
 				90A7D5F71F16A6BC00CCD5DE /* CreateProfileWithEmailVC.swift in Sources */,
 				903510631F37D7AF002ED718 /* ExploreFeedHeaderCell.swift in Sources */,
 				9074FD3E1F38DC10002F411A /* FindALocalVC.swift in Sources */,
@@ -529,7 +549,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -582,7 +602,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
