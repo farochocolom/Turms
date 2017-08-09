@@ -9,11 +9,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="double_line_7.ttf">
-            <string>DoubleLine7</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--City Feed-->
         <scene sceneID="aVD-dE-gLU">
@@ -70,7 +65,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a94-5W-iLb">
                                                     <rect key="frame" x="8" y="8" width="398" height="84"/>
                                                     <string key="text">Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</string>
-                                                    <fontDescription key="fontDescription" name="DoubleLine7" family="Double Line 7" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -98,9 +93,9 @@
                                                     <rect key="frame" x="8" y="8" width="398" height="284"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="06Z-au-8Ql">
-                                                            <rect key="frame" x="0.0" y="0.0" width="381" height="64"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="380" height="64"/>
                                                             <string key="text">Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</string>
-                                                            <fontDescription key="fontDescription" name="DoubleLine7" family="Double Line 7" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
