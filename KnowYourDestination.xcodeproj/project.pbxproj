@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		019568155D23BBB189032E3E /* Pods_Turms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7B0E02F13D6DFE0132AFF0 /* Pods_Turms.framework */; };
 		900158361F2020750039C908 /* CreateCityPostVC+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900158351F2020750039C908 /* CreateCityPostVC+handlers.swift */; };
 		900D41681F17D79700630C67 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D41671F17D79700630C67 /* User.swift */; };
 		900D416A1F17D97900630C67 /* TourGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D41691F17D97900630C67 /* TourGuide.swift */; };
@@ -16,6 +17,7 @@
 		90248D011F32766600A4CF6D /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90248D001F32766600A4CF6D /* UIView+Border.swift */; };
 		90248D031F3276C500A4CF6D /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90248D021F3276C500A4CF6D /* UIColor+Theme.swift */; };
 		9032059C1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9032059B1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift */; };
+		9032059E1F3B7FEA009FCCE4 /* double_line_7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9032059D1F3B7FEA009FCCE4 /* double_line_7.ttf */; };
 		903510631F37D7AF002ED718 /* ExploreFeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903510621F37D7AE002ED718 /* ExploreFeedHeaderCell.swift */; };
 		903975861F38E606002C9B6B /* UITextView+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903975851F38E606002C9B6B /* UITextView+Placeholder.swift */; };
 		906625D51F1D290500B9087F /* ExploreFeedTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */; };
@@ -56,7 +58,9 @@
 
 /* Begin PBXFileReference section */
 		0677274755770CDF328D3F27 /* Pods-KnowYourDestination.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnowYourDestination.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnowYourDestination/Pods-KnowYourDestination.debug.xcconfig"; sourceTree = "<group>"; };
+		0B7B0E02F13D6DFE0132AFF0 /* Pods_Turms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CCBE295C858F1C63624D4A /* Pods-KnowYourDestination.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnowYourDestination.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnowYourDestination/Pods-KnowYourDestination.release.xcconfig"; sourceTree = "<group>"; };
+		599FCE7F87E142B4F9D67AD3 /* Pods-Turms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turms.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turms/Pods-Turms.release.xcconfig"; sourceTree = "<group>"; };
 		900158351F2020750039C908 /* CreateCityPostVC+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CreateCityPostVC+handlers.swift"; sourceTree = "<group>"; };
 		900D41671F17D79700630C67 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		900D41691F17D97900630C67 /* TourGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourGuide.swift; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 		90248D001F32766600A4CF6D /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		90248D021F3276C500A4CF6D /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
 		9032059B1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurmsPaginationHelper.swift; sourceTree = "<group>"; };
+		9032059D1F3B7FEA009FCCE4 /* double_line_7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = double_line_7.ttf; sourceTree = "<group>"; };
 		903510621F37D7AE002ED718 /* ExploreFeedHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedHeaderCell.swift; sourceTree = "<group>"; };
 		903975851F38E606002C9B6B /* UITextView+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Placeholder.swift"; sourceTree = "<group>"; };
 		906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedTextCell.swift; sourceTree = "<group>"; };
@@ -78,7 +83,7 @@
 		908285331F33E41C0007111A /* UILabel+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Rounded.swift"; sourceTree = "<group>"; };
 		908285371F33F82D0007111A /* GuideProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideProfileVC.swift; sourceTree = "<group>"; };
 		9082853A1F351A570007111A /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
-		90A7D5CF1F16908800CCD5DE /* Turms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turms.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnowYourDestination.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90A7D5D21F16908800CCD5DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90A7D5D41F16908800CCD5DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		90A7D5D71F16908800CCD5DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +109,7 @@
 		90D997E41F1C343D00443315 /* Storyboard+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard+Utility.swift"; sourceTree = "<group>"; };
 		90D997E61F1C391800443315 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnowYourDestination.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2D1BE205C45884841ECABAB /* Pods-Turms.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turms.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turms/Pods-Turms.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68FC158AABBCE078AADF773 /* Pods_KnowYourDestination.framework in Frameworks */,
+				019568155D23BBB189032E3E /* Pods_Turms.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +130,8 @@
 			children = (
 				0677274755770CDF328D3F27 /* Pods-KnowYourDestination.debug.xcconfig */,
 				13CCBE295C858F1C63624D4A /* Pods-KnowYourDestination.release.xcconfig */,
+				C2D1BE205C45884841ECABAB /* Pods-Turms.debug.xcconfig */,
+				599FCE7F87E142B4F9D67AD3 /* Pods-Turms.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -146,7 +155,7 @@
 		90A7D5C61F16908800CCD5DE = {
 			isa = PBXGroup;
 			children = (
-				90A7D5D11F16908800CCD5DE /* KnowYourDestination */,
+				90A7D5D11F16908800CCD5DE /* Turms */,
 				90A7D5D01F16908800CCD5DE /* Products */,
 				45676CDF0AD58F997E9FA636 /* Pods */,
 				A1EDC4C65147F4941A7A6498 /* Frameworks */,
@@ -156,12 +165,12 @@
 		90A7D5D01F16908800CCD5DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				90A7D5CF1F16908800CCD5DE /* Turms.app */,
+				90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		90A7D5D11F16908800CCD5DE /* KnowYourDestination */ = {
+		90A7D5D11F16908800CCD5DE /* Turms */ = {
 			isa = PBXGroup;
 			children = (
 				90A7D5ED1F16914E00CCD5DE /* Extensions */,
@@ -177,6 +186,7 @@
 				90A7D5DC1F16908800CCD5DE /* Assets.xcassets */,
 				90A7D5D91F16908800CCD5DE /* KnowYourDestination.xcdatamodeld */,
 			);
+			name = Turms;
 			path = KnowYourDestination;
 			sourceTree = "<group>";
 		};
@@ -254,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				90A7D5DE1F16908800CCD5DE /* LaunchScreen.storyboard */,
+				9032059D1F3B7FEA009FCCE4 /* double_line_7.ttf */,
 				90A7D5E11F16908800CCD5DE /* Info.plist */,
 				90A7D5EE1F1693F800CCD5DE /* GoogleService-Info.plist */,
 				900D416B1F17DA0400630C67 /* Constants.swift */,
@@ -297,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */,
+				0B7B0E02F13D6DFE0132AFF0 /* Pods_Turms.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -304,9 +316,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		90A7D5CE1F16908800CCD5DE /* Turms */ = {
+		90A7D5CE1F16908800CCD5DE /* KnowYourDestination */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "Turms" */;
+			buildConfigurationList = 90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "KnowYourDestination" */;
 			buildPhases = (
 				CC3F35E92CC9D7C0BE70583D /* [CP] Check Pods Manifest.lock */,
 				90A7D5CB1F16908800CCD5DE /* Sources */,
@@ -319,9 +331,9 @@
 			);
 			dependencies = (
 			);
-			name = Turms;
+			name = KnowYourDestination;
 			productName = KnowYourDestination;
-			productReference = 90A7D5CF1F16908800CCD5DE /* Turms.app */;
+			productReference = 90A7D5CF1F16908800CCD5DE /* KnowYourDestination.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -341,7 +353,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "Turms" */;
+			buildConfigurationList = 90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "KnowYourDestination" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -354,7 +366,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				90A7D5CE1F16908800CCD5DE /* Turms */,
+				90A7D5CE1F16908800CCD5DE /* KnowYourDestination */,
 			);
 		};
 /* End PBXProject section */
@@ -368,6 +380,7 @@
 				90D997DF1F1C2FB100443315 /* Guide.storyboard in Resources */,
 				90A7D5E01F16908800CCD5DE /* LaunchScreen.storyboard in Resources */,
 				90A7D5EF1F1693F800CCD5DE /* GoogleService-Info.plist in Resources */,
+				9032059E1F3B7FEA009FCCE4 /* double_line_7.ttf in Resources */,
 				90A7D5DD1F16908800CCD5DE /* Assets.xcassets in Resources */,
 				90D997DB1F1C17DE00443315 /* Register.xib in Resources */,
 				90A7D5F31F16A08800CCD5DE /* Login.storyboard in Resources */,
@@ -516,6 +529,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -568,6 +582,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -599,6 +614,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Specialist.Dev.Turms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -613,13 +629,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Specialist.Dev.Turms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "Turms" */ = {
+		90A7D5CA1F16908800CCD5DE /* Build configuration list for PBXProject "KnowYourDestination" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90A7D5E21F16908800CCD5DE /* Debug */,
@@ -628,7 +645,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "Turms" */ = {
+		90A7D5E41F16908800CCD5DE /* Build configuration list for PBXNativeTarget "KnowYourDestination" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				90A7D5E51F16908800CCD5DE /* Debug */,

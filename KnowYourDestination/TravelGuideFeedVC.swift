@@ -14,6 +14,7 @@ class TravelGuideFeedVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var cityPosts = [CityPost]()
+    let refreshControl = UIRefreshControl()
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
@@ -32,44 +33,21 @@ class TravelGuideFeedVC: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
         
-        let dispatchGroup = DispatchGroup()
-        var newPosts = [CityPost]()
+        refreshControl.addTarget(self, action: #selector(reloadFeed), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
-        ref.observe(.childAdded, with: { (snapshot) in
-            
-            guard let post = CityPost(snapshot: snapshot)
-                else {return}
-            
-            
-            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-                post.isUpvoted = !isDownvoted
-                post.isDownvoted = isDownvoted
-            })
-
-            
-            if let imageURL = URL(string: post.imageUrl) {
-                dispatchGroup.enter()
-                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                    
-                    guard let imgData = data
-                        else {
-                            dispatchGroup.leave()
-                            return
-                    }
-                    post.image = UIImage(data: imgData)
-                    
-                    dispatchGroup.leave()
-                    
-                }).resume()
+        reloadFeed()
+        
+    }
+    
+    func reloadFeed() {
+        CityPostService.cityPosts { (posts) in
+            self.cityPosts = posts.reversed()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
             }
-            
-            newPosts.append(post)
-            
-            dispatchGroup.notify(queue: .main, execute: {
-                self.cityPosts = newPosts.reversed()
-                self.tableView.reloadData()
-            })
-        })
+            self.tableView.reloadData()
+        }
     }
     
     @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
@@ -169,22 +147,13 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         cell.postedByLabel.text = "By: \(post.postByName)"
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
+        cell.cityLabel.text = "City: \(post.city)"
         
         cell.downvoteButton.isSelected = post.isDownvoted
         cell.downvoteButton.isUserInteractionEnabled = !post.isDownvoted
 
         cell.upvoteButton.isSelected = post.isUpvoted
         cell.upvoteButton.isUserInteractionEnabled = !post.isUpvoted
-
-//        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-//            cell.downvoteButton.isSelected = isDownvoted
-//            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
-//        })
-//        
-//        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
-//            cell.upvoteButton.isSelected = isUpvoted
-//            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
-//        })
         
         if post.tags.count == 1 {
             cell.firstTag.text = post.tags[0]

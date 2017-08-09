@@ -12,6 +12,7 @@ import Firebase
 class UserFeedVC: UIViewController {
     
     var cityPosts = [CityPost]()
+    let refreshControl = UIRefreshControl()
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
@@ -32,46 +33,20 @@ class UserFeedVC: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
         
-        let dispatchGroup = DispatchGroup()
-        var newPosts = [CityPost]()
-        let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+        refreshControl.addTarget(self, action: #selector(reloadFeed), for: .valueChanged)
+        tableView.addSubview(refreshControl)
         
-        ref.observe(.childAdded, with: { (snapshot) in
-            
-            guard let post = CityPost(snapshot: snapshot)
-                else {return}
-            
-            
-            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-                post.isUpvoted = !isDownvoted
-                post.isDownvoted = isDownvoted
-            })
-            
-            
-            if let imageURL = URL(string: post.imageUrl) {
-                dispatchGroup.enter()
-                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                    
-                    guard let imgData = data
-                        else {
-                            dispatchGroup.leave()
-                            return
-                    }
-                    post.image = UIImage(data: imgData)
-                    
-                    dispatchGroup.leave()
-                    
-                }).resume()
+        reloadFeed()
+    }
+    
+    func reloadFeed() {
+        CityPostService.cityPosts { (posts) in
+            self.cityPosts = posts.reversed()
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
             }
-            
-            newPosts.append(post)
-            
-            dispatchGroup.notify(queue: .main, execute: {
-                self.cityPosts = newPosts.reversed()
-                self.tableView.reloadData()
-            })
-        })
-
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,7 +72,7 @@ class UserFeedVC: UIViewController {
                 
                 let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
                 okAlert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
-                    cell.flagButton.isSelected = true
+//                    cell.flagButton.isSelected = true
                 })
                 self.present(okAlert, animated: true)
                 
@@ -166,6 +141,7 @@ extension UserFeedVC: UITableViewDataSource {
         cell.postedByLabel.text = "By: \(post.postByName)"
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
+        cell.cityLabel.text = "City: \(post.city)"
         
         cell.downvoteButton.isSelected = post.isDownvoted
         cell.downvoteButton.isUserInteractionEnabled = !post.isDownvoted

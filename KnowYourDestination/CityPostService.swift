@@ -101,19 +101,42 @@ struct CityPostService {
     
     static func cityPosts(completion: @escaping ([CityPost]) -> Void) {
         let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+        let dispatchGroup = DispatchGroup()
+        var newPosts = [CityPost]()
         
-        ref.observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
-                return completion([])
-            }
-            let posts: [CityPost] = snapshot.reversed().flatMap{
-                guard let post = CityPost(snapshot: $0)
-                    else {return nil}
-                
-                return post
+        ref.observe(.childAdded, with: { (snapshot) in
+            
+            guard let post = CityPost(snapshot: snapshot)
+                else {return}
+            
+            
+            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+                post.isUpvoted = !isDownvoted
+                post.isDownvoted = isDownvoted
+            })
+            
+            
+            if let imageURL = URL(string: post.imageUrl) {
+                dispatchGroup.enter()
+                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
+                    
+                    guard let imgData = data
+                        else {
+                            dispatchGroup.leave()
+                            return
+                    }
+                    post.image = UIImage(data: imgData)
+                    
+                    dispatchGroup.leave()
+                    
+                }).resume()
             }
             
-            completion(posts)
+            newPosts.append(post)
+            
+            dispatchGroup.notify(queue: .main, execute: {
+                completion(newPosts)
+            })
         })
     }
     

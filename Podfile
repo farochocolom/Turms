@@ -16,5 +16,5 @@ target 'KnowYourDestination' do
     pod 'FacebookLogin'
     pod 'FirebaseUI/Facebook'
     
-    pod 'ImagePicker'
+    pod 'Gifu'
 end

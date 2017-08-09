@@ -171,7 +171,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="ils-nt-UQn">
                                                                     <rect key="frame" x="0.0" y="47.333333333333343" width="295" height="20.666666666666657"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f8j-zR-hMT">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f8j-zR-hMT">
                                                                             <rect key="frame" x="0.0" y="0.0" width="86.333333333333329" height="20.666666666666664"/>
                                                                             <color key="backgroundColor" red="0.39782965180000002" green="0.80124539139999995" blue="0.80072551970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.90000000000000002" height="1"/>
@@ -182,7 +182,7 @@
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
                                                                             </userDefinedRuntimeAttributes>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp1-cC-yGr">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qp1-cC-yGr">
                                                                             <rect key="frame" x="104.33333333333334" y="0.0" width="86.333333333333343" height="20.666666666666664"/>
                                                                             <color key="backgroundColor" red="0.39782965180000002" green="0.80124539139999995" blue="0.80072551970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="15"/>
@@ -303,7 +303,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="MqK-vx-55L">
                             <color key="tintColor" red="0.39782965180000002" green="0.80124539139999995" blue="0.80072551970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="7Qc-rn-gY0" kind="presentation" id="Pfs-ZT-26S"/>
+                                <segue destination="7Qc-rn-gY0" kind="show" id="Pfs-ZT-26S"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -328,7 +328,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFI-o1-wAp">
-                                <rect key="frame" x="20" y="216" width="374" height="45"/>
+                                <rect key="frame" x="20" y="260" width="374" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cj9-Y5-WFw">
                                         <rect key="frame" x="8" y="6" width="85" height="33"/>
@@ -386,7 +386,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8n-cL-GXG">
-                                <rect key="frame" x="20" y="261" width="374" height="45"/>
+                                <rect key="frame" x="20" y="305" width="374" height="45"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VBr-ov-q9I">
                                         <rect key="frame" x="8" y="8" width="358" height="29"/>
@@ -415,31 +415,23 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJA-iE-iYh">
-                                <rect key="frame" x="20" y="329" width="374" height="45"/>
+                                <rect key="frame" x="20" y="373" width="374" height="45"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rd5-sL-LmX">
                                         <rect key="frame" x="6" y="6" width="362" height="33"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxV-wt-TC7">
-                                                <rect key="frame" x="0.0" y="0.0" width="176" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="362" height="33"/>
                                                 <color key="backgroundColor" red="0.39782965180000002" green="0.80124539139999995" blue="0.80072551970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                 <state key="normal" title="Save">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="rounded" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="savePostBtnPRessed:" destination="7Qc-rn-gY0" eventType="touchUpInside" id="Fn4-Ub-TCv"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kip-tx-cvZ">
-                                                <rect key="frame" x="186" y="0.0" width="176" height="33"/>
-                                                <color key="backgroundColor" red="0.90588235294117647" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                                <state key="normal" title="Cancel">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="cancelBtnPressed:" destination="7Qc-rn-gY0" eventType="touchUpInside" id="ZGi-au-YKR"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -454,7 +446,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ho4-5n-3N3" userLabel="image">
-                                <rect key="frame" x="20" y="310" width="374" height="15"/>
+                                <rect key="frame" x="20" y="354" width="374" height="15"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="QGP-Nh-XYp">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="15"/>
@@ -485,7 +477,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f2Y-qD-iTU">
-                                <rect key="frame" x="20" y="28" width="374" height="180"/>
+                                <rect key="frame" x="20" y="72" width="374" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="Fxo-Ku-QSe"/>
@@ -559,7 +551,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DHB-wK-B8M" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" image="map" selectedImage="map" id="QhV-EE-YVq"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HU3-um-sOx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HU3-um-sOx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.17532572150230408" green="0.21244135499000549" blue="0.2315814197063446" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

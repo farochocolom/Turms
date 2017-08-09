@@ -570,7 +570,7 @@
                   moduleName = "Turms"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/LoginVC.swift"
-                  timestampString = "523950632.967751"
+                  timestampString = "523986399.676358"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "58"
@@ -585,7 +585,7 @@
                   moduleName = "Turms"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/LoginVC.swift"
-                  timestampString = "523950632.969417"
+                  timestampString = "523986399.678123"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "44"
@@ -640,6 +640,70 @@
             startingLineNumber = "94"
             endingLineNumber = "94"
             landmarkName = "didPressRegisterButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnowYourDestination/CreateCityPostVC+handlers.swift"
+            timestampString = "523986564.607449"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Turms.CreateCityPostVC.imagePickerController (__ObjC.UIImagePickerController, didFinishPickingMediaWithInfo : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
+                  moduleName = "Turms"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/CreateCityPostVC+handlers.swift"
+                  timestampString = "523986399.690361"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "900">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Turms.CreateCityPostVC.(imagePickerController (__ObjC.UIImagePickerController, didFinishPickingMediaWithInfo : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()).(closure #1)"
+                  moduleName = "Turms"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Specialist/Documents/Code/iOS/Make%20School%20Projects/KnowYourDestination/KnowYourDestination/CreateCityPostVC+handlers.swift"
+                  timestampString = "523986399.69172"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KnowYourDestination/CreateCityPostVC+handlers.swift"
+            timestampString = "523986253.968156"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

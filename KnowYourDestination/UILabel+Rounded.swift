@@ -30,3 +30,24 @@ extension UILabel {
     }
     
 }
+
+extension UIButton {
+    
+    @IBInspectable var rounded: Bool {
+        get {
+            return roundedCorner
+        } set {
+            roundedCorner = newValue
+            
+            if roundedCorner {
+                self.layer.cornerRadius = self.layer.bounds.height / 2
+                self.clipsToBounds = true
+                self.layer.masksToBounds = true
+                
+            } else {
+                self.layer.cornerRadius = 0
+            }
+        }
+    }
+    
+}

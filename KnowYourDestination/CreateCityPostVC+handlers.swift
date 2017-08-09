@@ -43,7 +43,8 @@ extension CreateCityPostVC: UIImagePickerControllerDelegate, UINavigationControl
             postImagePicker.image = selected
         }
         
-        dismiss(animated: true) { 
+        dismiss(animated: false)
+        {
             UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
                 self.postImagePicker.isHidden = false
                 self.imageHeightContraint.constant = 230
@@ -51,6 +52,7 @@ extension CreateCityPostVC: UIImagePickerControllerDelegate, UINavigationControl
                 
                 self.view.layoutIfNeeded()
             }, completion: nil)
+            
         }
     }
 }
