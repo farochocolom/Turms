@@ -14,7 +14,7 @@
         <!--FindA LocalVC-->
         <scene sceneID="VYs-Px-MOb">
             <objects>
-                <viewController id="X4S-2g-1oM" customClass="FindALocalVC" customModule="KnowYourDestination" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="X4S-2g-1oM" customClass="FindALocalVC" customModule="Turms" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="l92-Me-p1x"/>
                         <viewControllerLayoutGuide type="bottom" id="Jia-XM-pm0"/>
@@ -33,7 +33,7 @@
         <!--Regular User-->
         <scene sceneID="2gR-zw-PX1">
             <objects>
-                <viewController id="6aJ-Uz-aqp" customClass="UserFeedVC" customModule="KnowYourDestination" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6aJ-Uz-aqp" customClass="UserFeedVC" customModule="Turms" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZbV-6E-1nN"/>
                         <viewControllerLayoutGuide type="bottom" id="Wzt-hd-AdI"/>
@@ -46,7 +46,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.96852082282070828" green="0.96729195126879874" blue="0.98875727634803912" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedHeaderCell" rowHeight="20" id="7SU-8i-00N" customClass="ExploreFeedHeaderCell" customModule="KnowYourDestination" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedHeaderCell" rowHeight="20" id="7SU-8i-00N" customClass="ExploreFeedHeaderCell" customModule="Turms" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="20"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7SU-8i-00N" id="q57-ZY-S4z">
@@ -76,7 +76,7 @@
                                             <outlet property="flagButton" destination="qT5-OX-GfD" id="8Ag-hI-R8Z"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedTextCell" rowHeight="100" id="vzg-s1-hat" customClass="ExploreFeedTextCell" customModule="KnowYourDestination" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedTextCell" rowHeight="100" id="vzg-s1-hat" customClass="ExploreFeedTextCell" customModule="Turms" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="48" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vzg-s1-hat" id="WRQ-rY-8rh">
@@ -103,7 +103,7 @@
                                             <outlet property="postTextLabel" destination="Qg2-om-9pb" id="JQu-jp-dRW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedImageCell" rowHeight="300" id="BOr-WM-mOc" customClass="ExploreFeedImageCell" customModule="KnowYourDestination" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedImageCell" rowHeight="300" id="BOr-WM-mOc" customClass="ExploreFeedImageCell" customModule="Turms" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="148" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BOr-WM-mOc" id="aYu-Ga-4Ba">
@@ -154,7 +154,7 @@
                                             <outlet property="postTextLabel" destination="Fh5-HV-YuP" id="Oat-RF-iuF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedFooterCell" rowHeight="120" id="WhR-6i-iTq" customClass="ExploreFeedFooterCell" customModule="KnowYourDestination" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedFooterCell" rowHeight="120" id="WhR-6i-iTq" customClass="ExploreFeedFooterCell" customModule="Turms" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="448" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WhR-6i-iTq" id="BCe-Ht-c2n">
@@ -191,7 +191,7 @@
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fk-hM-1NP">
                                                                             <rect key="frame" x="0.0" y="0.0" width="73.5" height="20.5"/>
-                                                                            <color key="backgroundColor" red="0.49019607840000001" green="0.33333333329999998" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="backgroundColor" red="0.39782965180000002" green="0.80124539139999995" blue="0.80072551970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
@@ -201,7 +201,7 @@
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZu-jr-FtQ">
                                                                             <rect key="frame" x="91.5" y="0.0" width="73" height="20.5"/>
-                                                                            <color key="backgroundColor" red="0.49019607840000001" green="0.33333333329999998" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="backgroundColor" red="0.23403564099999999" green="0.66872245070000003" blue="0.85473078489999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
@@ -211,7 +211,7 @@
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ahw-nX-RPf">
                                                                             <rect key="frame" x="182.5" y="0.0" width="73.5" height="20.5"/>
-                                                                            <color key="backgroundColor" red="0.49019607840000001" green="0.33333333329999998" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="backgroundColor" red="0.2147853374" green="0.96622723340000005" blue="0.79368549590000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
@@ -346,9 +346,13 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aYJ-ga-9HV" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="City Feed" image="map" id="Sg5-Pu-HLW"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sz8-P9-1Y6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="sz8-P9-1Y6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1753257215" green="0.212441355" blue="0.23158141970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.39782965180000002" green="0.80124539139999995" blue="0.80072551970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -381,7 +385,7 @@
         <!--Profile-->
         <scene sceneID="M1g-UM-Xgr">
             <objects>
-                <viewController id="XO2-IT-fe6" customClass="UserProfileVC" customModule="KnowYourDestination" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XO2-IT-fe6" customClass="UserProfileVC" customModule="Turms" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XI1-cF-m6K"/>
                         <viewControllerLayoutGuide type="bottom" id="OXK-G6-iCE"/>

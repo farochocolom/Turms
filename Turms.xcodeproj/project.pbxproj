@@ -15,6 +15,7 @@
 		9019EDCC1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */; };
 		90248D011F32766600A4CF6D /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90248D001F32766600A4CF6D /* UIView+Border.swift */; };
 		90248D031F3276C500A4CF6D /* UIColor+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90248D021F3276C500A4CF6D /* UIColor+Theme.swift */; };
+		9032059C1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9032059B1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift */; };
 		903510631F37D7AF002ED718 /* ExploreFeedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903510621F37D7AE002ED718 /* ExploreFeedHeaderCell.swift */; };
 		903975861F38E606002C9B6B /* UITextView+Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903975851F38E606002C9B6B /* UITextView+Placeholder.swift */; };
 		906625D51F1D290500B9087F /* ExploreFeedTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */; };
@@ -64,6 +65,7 @@
 		9019EDCB1F2A52CC00523FDD /* UITableViewCell+IndexPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+IndexPath.swift"; sourceTree = "<group>"; };
 		90248D001F32766600A4CF6D /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		90248D021F3276C500A4CF6D /* UIColor+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Theme.swift"; sourceTree = "<group>"; };
+		9032059B1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurmsPaginationHelper.swift; sourceTree = "<group>"; };
 		903510621F37D7AE002ED718 /* ExploreFeedHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedHeaderCell.swift; sourceTree = "<group>"; };
 		903975851F38E606002C9B6B /* UITextView+Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Placeholder.swift"; sourceTree = "<group>"; };
 		906625D41F1D290500B9087F /* ExploreFeedTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExploreFeedTextCell.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		90A7D5EA1F16912F00CCD5DE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9032059B1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				900158361F2020750039C908 /* CreateCityPostVC+handlers.swift in Sources */,
 				90A7D5F51F16A62900CCD5DE /* LoginVC.swift in Sources */,
 				90A7D5FC1F16D55500CCD5DE /* EmailLoginView.swift in Sources */,
+				9032059C1F3AD0A0009FCCE4 /* TurmsPaginationHelper.swift in Sources */,
 				90D997E11F1C30EC00443315 /* UserFeedVC.swift in Sources */,
 				90C5CC061F3A21B700382415 /* MaterialView.swift in Sources */,
 				90248D011F32766600A4CF6D /* UIView+Border.swift in Sources */,

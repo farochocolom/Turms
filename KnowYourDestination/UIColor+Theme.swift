@@ -13,12 +13,14 @@ extension UIColor {
     
     
     static var TWBlue: UIColor {
-        return UIColor(red: 27/255, green: 170/255, blue: 255/255, alpha: 1.0)
+        return UIColor(red: 93/255, green: 194/255, blue: 192/255, alpha: 1.0)
     }
     
     static var TWPurple: UIColor {
-        return UIColor(red: 125/255, green: 85/255, blue: 251/255, alpha: 1.0)
+        return UIColor(red: 56/255, green: 156/255, blue: 211/255, alpha: 1.0)
     }
+    
+    
     
     convenience init(hex: String) {
         let scanner = Scanner(string: hex)

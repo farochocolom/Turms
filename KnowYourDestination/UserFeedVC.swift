@@ -37,10 +37,16 @@ class UserFeedVC: UIViewController {
         let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
         
         ref.observe(.childAdded, with: { (snapshot) in
-            print(snapshot)
             
             guard let post = CityPost(snapshot: snapshot)
                 else {return}
+            
+            
+            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+                post.isUpvoted = !isDownvoted
+                post.isDownvoted = isDownvoted
+            })
+            
             
             if let imageURL = URL(string: post.imageUrl) {
                 dispatchGroup.enter()
@@ -58,13 +64,14 @@ class UserFeedVC: UIViewController {
                 }).resume()
             }
             
-            
             newPosts.append(post)
+            
             dispatchGroup.notify(queue: .main, execute: {
                 self.cityPosts = newPosts.reversed()
                 self.tableView.reloadData()
             })
         })
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -160,16 +167,12 @@ extension UserFeedVC: UITableViewDataSource {
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
         
-        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-            cell.downvoteButton.isSelected = isDownvoted
-            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
-        })
+        cell.downvoteButton.isSelected = post.isDownvoted
+        cell.downvoteButton.isUserInteractionEnabled = !post.isDownvoted
         
-        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
-            cell.upvoteButton.isSelected = isUpvoted
-            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
-        })
-        
+        cell.upvoteButton.isSelected = post.isUpvoted
+        cell.upvoteButton.isUserInteractionEnabled = !post.isUpvoted
+    
         if post.tags.count == 1 {
             cell.firstTag.text = post.tags[0]
             cell.secondTag.alpha = 0.0
@@ -186,39 +189,7 @@ extension UserFeedVC: UITableViewDataSource {
             cell.secondTag.alpha = 1.0
             cell.thirdTag.alpha = 1.0
         }
-
-    }
-    
-    func configureSingleCell(_ cell: ExploreFeedFooterCell, with post: CityPost, index: Int) {
         
-        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-            cell.downvoteButton.isSelected = isDownvoted
-            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
-        })
-        
-        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
-            cell.upvoteButton.isSelected = isUpvoted
-            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
-        })
-        
-        if post.tags.count == 1 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.alpha = 0.0
-            cell.thirdTag.alpha = 0.0
-        } else if post.tags.count == 2 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.text = post.tags[1]
-            cell.thirdTag.alpha = 0.0
-        } else if post.tags.count == 3 {
-            cell.firstTag.text = post.tags[0]
-            cell.secondTag.text = post.tags[1]
-            cell.thirdTag.text = post.tags[2]
-        }
-        
-        
-        cell.upvoteCountLabel.text = "\(post.upvoteCount)"
-        cell.downvoteLabel.text = "\(post.downvoteCount)"
-        tableView.reloadSections(IndexSet(integer: index), with: .fade)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -241,13 +212,17 @@ extension UserFeedVC: ExploreFeedFooterCellDelegate {
         
         let post = cityPosts[indexPath.section]
         
+        
+        
         DispatchQueue.global(qos: .userInitiated).async {
             VoteService.setIsUpvoted(!post.isUpvoted, isDownvoted: cell.downvoteButton.isSelected, for: post) { (success) in
                 
                 guard success else { return }
                 
                 DispatchQueue.main.async {
-                    self.configureSingleCell(cell, with: post, index: indexPath.section)
+                    post.isUpvoted = true
+                    post.isDownvoted = false
+                    self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }
         }
@@ -261,13 +236,17 @@ extension UserFeedVC: ExploreFeedFooterCellDelegate {
         
         let post = cityPosts[indexPath.section]
         
+        
         DispatchQueue.global(qos: .userInitiated).async {
             VoteService.setIsDownvoted(!post.isDownvoted, isUpvoted: cell.upvoteButton.isSelected, for: post) { (success) in
                 
                 guard success else { return }
                 
                 DispatchQueue.main.async {
-                    self.configureSingleCell(cell, with: post, index: indexPath.section)
+                    post.isDownvoted = true
+                    post.isUpvoted = false
+                    
+                    self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }
         }
