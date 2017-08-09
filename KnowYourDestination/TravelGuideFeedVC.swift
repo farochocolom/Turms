@@ -14,6 +14,11 @@ class TravelGuideFeedVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var cityPosts = [CityPost]()
+    let refreshControl = UIRefreshControl()
+    var cityPostText: String = ""
+    let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+    
+    let paginationHelper = MGPaginationHelper<CityPost>(serviceMethod: CityPostService.cityPosts)
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
@@ -21,58 +26,48 @@ class TravelGuideFeedVC: UIViewController {
         return imageView
     }()
     
-    var cityPostText: String = ""
-    let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
+        
+        configureTableView()
+        reloadTimeline()
+
+//        CityPostService.cityPosts(pageSize: <#UInt#>, lastPostKey: <#String?#>) { (posts) in
+//            self.cityPosts = posts.reversed()
+//            self.tableView.reloadData()
+//        }
+    }
+    
+    
+    func configureTableView(){
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
         
-        let dispatchGroup = DispatchGroup()
-        var newPosts = [CityPost]()
-        
-        ref.observe(.childAdded, with: { (snapshot) in
-            
-            guard let post = CityPost(snapshot: snapshot)
-                else {return}
-            
-            
-            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-                post.isUpvoted = !isDownvoted
-                post.isDownvoted = isDownvoted
-            })
-
-            
-            if let imageURL = URL(string: post.imageUrl) {
-                dispatchGroup.enter()
-                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                    
-                    guard let imgData = data
-                        else {
-                            dispatchGroup.leave()
-                            return
-                    }
-                    post.image = UIImage(data: imgData)
-                    
-                    dispatchGroup.leave()
-                    
-                }).resume()
-            }
-            
-            newPosts.append(post)
-            
-            dispatchGroup.notify(queue: .main, execute: {
-                self.cityPosts = newPosts.reversed()
-                self.tableView.reloadData()
-            })
-        })
+        refreshControl.addTarget(self, action: #selector(reloadTimeline), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
-    @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
+    func reloadTimeline(){
+        self.paginationHelper.reloadData { [unowned self] (posts) in
+            self.cityPosts = posts
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
+            self.tableView.reloadData()
+        }
+        
+//        CityPostService.cityPosts(pageSize: 4, lastPostKey: cityPosts) { (posts) in
+//            self.cityPosts = posts.reversed()
+//            self.tableView.reloadData()
+//        }
+    }
     
     func handleFlagButtonTap(from cell: ExploreFeedHeaderCell) {
         // 1
@@ -175,16 +170,6 @@ extension TravelGuideFeedVC: UITableViewDataSource {
 
         cell.upvoteButton.isSelected = post.isUpvoted
         cell.upvoteButton.isUserInteractionEnabled = !post.isUpvoted
-
-//        VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-//            cell.downvoteButton.isSelected = isDownvoted
-//            cell.downvoteButton.isUserInteractionEnabled = !isDownvoted
-//        })
-//        
-//        VoteService.isPostUpvoted(post, byCurrentUserWithCompletion: { (isUpvoted) in
-//            cell.upvoteButton.isSelected = isUpvoted
-//            cell.upvoteButton.isUserInteractionEnabled = !isUpvoted
-//        })
         
         if post.tags.count == 1 {
             cell.firstTag.text = post.tags[0]
@@ -212,6 +197,18 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return cityPosts.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section >= cityPosts.count - 2 {
+            paginationHelper.paginate(completion: { [unowned self] (posts) in
+                self.cityPosts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
     
 }

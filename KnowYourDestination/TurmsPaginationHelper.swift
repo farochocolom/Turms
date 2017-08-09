@@ -70,4 +70,10 @@ class MGPaginationHelper<T: TurmsKeyed> {
             return
         }
     }
+    
+    func reloadData(completion: @escaping ([T]) -> Void) {
+        state = .initial
+        
+        paginate(completion: completion)
+    }
 }
