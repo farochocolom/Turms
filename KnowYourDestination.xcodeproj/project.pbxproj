@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		019568155D23BBB189032E3E /* Pods_Turms.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7B0E02F13D6DFE0132AFF0 /* Pods_Turms.framework */; };
 		900158361F2020750039C908 /* CreateCityPostVC+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900158351F2020750039C908 /* CreateCityPostVC+handlers.swift */; };
 		900D41681F17D79700630C67 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D41671F17D79700630C67 /* User.swift */; };
 		900D416A1F17D97900630C67 /* TourGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900D41691F17D97900630C67 /* TourGuide.swift */; };
@@ -65,7 +64,6 @@
 		0677274755770CDF328D3F27 /* Pods-KnowYourDestination.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnowYourDestination.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KnowYourDestination/Pods-KnowYourDestination.debug.xcconfig"; sourceTree = "<group>"; };
 		0B7B0E02F13D6DFE0132AFF0 /* Pods_Turms.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Turms.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13CCBE295C858F1C63624D4A /* Pods-KnowYourDestination.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnowYourDestination.release.xcconfig"; path = "Pods/Target Support Files/Pods-KnowYourDestination/Pods-KnowYourDestination.release.xcconfig"; sourceTree = "<group>"; };
-		599FCE7F87E142B4F9D67AD3 /* Pods-Turms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turms.release.xcconfig"; path = "Pods/Target Support Files/Pods-Turms/Pods-Turms.release.xcconfig"; sourceTree = "<group>"; };
 		900158351F2020750039C908 /* CreateCityPostVC+handlers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CreateCityPostVC+handlers.swift"; sourceTree = "<group>"; };
 		900D41671F17D79700630C67 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		900D41691F17D97900630C67 /* TourGuide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourGuide.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 		90EDB4801F3BAA5800332ACC /* registerGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = registerGif.gif; sourceTree = "<group>"; };
 		90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rounded.swift"; sourceTree = "<group>"; };
 		9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnowYourDestination.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2D1BE205C45884841ECABAB /* Pods-Turms.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Turms.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Turms/Pods-Turms.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +125,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B68FC158AABBCE078AADF773 /* Pods_KnowYourDestination.framework in Frameworks */,
-				019568155D23BBB189032E3E /* Pods_Turms.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +136,6 @@
 			children = (
 				0677274755770CDF328D3F27 /* Pods-KnowYourDestination.debug.xcconfig */,
 				13CCBE295C858F1C63624D4A /* Pods-KnowYourDestination.release.xcconfig */,
-				C2D1BE205C45884841ECABAB /* Pods-Turms.debug.xcconfig */,
-				599FCE7F87E142B4F9D67AD3 /* Pods-Turms.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -165,7 +159,7 @@
 		90A7D5C61F16908800CCD5DE = {
 			isa = PBXGroup;
 			children = (
-				90A7D5D11F16908800CCD5DE /* Turms */,
+				90A7D5D11F16908800CCD5DE /* KnowYourDestination */,
 				90A7D5D01F16908800CCD5DE /* Products */,
 				45676CDF0AD58F997E9FA636 /* Pods */,
 				A1EDC4C65147F4941A7A6498 /* Frameworks */,
@@ -180,7 +174,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		90A7D5D11F16908800CCD5DE /* Turms */ = {
+		90A7D5D11F16908800CCD5DE /* KnowYourDestination */ = {
 			isa = PBXGroup;
 			children = (
 				90A7D5ED1F16914E00CCD5DE /* Extensions */,
@@ -196,7 +190,6 @@
 				90A7D5DC1F16908800CCD5DE /* Assets.xcassets */,
 				90A7D5D91F16908800CCD5DE /* KnowYourDestination.xcdatamodeld */,
 			);
-			name = Turms;
 			path = KnowYourDestination;
 			sourceTree = "<group>";
 		};
