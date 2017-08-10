@@ -33,11 +33,8 @@
                                     <constraint firstAttribute="height" constant="672" id="Yau-6g-9hT"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="XHK-ZG-RGk">
-                                <rect key="frame" x="20" y="64" width="374" height="36"/>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Raa-bt-2VD">
-                                <rect key="frame" x="20" y="250" width="374" height="222"/>
+                                <rect key="frame" x="20" y="257" width="374" height="222"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GTm-aY-ONs" customClass="CustomTextField" customModule="KnowYourDestination" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -84,7 +81,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="22" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afy-Ox-cRs">
-                                <rect key="frame" x="156.33333333333337" y="124.00000000000001" width="102.66666666666663" height="27.333333333333357"/>
+                                <rect key="frame" x="156" y="109" width="102.66666666666669" height="27.333333333333343"/>
                                 <fontDescription key="fontDescription" name="DoubleLine7" family="Double Line 7" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -92,17 +89,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1753257215" green="0.212441355" blue="0.23158141970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Raa-bt-2VD" firstAttribute="top" secondItem="Ph6-LZ-oIA" secondAttribute="bottom" constant="-486" id="8q9-BQ-nEe"/>
+                            <constraint firstItem="Raa-bt-2VD" firstAttribute="centerY" secondItem="q5q-Yx-Pm5" secondAttribute="centerY" id="3Gb-LD-rzu"/>
+                            <constraint firstItem="afy-Ox-cRs" firstAttribute="centerX" secondItem="q5q-Yx-Pm5" secondAttribute="centerX" id="Boj-ls-Mdm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Raa-bt-2VD" secondAttribute="trailing" id="K0J-qO-vmZ"/>
-                            <constraint firstAttribute="bottom" secondItem="XHK-ZG-RGk" secondAttribute="bottom" constant="636" id="LvA-RJ-yjA"/>
-                            <constraint firstItem="afy-Ox-cRs" firstAttribute="top" secondItem="XHK-ZG-RGk" secondAttribute="bottom" constant="24" id="RHQ-0t-Ke2"/>
+                            <constraint firstItem="afy-Ox-cRs" firstAttribute="top" secondItem="31k-9p-WgQ" secondAttribute="bottom" constant="45" id="Sqz-be-uhk"/>
                             <constraint firstItem="Ph6-LZ-oIA" firstAttribute="top" secondItem="q5q-Yx-Pm5" secondAttribute="top" constant="64" id="XEO-1b-Rnv"/>
-                            <constraint firstItem="XHK-ZG-RGk" firstAttribute="centerX" secondItem="afy-Ox-cRs" secondAttribute="centerX" id="a4c-g5-YrY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="XHK-ZG-RGk" secondAttribute="trailing" id="gAn-wA-dOS"/>
+                            <constraint firstItem="nhD-dx-rXL" firstAttribute="top" secondItem="Ph6-LZ-oIA" secondAttribute="bottom" id="b3l-bG-Rk3"/>
                             <constraint firstAttribute="trailing" secondItem="Ph6-LZ-oIA" secondAttribute="trailing" constant="-743" id="gcD-4D-EeY"/>
-                            <constraint firstItem="XHK-ZG-RGk" firstAttribute="top" secondItem="31k-9p-WgQ" secondAttribute="bottom" id="hZa-8H-P93"/>
                             <constraint firstItem="Raa-bt-2VD" firstAttribute="leading" secondItem="q5q-Yx-Pm5" secondAttribute="leadingMargin" id="mZ3-Ci-5dM"/>
-                            <constraint firstItem="XHK-ZG-RGk" firstAttribute="leading" secondItem="q5q-Yx-Pm5" secondAttribute="leadingMargin" id="rUV-4H-bvK"/>
                             <constraint firstItem="Ph6-LZ-oIA" firstAttribute="leading" secondItem="q5q-Yx-Pm5" secondAttribute="leading" id="vOi-w4-pXo"/>
                         </constraints>
                     </view>

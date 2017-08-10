@@ -40,7 +40,7 @@ class UserFeedVC: UIViewController {
     }
     
     func reloadFeed() {
-        CityPostService.cityPosts { (posts) in
+        CityPostService.cityPosts(pageSize: 3, lastPostKey: "") { (posts) in
             self.cityPosts = posts.reversed()
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()

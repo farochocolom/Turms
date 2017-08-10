@@ -79,7 +79,7 @@ class TravelGuideFeedVC: UIViewController {
         
         // 3
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "You can only report content added by other users", message: nil, preferredStyle: .alert)
         
         // 4
         if poster != Auth.auth().currentUser?.uid {
@@ -101,9 +101,11 @@ class TravelGuideFeedVC: UIViewController {
             present(alertController, animated: true, completion: nil)
         } else {
             
-            let flagAction = UIAlertAction(title: "You can only report content added by other users", style: .default)
+            let flagAction = UIAlertAction(title: "Dismiss", style: .default)
             
             alert.addAction(flagAction)
+            
+            present(alert, animated: true, completion: nil)
             
         }
         
@@ -113,6 +115,19 @@ class TravelGuideFeedVC: UIViewController {
 
 
 extension TravelGuideFeedVC: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section >= cityPosts.count - 1 {
+            paginationHelper.paginate(completion: { [unowned self] (posts) in
+                self.cityPosts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = cityPosts[indexPath.section]
         
@@ -120,7 +135,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             
         case 0:
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedHeaderCell", for: indexPath) as! ExploreFeedHeaderCell
+            let cell: ExploreFeedHeaderCell = tableView.dequeueReusableCell()
             cell.didTapFlagButtonForCell = handleFlagButtonTap(from:)
             
             return cell
@@ -129,21 +144,21 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         case 1:
             
             if let _ = URL(string: post.imageUrl){
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedImageCell", for: indexPath) as! ExploreFeedImageCell
+                let cell: ExploreFeedImageCell = tableView.dequeueReusableCell()
                 
                 cell.postTextLabel.text = post.text
                 cell.postImage.image = post.image!
                 
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedTextCell", for: indexPath) as! ExploreFeedTextCell
+                let cell: ExploreFeedTextCell = tableView.dequeueReusableCell()
                 cell.postTextLabel.text = post.text
                 return cell
             }
             
         case 2:
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
+            let cell: ExploreFeedFooterCell = tableView.dequeueReusableCell()
             cell.delegate = self
             
             cell.downvoteButton.isSelected = false
@@ -199,18 +214,27 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return cityPosts.count
     }
+
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section >= cityPosts.count - 2 {
-            paginationHelper.paginate(completion: { [unowned self] (posts) in
-                self.cityPosts.append(contentsOf: posts)
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            })
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offset = scrollView.contentOffset.y
+        let maxOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        if (maxOffset - offset) <= 0 {
+            
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
+            reloadTimeline()
+//            if (!self.isLoading) {
+//                self.isLoading = true
+//                //load new data (new 10 movies)
+//                loadNewMovies(movies.count)
+//            }
         }
     }
+    
     
 }
 

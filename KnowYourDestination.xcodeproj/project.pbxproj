@@ -35,7 +35,6 @@
 		90A7D5DB1F16908800CCD5DE /* KnowYourDestination.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90A7D5D91F16908800CCD5DE /* KnowYourDestination.xcdatamodeld */; };
 		90A7D5DD1F16908800CCD5DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90A7D5DC1F16908800CCD5DE /* Assets.xcassets */; };
 		90A7D5E01F16908800CCD5DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90A7D5DE1F16908800CCD5DE /* LaunchScreen.storyboard */; };
-		90A7D5EF1F1693F800CCD5DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90A7D5EE1F1693F800CCD5DE /* GoogleService-Info.plist */; };
 		90A7D5F31F16A08800CCD5DE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90A7D5F21F16A08800CCD5DE /* Login.storyboard */; };
 		90A7D5F51F16A62900CCD5DE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A7D5F41F16A62900CCD5DE /* LoginVC.swift */; };
 		90A7D5F71F16A6BC00CCD5DE /* CreateProfileWithEmailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A7D5F61F16A6BC00CCD5DE /* CreateProfileWithEmailVC.swift */; };
@@ -57,6 +56,8 @@
 		90EDB47F1F3BA8BE00332ACC /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EDB47E1F3BA8BE00332ACC /* CustomTextField.swift */; };
 		90EDB4811F3BAA5800332ACC /* registerGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 90EDB4801F3BAA5800332ACC /* registerGif.gif */; };
 		90EDB4831F3BAF8B00332ACC /* UIView+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */; };
+		90F94E981F3CE01F001ADE7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90F94E971F3CE01F001ADE7A /* GoogleService-Info.plist */; };
+		90F94E9A1F3D1E83001ADE7A /* UITableView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F94E991F3D1E83001ADE7A /* UITableView+Utility.swift */; };
 		B68FC158AABBCE078AADF773 /* Pods_KnowYourDestination.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +95,6 @@
 		90A7D5DC1F16908800CCD5DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90A7D5DF1F16908800CCD5DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90A7D5E11F16908800CCD5DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90A7D5EE1F1693F800CCD5DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90A7D5F21F16A08800CCD5DE /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		90A7D5F41F16A62900CCD5DE /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		90A7D5F61F16A6BC00CCD5DE /* CreateProfileWithEmailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateProfileWithEmailVC.swift; sourceTree = "<group>"; };
@@ -116,6 +116,8 @@
 		90EDB47E1F3BA8BE00332ACC /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		90EDB4801F3BAA5800332ACC /* registerGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = registerGif.gif; sourceTree = "<group>"; };
 		90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rounded.swift"; sourceTree = "<group>"; };
+		90F94E971F3CE01F001ADE7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		90F94E991F3D1E83001ADE7A /* UITableView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Utility.swift"; sourceTree = "<group>"; };
 		9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnowYourDestination.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -262,6 +264,7 @@
 				90C5CC051F3A21B700382415 /* MaterialView.swift */,
 				903975851F38E606002C9B6B /* UITextView+Placeholder.swift */,
 				90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */,
+				90F94E991F3D1E83001ADE7A /* UITableView+Utility.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -272,9 +275,9 @@
 				90A7D5DE1F16908800CCD5DE /* LaunchScreen.storyboard */,
 				9032059D1F3B7FEA009FCCE4 /* double_line_7.ttf */,
 				90EDB47C1F3B9E7300332ACC /* loginGif.gif */,
+				90F94E971F3CE01F001ADE7A /* GoogleService-Info.plist */,
 				90EDB4801F3BAA5800332ACC /* registerGif.gif */,
 				90A7D5E11F16908800CCD5DE /* Info.plist */,
-				90A7D5EE1F1693F800CCD5DE /* GoogleService-Info.plist */,
 				900D416B1F17DA0400630C67 /* Constants.swift */,
 				906625DC1F1D530F00B9087F /* Typealias.swift */,
 			);
@@ -388,9 +391,9 @@
 				90D997DF1F1C2FB100443315 /* Guide.storyboard in Resources */,
 				90A7D5E01F16908800CCD5DE /* LaunchScreen.storyboard in Resources */,
 				90EDB4811F3BAA5800332ACC /* registerGif.gif in Resources */,
-				90A7D5EF1F1693F800CCD5DE /* GoogleService-Info.plist in Resources */,
 				9032059E1F3B7FEA009FCCE4 /* double_line_7.ttf in Resources */,
 				90A7D5DD1F16908800CCD5DE /* Assets.xcassets in Resources */,
+				90F94E981F3CE01F001ADE7A /* GoogleService-Info.plist in Resources */,
 				90D997DB1F1C17DE00443315 /* Register.xib in Resources */,
 				90A7D5F31F16A08800CCD5DE /* Login.storyboard in Resources */,
 				90EDB47D1F3B9E7300332ACC /* loginGif.gif in Resources */,
@@ -489,6 +492,7 @@
 				90A7D5F71F16A6BC00CCD5DE /* CreateProfileWithEmailVC.swift in Sources */,
 				903510631F37D7AF002ED718 /* ExploreFeedHeaderCell.swift in Sources */,
 				9074FD3E1F38DC10002F411A /* FindALocalVC.swift in Sources */,
+				90F94E9A1F3D1E83001ADE7A /* UITableView+Utility.swift in Sources */,
 				90D997E51F1C343D00443315 /* Storyboard+Utility.swift in Sources */,
 				900D41681F17D79700630C67 /* User.swift in Sources */,
 				900D416C1F17DA0400630C67 /* Constants.swift in Sources */,
@@ -623,11 +627,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PCNZSAFPQA;
 				INFOPLIST_FILE = KnowYourDestination/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Specialist.Dev.Turms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -638,11 +643,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = PCNZSAFPQA;
 				INFOPLIST_FILE = KnowYourDestination/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Specialist.Dev.Turms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
