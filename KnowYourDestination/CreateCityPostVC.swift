@@ -30,6 +30,7 @@ class CreateCityPostVC: UIViewController {
         super.viewDidLoad()
 
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        self.navigationController?.navigationBar.tintColor = UIColor.TWBlue
         
         postTextField.placeholder = "Tell us about your city"
         postImagePicker.isHidden = true
@@ -48,6 +49,12 @@ class CreateCityPostVC: UIViewController {
         addImageButton.imageView?.contentMode = .scaleAspectFill
         addImageButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPostImageView)))
         takePictureButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTakePostImageView)))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        print("Did we survive?")
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -141,7 +148,7 @@ class CreateCityPostVC: UIViewController {
         
         CityPostService.create(for: image, postedBy: currentUserUID, postedByName: username, postText: postText, tags: self.tagsArr, city: "Los Angeles", completion: { (finished) in
             if finished {
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
             }
         })
 
@@ -172,7 +179,7 @@ class CreateCityPostVC: UIViewController {
         
     }
     @IBAction func cancelBtnPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
 

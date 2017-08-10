@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreLocation
+import Gifu
 
 class RegisterVC: UIViewController {
     
@@ -20,6 +21,14 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var travelGuideSwitch: UISwitch!
     @IBOutlet weak var cityTextField: UITextField!
+    @IBOutlet weak var gifImage: GIFImageView!
+    
+    @IBOutlet weak var registerButton: UIButton!
+    var currentGIFName: String = "registerGif" {
+        didSet {
+            gifImage.animate(withGIFNamed: currentGIFName)
+        }
+    }
     
     let locationManager = CLLocationManager()
     var addressString = ""
@@ -30,7 +39,16 @@ class RegisterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.tintColor = UIColor.TWBlue
+        
+        emailTextField.layer.cornerRadius = 3
+        passwordTextField.layer.cornerRadius = 3
+        usernameTextField.layer.cornerRadius = 3
+        cityTextField.layer.cornerRadius = 3
+        registerButton.layer.cornerRadius = 3
+        
         travelGuideSwitch.isOn = false
+        gifImage.startAnimatingGIF()
         
         emailTextField.text = email
         passwordTextField.text = password
@@ -55,34 +73,46 @@ class RegisterVC: UIViewController {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        gifImage.prepareForReuse()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        gifImage.animate(withGIFNamed: currentGIFName)
+    }
 
     
     @IBAction func toggleTourGuide(_ sender: UISwitch) {
-        if self.travelGuideSwitch.isOn {
-            let cityAlert = UIAlertController(title: "Is \(self.addressString) your city?", message: "", preferredStyle: .actionSheet)
-            cityAlert.addAction(UIAlertAction(title: "Yes", style: .default) { action in
-                self.cityTextField.text = self.addressString
-            })
-            cityAlert.addAction(UIAlertAction(title: "No", style: .cancel) { action in
-                let inputCityAction = UIAlertController(title: "Which city will you be a local guide for?", message: "", preferredStyle: .alert)
-                
-                inputCityAction.addTextField(configurationHandler: nil)
-                
-                inputCityAction.addAction(UIAlertAction(title: "Save City", style: .default) { action in
-                    guard let city = inputCityAction.textFields?[0].text else {return}
+        if cityTextField.text == "" {
+            if self.travelGuideSwitch.isOn {
+                let cityAlert = UIAlertController(title: "Is \(self.addressString) your city?", message: "", preferredStyle: .actionSheet)
+                cityAlert.addAction(UIAlertAction(title: "Yes", style: .default) { action in
+                    self.cityTextField.text = self.addressString
+                })
+                cityAlert.addAction(UIAlertAction(title: "No", style: .cancel) { action in
+                    let inputCityAction = UIAlertController(title: "Which city will you be a local guide for?", message: "", preferredStyle: .alert)
                     
-                    self.cityTextField.text = city
+                    inputCityAction.addTextField(configurationHandler: nil)
+                    
+                    inputCityAction.addAction(UIAlertAction(title: "Save City", style: .default) { action in
+                        guard let city = inputCityAction.textFields?[0].text else {return}
+                        
+                        self.cityTextField.text = city
+                    })
+                    
+                    inputCityAction.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                    
+                    self.present(inputCityAction, animated: true, completion: nil)
+                    
+                    self.cityTextField.isHidden = false
+                    
                 })
                 
-                self.present(inputCityAction, animated: true, completion: nil)
-                
-                self.cityTextField.isHidden = false
-                
-            })
+                self.present(cityAlert, animated: true)
+            }
             
-            self.present(cityAlert, animated: true)
         }
-        
         if self.travelGuideSwitch.isOn {
             self.cityTextField.isHidden = false
         } else {

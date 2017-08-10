@@ -164,6 +164,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         cell.postedByLabel.text = "By: \(post.postByName)"
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
         cell.downvoteLabel.text = "\(post.downvoteCount)"
+        cell.cityLabel.text = "City: \(post.city)"
         
         cell.downvoteButton.isSelected = post.isDownvoted
         cell.downvoteButton.isUserInteractionEnabled = !post.isDownvoted

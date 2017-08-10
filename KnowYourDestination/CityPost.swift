@@ -23,10 +23,10 @@ class CityPost: TurmsKeyed {
     var downvotes: [String]?
     var isUpvoted: Bool
     var isDownvoted: Bool
-//    var city: String
+    var city: String
     
     init(text: String, imageUrl: String, postById: String, postByName: String,
-         tags: [String], image: UIImage?) {
+         tags: [String], image: UIImage?, city: String) {
         self.text = text
         self.imageUrl = imageUrl
         self.postByName = postByName
@@ -37,6 +37,7 @@ class CityPost: TurmsKeyed {
         self.downvoteCount = 0
         self.isDownvoted = false
         self.isUpvoted = false
+        self.city = city
     }
     
     init?(snapshot: DataSnapshot, upvotesSnapshot: DataSnapshot = DataSnapshot()){
@@ -47,7 +48,8 @@ class CityPost: TurmsKeyed {
             let postByName = dict["posted_by_name"] as? String,
             let tags = dict["tags"] as? [String],
             let upvotesCount = dict["upvotes_count"] as? Int,
-            let downvotesCount = dict["downvotes_count"] as? Int
+            let downvotesCount = dict["downvotes_count"] as? Int,
+            let city = dict["city"] as? String
             else {return nil}
 
         self.key = snapshot.key
@@ -61,6 +63,7 @@ class CityPost: TurmsKeyed {
         self.upvoteCount = upvotesCount
         self.isUpvoted = false
         self.isDownvoted = false
+        self.city = city
         
                
     }

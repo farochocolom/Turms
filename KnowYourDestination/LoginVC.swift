@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Gifu
 
 class LoginVC: UIViewController {
 
@@ -17,20 +18,39 @@ class LoginVC: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var gifImage: GIFImageView!
+    @IBOutlet weak var loginButton: UIButton!
+    
+    var currentGIFName: String = "loginGif" {
+        didSet {
+            gifImage.animate(withGIFNamed: currentGIFName)
+        }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
-//        changeLoginView()
         
-//        loginRegisterSwitch.addTarget(self, action: #selector(self.changeLoginView), for: .valueChanged)
+        emailTextField.layer.cornerRadius = 3
+        passwordTextField.layer.cornerRadius = 3
+        registerButton.layer.cornerRadius = 3
+        loginButton.layer.cornerRadius = 3
+
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        gifImage.startAnimatingGIF()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        gifImage.prepareForReuse()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        gifImage.animate(withGIFNamed: currentGIFName)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

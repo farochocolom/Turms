@@ -52,6 +52,7 @@ PODS:
   - FirebaseUI/Facebook (4.0.0):
     - FBSDKLoginKit (~> 4.0)
     - FirebaseUI/Auth
+  - Gifu (2.0.0)
   - GoogleToolboxForMac/DebugUtils (2.1.1):
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - GoogleToolboxForMac/Defines (2.1.1)
@@ -63,7 +64,6 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
-  - ImagePicker (2.1.1)
 
 DEPENDENCIES:
   - FacebookCore
@@ -74,7 +74,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseUI/Auth
   - FirebaseUI/Facebook
-  - ImagePicker
+  - Gifu
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -90,10 +90,10 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   FirebaseUI: b9de05bfb4768db05f64ea90fc2f6a07b819118f
+  Gifu: 56a4d8f1092399159fa32662aa2232158b48d8ac
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
-  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
 
-PODFILE CHECKSUM: 8c0ec17b653da7703f5581d0d0dfa45730a67f5b
+PODFILE CHECKSUM: 620a0e65b5e9f1a8b2812a721f235df5027fac45
 
 COCOAPODS: 1.2.1
