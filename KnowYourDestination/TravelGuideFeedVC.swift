@@ -36,11 +36,6 @@ class TravelGuideFeedVC: UIViewController {
         
         configureTableView()
         reloadTimeline()
-
-//        CityPostService.cityPosts(pageSize: <#UInt#>, lastPostKey: <#String?#>) { (posts) in
-//            self.cityPosts = posts.reversed()
-//            self.tableView.reloadData()
-//        }
     }
     
     
@@ -62,11 +57,6 @@ class TravelGuideFeedVC: UIViewController {
             
             self.tableView.reloadData()
         }
-        
-//        CityPostService.cityPosts(pageSize: 4, lastPostKey: cityPosts) { (posts) in
-//            self.cityPosts = posts.reversed()
-//            self.tableView.reloadData()
-//        }
     }
     
     func handleFlagButtonTap(from cell: ExploreFeedHeaderCell) {
@@ -108,25 +98,11 @@ class TravelGuideFeedVC: UIViewController {
             present(alert, animated: true, completion: nil)
             
         }
-        
-        
     }
 }
 
 
 extension TravelGuideFeedVC: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.section >= cityPosts.count - 1 {
-            paginationHelper.paginate(completion: { [unowned self] (posts) in
-                self.cityPosts.append(contentsOf: posts)
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            })
-        }
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = cityPosts[indexPath.section]
@@ -213,6 +189,19 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     
 }
 
+extension TravelGuideFeedVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section >= cityPosts.count - 1 {
+            paginationHelper.paginate(completion: { [unowned self] (posts) in
+                self.cityPosts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+}
 
 extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
     func didTapUpvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {

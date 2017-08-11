@@ -176,7 +176,9 @@ extension UserFeedVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return cityPosts.count
     }
-    
+}
+
+extension UserFeedVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.section >= cityPosts.count - 1 {
             paginationHelper.paginate(completion: { [unowned self] (posts) in
@@ -188,10 +190,7 @@ extension UserFeedVC: UITableViewDataSource {
             })
         }
     }
-    
 }
-
-
 
 extension UserFeedVC: ExploreFeedFooterCellDelegate {
     func didTapUpvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {
