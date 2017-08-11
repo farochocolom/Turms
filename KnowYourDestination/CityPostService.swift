@@ -109,13 +109,10 @@ struct CityPostService {
 //        let dispatchGroup = DispatchGroup()
 //        var newPosts = [CityPost]()
         
-        query.observe( .value, with: { (snapshot) in
+        query.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
                 return completion([])
             }
-            
-            
-
             
             let dispatchGroup = DispatchGroup()
             

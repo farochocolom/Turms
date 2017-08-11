@@ -132,10 +132,9 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         let post = cityPosts[indexPath.section]
         
         switch indexPath.row {
-            
         case 0:
             
-            let cell: ExploreFeedHeaderCell = tableView.dequeueReusableCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedHeaderCell", for: indexPath) as! ExploreFeedHeaderCell
             cell.didTapFlagButtonForCell = handleFlagButtonTap(from:)
             
             return cell
@@ -144,37 +143,36 @@ extension TravelGuideFeedVC: UITableViewDataSource {
         case 1:
             
             if let _ = URL(string: post.imageUrl){
-                let cell: ExploreFeedImageCell = tableView.dequeueReusableCell()
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedImageCell", for: indexPath) as! ExploreFeedImageCell
                 
                 cell.postTextLabel.text = post.text
                 cell.postImage.image = post.image!
+                print("Image cell: \(indexPath.section)")
                 
                 return cell
             } else {
-                let cell: ExploreFeedTextCell = tableView.dequeueReusableCell()
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedTextCell", for: indexPath) as! ExploreFeedTextCell
                 cell.postTextLabel.text = post.text
+                print("text cell")
                 return cell
             }
             
         case 2:
             
-            let cell: ExploreFeedFooterCell = tableView.dequeueReusableCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
             cell.delegate = self
-            
             cell.downvoteButton.isSelected = false
             cell.upvoteButton.isSelected = false
-            
-            configureCell(cell, with: post, index: indexPath.section)
+            configureCell(cell, with: post)
             
             return cell
-            
         default:
             fatalError("Error: unexpected indexPath.")
         }
     }
     
     
-    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost, index: Int) {
+    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
         
         cell.postedByLabel.text = "By: \(post.postByName)"
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
@@ -203,9 +201,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             cell.secondTag.alpha = 1.0
             cell.thirdTag.alpha = 1.0
         }
-        
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -214,48 +210,9 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return cityPosts.count
     }
-
-    
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offset = scrollView.contentOffset.y
-        let maxOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        if (maxOffset - offset) <= 0 {
-            
-            if self.refreshControl.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
-            
-            reloadTimeline()
-//            if (!self.isLoading) {
-//                self.isLoading = true
-//                //load new data (new 10 movies)
-//                loadNewMovies(movies.count)
-//            }
-        }
-    }
-    
     
 }
 
-extension TravelGuideFeedVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        switch indexPath.row {
-        case 0:
-            return 100
-            
-        case 1:
-            return 200
-            
-        case 2:
-            return 90
-            
-        default:
-            fatalError("Error: unexpected height.")
-        }
-    }
-}
 
 extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
     func didTapUpvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {

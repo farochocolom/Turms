@@ -13,6 +13,7 @@ class UserFeedVC: UIViewController {
     
     var cityPosts = [CityPost]()
     let refreshControl = UIRefreshControl()
+    let paginationHelper = MGPaginationHelper<CityPost>(serviceMethod: CityPostService.cityPosts)
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
@@ -176,7 +177,20 @@ extension UserFeedVC: UITableViewDataSource {
         return cityPosts.count
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section >= cityPosts.count - 1 {
+            paginationHelper.paginate(completion: { [unowned self] (posts) in
+                self.cityPosts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+    
 }
+
 
 
 extension UserFeedVC: ExploreFeedFooterCellDelegate {
