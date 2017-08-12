@@ -130,7 +130,7 @@ class RegisterVC: UIViewController {
         
         if email == "" || password == "" || username == "" {
             let alert = UIAlertController(title: "Empty Fields", message: "Please fill all fields", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
             self.present(alert, animated: true, completion: nil)
         }
         
@@ -150,7 +150,7 @@ class RegisterVC: UIViewController {
             if let error = error {
 //                assertionFailure(error.localizedDescription)
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
                 self.present(alert, animated: true, completion: nil)
                 
                 return
@@ -166,7 +166,7 @@ class RegisterVC: UIViewController {
             userRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let _ = snapshot.value as? [String : Any] {
                     let alert = UIAlertController(title: "User Taken", message: "A user with this email already exists", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Dismis", style: .default) { action in
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default) { action in
                         
                     })
                     

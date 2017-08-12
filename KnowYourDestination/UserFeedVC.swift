@@ -13,6 +13,9 @@ class UserFeedVC: UIViewController {
     
     var cityPosts = [CityPost]()
     let refreshControl = UIRefreshControl()
+    let paginationHelper = MGPaginationHelper<CityPost>(serviceMethod: CityPostService.cityPosts)
+    
+    let loading = UIActivityIndicatorView()
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
@@ -27,27 +30,37 @@ class UserFeedVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
+        customActivityIndicatory(self.view, startAnimate: true)
+        configureTableView()
+        reloadTimeline()
+    }
+    
+    
+    func configureTableView(){
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
         
-        refreshControl.addTarget(self, action: #selector(reloadFeed), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(reloadTimeline), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
-        reloadFeed()
     }
     
-    func reloadFeed() {
-        CityPostService.cityPosts { (posts) in
-            self.cityPosts = posts.reversed()
+    func reloadTimeline(){
+        self.paginationHelper.reloadData { [unowned self] (posts) in
+            self.cityPosts = posts
+            
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
             }
+            
             self.tableView.reloadData()
+            customActivityIndicatory(self.view, startAnimate: false)
+            
         }
     }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -71,22 +84,15 @@ class UserFeedVC: UIViewController {
                 CityPostService.flag(post)
                 
                 let okAlert = UIAlertController(title: nil, message: "The post has been flagged.", preferredStyle: .alert)
-                okAlert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
-//                    cell.flagButton.isSelected = true
-                })
+                okAlert.addAction(UIAlertAction(title: "Ok", style: .default))
                 self.present(okAlert, animated: true)
-                
-                
             }
-            
             alertController.addAction(flagAction)
         }
         
-        // 5
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-        // 6
         present(alertController, animated: true, completion: nil)
     }
 
@@ -175,9 +181,21 @@ extension UserFeedVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return cityPosts.count
     }
-    
 }
 
+extension UserFeedVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section >= cityPosts.count - 1 {
+            paginationHelper.paginate(completion: { [unowned self] (posts) in
+                self.cityPosts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
+}
 
 extension UserFeedVC: ExploreFeedFooterCellDelegate {
     func didTapUpvoteButton(_ likeButton: UIButton, on cell: ExploreFeedFooterCell) {

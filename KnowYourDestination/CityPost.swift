@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseDatabase.FIRDataSnapshot
 
-class CityPost {
+class CityPost: TurmsKeyed {
     var key: String?
     let text: String
     let imageUrl: String

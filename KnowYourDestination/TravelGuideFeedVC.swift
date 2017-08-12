@@ -15,6 +15,11 @@ class TravelGuideFeedVC: UIViewController {
     
     var cityPosts = [CityPost]()
     let refreshControl = UIRefreshControl()
+    var cityPostText: String = ""
+    let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+    let loading = UIActivityIndicatorView()
+    
+    let paginationHelper = MGPaginationHelper<CityPost>(serviceMethod: CityPostService.cityPosts)
     
     lazy var cityPostImage: UIImageView = {
         let imageView = UIImageView()
@@ -22,35 +27,40 @@ class TravelGuideFeedVC: UIViewController {
         return imageView
     }()
     
-    var cityPostText: String = ""
-    let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
+        customActivityIndicatory(self.view, startAnimate: true)
+        configureTableView()
+        reloadTimeline()
+    }
+    
+    
+    func configureTableView(){
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 90
         
-        refreshControl.addTarget(self, action: #selector(reloadFeed), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(reloadTimeline), for: .valueChanged)
         tableView.addSubview(refreshControl)
-        
-        reloadFeed()
-        
     }
     
-    func reloadFeed() {
-        CityPostService.cityPosts { (posts) in
-            self.cityPosts = posts.reversed()
+    func reloadTimeline(){
+        self.paginationHelper.reloadData { [unowned self] (posts) in
+            self.cityPosts = posts
+            
             if self.refreshControl.isRefreshing {
                 self.refreshControl.endRefreshing()
             }
+            
             self.tableView.reloadData()
+            customActivityIndicatory(self.view, startAnimate: false)
+            
         }
     }
-    
-    @IBAction func unwindToVC1(segue:UIStoryboardSegue) { }
     
     func handleFlagButtonTap(from cell: ExploreFeedHeaderCell) {
         // 1
@@ -62,7 +72,7 @@ class TravelGuideFeedVC: UIViewController {
         
         // 3
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "You can only report content added by other users", message: nil, preferredStyle: .alert)
         
         // 4
         if poster != Auth.auth().currentUser?.uid {
@@ -84,23 +94,23 @@ class TravelGuideFeedVC: UIViewController {
             present(alertController, animated: true, completion: nil)
         } else {
             
-            let flagAction = UIAlertAction(title: "You can only report content added by other users", style: .default)
+            let flagAction = UIAlertAction(title: "Dismiss", style: .default)
             
             alert.addAction(flagAction)
             
+            present(alert, animated: true, completion: nil)
+            
         }
-        
-        
     }
 }
 
 
 extension TravelGuideFeedVC: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = cityPosts[indexPath.section]
         
         switch indexPath.row {
-            
         case 0:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedHeaderCell", for: indexPath) as! ExploreFeedHeaderCell
@@ -116,11 +126,13 @@ extension TravelGuideFeedVC: UITableViewDataSource {
                 
                 cell.postTextLabel.text = post.text
                 cell.postImage.image = post.image!
+                print("Image cell: \(indexPath.section)")
                 
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedTextCell", for: indexPath) as! ExploreFeedTextCell
                 cell.postTextLabel.text = post.text
+                print("text cell")
                 return cell
             }
             
@@ -128,21 +140,18 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedFooterCell", for: indexPath) as! ExploreFeedFooterCell
             cell.delegate = self
-            
             cell.downvoteButton.isSelected = false
             cell.upvoteButton.isSelected = false
-            
-            configureCell(cell, with: post, index: indexPath.section)
+            configureCell(cell, with: post)
             
             return cell
-            
         default:
             fatalError("Error: unexpected indexPath.")
         }
     }
     
     
-    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost, index: Int) {
+    func configureCell(_ cell: ExploreFeedFooterCell, with post: CityPost) {
         
         cell.postedByLabel.text = "By: \(post.postByName)"
         cell.upvoteCountLabel.text = "\(post.upvoteCount)"
@@ -171,9 +180,7 @@ extension TravelGuideFeedVC: UITableViewDataSource {
             cell.secondTag.alpha = 1.0
             cell.thirdTag.alpha = 1.0
         }
-        
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -186,20 +193,15 @@ extension TravelGuideFeedVC: UITableViewDataSource {
 }
 
 extension TravelGuideFeedVC: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        switch indexPath.row {
-        case 0:
-            return 100
-            
-        case 1:
-            return 200
-            
-        case 2:
-            return 90
-            
-        default:
-            fatalError("Error: unexpected height.")
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section >= cityPosts.count - 1 {
+            paginationHelper.paginate(completion: { [unowned self] (posts) in
+                self.cityPosts.append(contentsOf: posts)
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
         }
     }
 }

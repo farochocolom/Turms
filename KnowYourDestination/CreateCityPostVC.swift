@@ -120,14 +120,14 @@ class CreateCityPostVC: UIViewController {
         
         if !peopleTagButton.isSelected && !foodTagButton.isSelected && !interactionTagButton.isSelected {
             let alert = UIAlertController(title: "No tag selected", message: "Please select one tag to identify the type of the post", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
             self.present(alert, animated: true, completion: nil)
             return
         }
         
         if postText == "" {
             let alert = UIAlertController(title: "No post description", message: "Please enter a description in the post's text area", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+            alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
             self.present(alert, animated: true, completion: nil)
             return
         }

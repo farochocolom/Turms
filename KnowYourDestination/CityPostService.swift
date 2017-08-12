@@ -99,27 +99,36 @@ struct CityPostService {
         completion(true)
     }
     
-    static func cityPosts(completion: @escaping ([CityPost]) -> Void) {
+    static func cityPosts(pageSize: UInt, lastPostKey: String?, completion: @escaping ([CityPost]) -> Void) {
         let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
-        let dispatchGroup = DispatchGroup()
-        var newPosts = [CityPost]()
+        var query = ref.queryOrderedByKey().queryLimited(toLast: pageSize)
+        if let lastPostKey = lastPostKey {
+            query = query.queryEnding(atValue: lastPostKey)
+        }
         
-        ref.observe(.childAdded, with: { (snapshot) in
+//        let dispatchGroup = DispatchGroup()
+//        var newPosts = [CityPost]()
+        
+        query.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else {
+                return completion([])
+            }
             
-            guard let post = CityPost(snapshot: snapshot)
-                else {return}
+            let dispatchGroup = DispatchGroup()
             
-            
-            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
-                post.isUpvoted = !isDownvoted
-                post.isDownvoted = isDownvoted
-            })
-            
-            
-            if let imageURL = URL(string: post.imageUrl) {
+            let posts: [CityPost] = snapshot.reversed().flatMap{
+                guard let post = CityPost(snapshot: $0)
+                    else {return nil}
+                
+                VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+                    post.isUpvoted = !isDownvoted
+                    post.isDownvoted = isDownvoted
+                })
+                
+                if let imageURL = URL(string: post.imageUrl) {
                 dispatchGroup.enter()
                 URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                    
+
                     guard let imgData = data
                         else {
                             dispatchGroup.leave()
@@ -131,13 +140,48 @@ struct CityPostService {
                     
                 }).resume()
             }
-            
-            newPosts.append(post)
-            
+                
+                return post
+            }
             dispatchGroup.notify(queue: .main, execute: {
-                completion(newPosts)
+                completion(posts)
             })
         })
+        
+//        query.observe(.childAdded, with: { (snapshot) in
+//            
+//            guard let post = CityPost(snapshot: snapshot)
+//                else {return}
+//            
+//            
+//            VoteService.isPostDownvoted(post, byCurrentUserWithCompletion: { (isDownvoted) in
+//                post.isUpvoted = !isDownvoted
+//                post.isDownvoted = isDownvoted
+//            })
+//
+//            
+//            if let imageURL = URL(string: post.imageUrl) {
+//                dispatchGroup.enter()
+//                URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
+//                    
+//                    guard let imgData = data
+//                        else {
+//                            dispatchGroup.leave()
+//                            return
+//                    }
+//                    post.image = UIImage(data: imgData)
+//                    
+//                    dispatchGroup.leave()
+//                    
+//                }).resume()
+//            }
+//            
+//            newPosts.append(post)
+//            
+//            dispatchGroup.notify(queue: .main, execute: {
+//                completion(newPosts)
+//            })
+//        })
     }
     
     static func flag(_ post: CityPost) {

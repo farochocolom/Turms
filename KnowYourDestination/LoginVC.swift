@@ -68,7 +68,7 @@ class LoginVC: UIViewController {
                 
                 if let error = error {
                     let alert = UIAlertController(title: "Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Dismis", style: .default))
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
                     self.present(alert, animated: true, completion: nil)
                     return
                 }
