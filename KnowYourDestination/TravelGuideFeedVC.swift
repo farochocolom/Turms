@@ -14,6 +14,7 @@ class TravelGuideFeedVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var cityPosts = [CityPost]()
+    var filteredPosts = [CityPost]()
     let refreshControl = UIRefreshControl()
     var cityPostText: String = ""
     let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
@@ -260,5 +261,9 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
     }
 }
 
+
+extension TravelGuideFeedVC: UISearchBarDelegate {
+    
+}
 
 

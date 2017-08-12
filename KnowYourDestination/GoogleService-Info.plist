@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>312198145113-jcmt1bp18ta60kvud49qh1p5r8ulcveb.apps.googleusercontent.com</string>
+	<string>813683389001-mq23dvu727tsjqc1p76qgpqn2ac2f9dv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.312198145113-jcmt1bp18ta60kvud49qh1p5r8ulcveb</string>
+	<string>com.googleusercontent.apps.813683389001-mq23dvu727tsjqc1p76qgpqn2ac2f9dv</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCXtQWdsh_3hLGRUq4DMNVcSBnW82NxuA8</string>
+	<string>AIzaSyAKa2-5RkkJFCoDX7B7WCat6VTpdq5iNTw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>312198145113</string>
+	<string>813683389001</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.Specialist.Dev.KnowYourDestination</string>
+	<string>com.Specialist.Dev.Turms</string>
 	<key>PROJECT_ID</key>
-	<string>knowyourdestination-bab48</string>
+	<string>turmstest</string>
 	<key>STORAGE_BUCKET</key>
-	<string>knowyourdestination-bab48.appspot.com</string>
+	<string>turmstest.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:312198145113:ios:cd6a8806e1b622c6</string>
+	<string>1:813683389001:ios:93657dcd5b6a932c</string>
 	<key>DATABASE_URL</key>
-	<string>https://knowyourdestination-bab48.firebaseio.com</string>
+	<string>https://turmstest.firebaseio.com</string>
 </dict>
 </plist>
