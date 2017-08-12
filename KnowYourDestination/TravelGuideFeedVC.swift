@@ -13,8 +13,11 @@ class TravelGuideFeedVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var citySearchBar: UISearchBar!
     var cityPosts = [CityPost]()
     var filteredPosts = [CityPost]()
+    var inSearchMode = false
+    
     let refreshControl = UIRefreshControl()
     var cityPostText: String = ""
     let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
@@ -34,6 +37,8 @@ class TravelGuideFeedVC: UIViewController {
         super.viewDidLoad()
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        
+        citySearchBar.delegate = self
         
         customActivityIndicatory(self.view, startAnimate: true)
         configureTableView()
@@ -263,6 +268,28 @@ extension TravelGuideFeedVC: ExploreFeedFooterCellDelegate {
 
 
 extension TravelGuideFeedVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == "" {
+            
+            inSearchMode = false
+            view.endEditing(true)
+            tableView.reloadData()
+            
+            
+        } else {
+            
+            inSearchMode = true
+            let lower = searchBar.text!.lowercased()
+            
+            filteredPosts = cityPosts.filter({ $0.city.range(of: lower) != nil })
+            tableView.reloadData()
+            
+        }
+    }
     
 }
 

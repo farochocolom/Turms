@@ -22,8 +22,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Goi-Gx-7gV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pNq-7i-EJO">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExploreFeedHeaderCell" rowHeight="30" id="1gT-F6-xPi" customClass="ExploreFeedHeaderCell" customModule="KnowYourDestination" customModuleProvider="target">
@@ -281,8 +285,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="pNq-7i-EJO" firstAttribute="top" secondItem="Goi-Gx-7gV" secondAttribute="bottom" id="0jZ-SU-Gkx"/>
                             <constraint firstItem="pNq-7i-EJO" firstAttribute="leading" secondItem="k9O-hp-1L1" secondAttribute="leading" id="CiV-TJ-wqG"/>
-                            <constraint firstItem="pNq-7i-EJO" firstAttribute="top" secondItem="k9O-hp-1L1" secondAttribute="top" id="JmC-Bt-ZVd"/>
+                            <constraint firstAttribute="trailing" secondItem="Goi-Gx-7gV" secondAttribute="trailing" id="HNh-Im-a0R"/>
+                            <constraint firstItem="Goi-Gx-7gV" firstAttribute="top" secondItem="xdi-rC-ycD" secondAttribute="bottom" id="JaX-nz-h54"/>
+                            <constraint firstItem="Goi-Gx-7gV" firstAttribute="leading" secondItem="k9O-hp-1L1" secondAttribute="leading" id="cW2-x3-zvj"/>
                             <constraint firstItem="0Pp-Yy-oJM" firstAttribute="top" secondItem="pNq-7i-EJO" secondAttribute="bottom" id="fpl-PP-T1O"/>
                             <constraint firstAttribute="trailing" secondItem="pNq-7i-EJO" secondAttribute="trailing" id="zY4-Z1-eBQ"/>
                         </constraints>
@@ -296,12 +303,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="citySearchBar" destination="Goi-Gx-7gV" id="jp1-51-kCI"/>
                         <outlet property="tableView" destination="pNq-7i-EJO" id="onL-pU-hbP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bcL-3o-1Vk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080.8" y="-479.01049475262374"/>
+            <point key="canvasLocation" x="1078.125" y="-479.57746478873241"/>
         </scene>
         <!--TELL US ABOUT YOUR CITY-->
         <scene sceneID="J1K-SE-aEO">
