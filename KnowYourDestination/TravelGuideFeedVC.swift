@@ -17,6 +17,7 @@ class TravelGuideFeedVC: UIViewController {
     let refreshControl = UIRefreshControl()
     var cityPostText: String = ""
     let ref = Database.database().reference().child(Constants.DatabaseRef.cityPosts)
+    let loading = UIActivityIndicatorView()
     
     let paginationHelper = MGPaginationHelper<CityPost>(serviceMethod: CityPostService.cityPosts)
     
@@ -33,7 +34,7 @@ class TravelGuideFeedVC: UIViewController {
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
-        
+        customActivityIndicatory(self.view, startAnimate: true)
         configureTableView()
         reloadTimeline()
     }
@@ -56,6 +57,8 @@ class TravelGuideFeedVC: UIViewController {
             }
             
             self.tableView.reloadData()
+            customActivityIndicatory(self.view, startAnimate: false)
+            
         }
     }
     

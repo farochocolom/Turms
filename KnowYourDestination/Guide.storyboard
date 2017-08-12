@@ -533,7 +533,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="HU3-um-sOx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.17532572150230408" green="0.21244135499000549" blue="0.2315814197063446" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.16972664000000001" green="0.2123405337" blue="0.23157483340000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.39782965183258057" green="0.80124539136886597" blue="0.80072551965713501" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>

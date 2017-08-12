@@ -58,6 +58,8 @@
 		90EDB4831F3BAF8B00332ACC /* UIView+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */; };
 		90F94E981F3CE01F001ADE7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90F94E971F3CE01F001ADE7A /* GoogleService-Info.plist */; };
 		90F94E9A1F3D1E83001ADE7A /* UITableView+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F94E991F3D1E83001ADE7A /* UITableView+Utility.swift */; };
+		90F94E9C1F3E5C92001ADE7A /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F94E9B1F3E5C92001ADE7A /* CustomActivityIndicator.swift */; };
+		90F94E9E1F3E7966001ADE7A /* UIActivityIndicator+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F94E9D1F3E7966001ADE7A /* UIActivityIndicator+Theme.swift */; };
 		B68FC158AABBCE078AADF773 /* Pods_KnowYourDestination.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Rounded.swift"; sourceTree = "<group>"; };
 		90F94E971F3CE01F001ADE7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		90F94E991F3D1E83001ADE7A /* UITableView+Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Utility.swift"; sourceTree = "<group>"; };
+		90F94E9B1F3E5C92001ADE7A /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
+		90F94E9D1F3E7966001ADE7A /* UIActivityIndicator+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicator+Theme.swift"; sourceTree = "<group>"; };
 		9EB50075B0C0519456E0AF53 /* Pods_KnowYourDestination.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnowYourDestination.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -213,6 +217,7 @@
 				90EDB47A1F3B92D000332ACC /* GifImageView.swift */,
 				90D997DC1F1C185500443315 /* RegisterView.swift */,
 				90EDB47E1F3BA8BE00332ACC /* CustomTextField.swift */,
+				90F94E9B1F3E5C92001ADE7A /* CustomActivityIndicator.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				903975851F38E606002C9B6B /* UITextView+Placeholder.swift */,
 				90EDB4821F3BAF8B00332ACC /* UIView+Rounded.swift */,
 				90F94E991F3D1E83001ADE7A /* UITableView+Utility.swift */,
+				90F94E9D1F3E7966001ADE7A /* UIActivityIndicator+Theme.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -460,6 +466,7 @@
 				90D1DB0C1F1E8F720030D0F5 /* CityPost.swift in Sources */,
 				90A7D5D51F16908800CCD5DE /* ViewController.swift in Sources */,
 				90D1DB1D1F1EFA490030D0F5 /* CreateCityPostVC.swift in Sources */,
+				90F94E9C1F3E5C92001ADE7A /* CustomActivityIndicator.swift in Sources */,
 				90A7D5D31F16908800CCD5DE /* AppDelegate.swift in Sources */,
 				906625DF1F1DB8FE00B9087F /* TourGuideService.swift in Sources */,
 				906625DB1F1D52BD00B9087F /* UserService.swift in Sources */,
@@ -483,6 +490,7 @@
 				90EDB47F1F3BA8BE00332ACC /* CustomTextField.swift in Sources */,
 				90EDB47B1F3B92D000332ACC /* GifImageView.swift in Sources */,
 				906625DD1F1D530F00B9087F /* Typealias.swift in Sources */,
+				90F94E9E1F3E7966001ADE7A /* UIActivityIndicator+Theme.swift in Sources */,
 				903975861F38E606002C9B6B /* UITextView+Placeholder.swift in Sources */,
 				9082853B1F351A570007111A /* UserProfileVC.swift in Sources */,
 				90D997E71F1C391800443315 /* RegisterVC.swift in Sources */,
