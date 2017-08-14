@@ -114,7 +114,19 @@ class TravelGuideFeedVC: UIViewController {
 extension TravelGuideFeedVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let post = cityPosts[indexPath.section]
+        
+        var post: CityPost!
+        
+        if inSearchMode {
+            
+            post = filteredPosts[indexPath.section]
+            
+        } else {
+            
+            post = cityPosts[indexPath.section]
+            
+        }
+
         
         switch indexPath.row {
         case 0:
@@ -193,6 +205,9 @@ extension TravelGuideFeedVC: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if inSearchMode {
+            return filteredPosts.count
+        }
         return cityPosts.count
     }
     
@@ -278,7 +293,6 @@ extension TravelGuideFeedVC: UISearchBarDelegate {
             inSearchMode = false
             view.endEditing(true)
             tableView.reloadData()
-            
             
         } else {
             
