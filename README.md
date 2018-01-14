@@ -1,4 +1,6 @@
-<div style="text-align:center"><img src="logo.png" width="50%" style=""></div>
+<div style="text-align: center">
+    <img src="logo.png" width="50%" style="">
+</div>
 
 # Turms
 
