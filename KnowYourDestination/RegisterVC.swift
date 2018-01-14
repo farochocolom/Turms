@@ -214,6 +214,8 @@ class RegisterVC: UIViewController {
 
             }
             // 3
+            
+            self.performSegue(withIdentifier: "Verify", sender: self.registerButton)
         }
     }
     

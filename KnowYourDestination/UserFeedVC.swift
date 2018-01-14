@@ -119,13 +119,13 @@ extension UserFeedVC: UITableViewDataSource {
                 
                 cell.postTextLabel.text = post.text
                 cell.postImage.image = post.image!
-                print("Image cell: \(indexPath.section)")
+                
                 
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ExploreFeedTextCell", for: indexPath) as! ExploreFeedTextCell
                 cell.postTextLabel.text = post.text
-                print("text cell")
+                
                 return cell
             }
             

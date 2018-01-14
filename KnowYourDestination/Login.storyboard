@@ -113,7 +113,7 @@
                         <outlet property="passwordTextField" destination="e1B-yg-jxk" id="dgo-Tz-waU"/>
                         <outlet property="registerButton" destination="XDf-fa-Npw" id="rOO-gH-KfD"/>
                         <segue destination="nPq-Kc-wMn" kind="show" identifier="Register" id="IF6-7P-8m8"/>
-                        <segue destination="orr-t3-E7d" kind="show" id="KUZ-et-egK"/>
+                        <segue destination="orr-t3-E7d" kind="show" identifier="LoginVerify" id="Fxs-pL-rCA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VOz-r3-KkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -132,7 +132,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-pH-YMd" customClass="GIFImageView" customModule="Gifu">
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9w7-pH-YMd" customClass="GIFImageView" customModule="Gifu">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -230,11 +230,12 @@
                         <outlet property="registerButton" destination="WSz-Gt-Akq" id="me5-jT-Z9S"/>
                         <outlet property="travelGuideSwitch" destination="HL4-BC-hCU" id="PsN-fH-VVx"/>
                         <outlet property="usernameTextField" destination="B6d-Gt-Qs7" id="K9C-lX-ajQ"/>
+                        <segue destination="orr-t3-E7d" kind="show" identifier="Verify" id="i5b-xx-wPM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TDZ-xW-cvt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971" y="-332"/>
+            <point key="canvasLocation" x="1971" y="-399"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8Cf-1I-9Yy">
@@ -268,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sJU-IN-HKt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1970.625" y="398.23943661971833"/>
+            <point key="canvasLocation" x="2843" y="17"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O39-p2-3Va">
@@ -296,4 +297,7 @@
     <resources>
         <image name="new-zealand-backgrounds_121112518_124" width="1920" height="1080"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fxs-pL-rCA"/>
+    </inferredMetricsTieBreakers>
 </document>
